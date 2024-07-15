@@ -35,6 +35,10 @@ body {
     @apply mx-auto max-w-[1440px];
   }
 
+  .body-container {
+    @apply mx-auto max-w-[1270px];
+  }
+
   .padding-container {
     @apply px-6 lg:px-20 3xl:px-0;
   }
@@ -122,6 +126,10 @@ body {
 
   .bold-16 {
     @apply text-[16px] font-[700];
+  }
+
+  .bold-14 {
+    @apply text-[14px] font-[700];
   }
 
   /* Hero */
