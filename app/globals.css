@@ -6,6 +6,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-main: #1d5d43;
+  --color-green: #52a84f;
+  --color-alt: #d2ae6d;
+}
+
 * {
   margin: 0;
   padding: 0;
