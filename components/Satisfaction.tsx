@@ -6,7 +6,7 @@ const Satisfaction = () => {
     <>
       <div className='hidden md:block'>
         <Image
-          src="/Satisfaction.png"
+          src="/satisfaction.png"
           alt="Pesquisa de Satisfação"
           width={1270}
           height={141}
@@ -16,7 +16,7 @@ const Satisfaction = () => {
       </div>
       <div className='md:hidden'>
         <Image
-          src="/Satisfactionmobile.png"
+          src="/satisfactionmobile.png"
           alt="Pesquisa de Satisfação"
           width={659}
           height={278}
