@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <div className="w-[100px] h-[100px] relative">
               <Image
-                src="/pin.png" // Substitua pelo caminho correto da sua imagem
+                src="/asdad.png" // Substitua pelo caminho correto da sua imagem
                 alt="Imagem 2"
                 layout="fill"
                 objectFit="cover"

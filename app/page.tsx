@@ -41,7 +41,7 @@ const HomePage = () => {
   return (
     <>
       <Slider slides={slides} height={630} />
-      <section className="body-container">
+      <section className="body-container px-0.5">
         <Card
           className="bg-green-90"
           leftContent={
