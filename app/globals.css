@@ -18,6 +18,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   padding: 4px;
   background-color: #f5f5f5;
