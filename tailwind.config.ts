@@ -33,6 +33,7 @@ module.exports = {
 
     fontFamily: {
       RobotoMono: ["Roboto Mono"],
+
     },
   },
   plugins: [],

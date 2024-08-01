@@ -31,7 +31,7 @@ const HomePage = () => {
   const router = useRouter();
 
   const handleOldResults = () => {
-    router.push('https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx');
+    router.push('/results');
   };
 
   const handleNewResults = () => {
