@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
@@ -9,15 +9,14 @@ interface Slide {
   src: string;
   alt: string;
   width: number;
-  height: number;
+  height: number | string; // Pode ser número ou string (ex: 'auto')
 }
 
 interface SliderProps {
   slides: Slide[];
-  height: number;
 }
 
-const Slider: React.FC<SliderProps> = ({ slides, height }) => {
+const Slider: React.FC<SliderProps> = ({ slides }) => {
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: 'free-snap',
@@ -38,17 +37,21 @@ const Slider: React.FC<SliderProps> = ({ slides, height }) => {
   };
 
   return (
-    <div className="relative w-full">
-      <div ref={sliderRef} className="keen-slider w-full">
+    <div className="relative w-full max-h-[600px] overflow-hidden">
+      <div ref={sliderRef} className="keen-slider w-full h-full">
         {slides.map((slide, index) => (
-          <div key={index} className="keen-slider__slide flex justify-center">
-            <div className="relative w-full" style={{ height }}>
+          <div key={index} className="keen-slider__slide flex justify-center items-center relative">
+            <div
+              className="relative w-full h-full"
+              style={{ height: typeof slide.height === 'string' ? slide.height : `${slide.height}px` }}
+            >
               <Image
                 src={slide.src}
                 alt={slide.alt}
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
+                priority
               />
             </div>
           </div>
@@ -70,6 +73,16 @@ const Slider: React.FC<SliderProps> = ({ slides, height }) => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </button>
+      {/* Indicadores de slide */}
+      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            className="w-3 h-3 bg-white rounded-full border border-gray-400"
+            onClick={() => slider.current?.moveToIdx(index)}
+          ></button>
+        ))}
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ type ButtonProps = {
 const Button = ({ type, title, icon, variant, onClick }: ButtonProps) => {
   return (
     <button
-      className={`flexCenter cursor-pointer gap-3 px-12 rounded-full md:regular-16 ${variant}`}
+      className={`flexCenter cursor-pointer gap-3 rounded-full md:regular-16 ${variant}`}
       type={type}
       onClick={onClick}
     >
