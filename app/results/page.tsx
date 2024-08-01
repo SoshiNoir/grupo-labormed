@@ -31,7 +31,7 @@ const ResultsPage = () => {
             </div>
             <div className="h-1/2 bg-white flex flex-col justify-between items-center text-center">
               <h2 className="pt-2 regular-24 font-RobotoMono text-green-90">{card.title}</h2>
-              <p className="mx-2 regular-16 text-gray-600">{card.text}</p>
+              <p className="m-2 regular-16 text-gray-600">{card.text}</p>
               <a href={card.link} className="w-full">
                 <button className="regular-18 bg-green-90 text-white p-4 rounded w-full hover:bg-green-50">
                   Acessar
