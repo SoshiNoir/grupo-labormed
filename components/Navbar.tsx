@@ -1,7 +1,7 @@
-import { NAV_LINKS } from "@/constants"
-import Image from "next/image"
-import Link from "next/link"
-import Button from "./Button"
+import { NAV_LINKS } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
+import Button from "./Button";
 
 const Navbar = () => {
   return (
@@ -14,21 +14,24 @@ const Navbar = () => {
       <div className="mx-28 my-4">
         <ul className="hidden h-full lg:flex justify-between w-full">
           {NAV_LINKS.map((link) => (
-            <Link href={link.href} key={link.key} className="tracking-wider regular-16 text-gray-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold hover:text-green-90 lg:regular-16 lg:text-center 3xl:regular-18">
-              {link.label}
-            </Link>
+            <li key={link.key}>
+              <Link href={link.href}>
+                <span className="tracking-wider regular-16 text-gray-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold hover:text-green-90 lg:regular-16 lg:text-center 3xl:regular-18">
+                  {link.label}
+                </span>
+              </Link>
+            </li>
           ))}
           <div className="lg:flexCenter hidden">
             <Button
               type="button"
               title="Resultados"
               variant="btn_dark_green"
+              href="/results"  // Adiciona o href aqui
             />
           </div>
         </ul>
       </div>
-
-
 
       <Image
         src="menu.svg"
@@ -38,8 +41,7 @@ const Navbar = () => {
         className="inline-block cursor-pointer lg:hidden mx-3"
       />
     </nav>
-
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
