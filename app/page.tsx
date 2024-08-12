@@ -30,37 +30,29 @@ const footslides = [
 const HomePage = () => {
   const router = useRouter();
 
-  const handleOldResults = () => {
-    router.push('/results');
-  };
-
   const handleNewResults = () => {
     router.push('https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx');
   };
 
   return (
-    <>
+    <div>
       <Slider slides={slides} />
-      <section className="body-container px-0.5">
+      <section className="body-container px-0.5 pt-16"> {/* Ajuste o pt-16 conforme necessário */}
         <Card
           className="bg-green-90"
           leftContent={
-            <div className="flex flex-col justify-center w-full content-center gap-2">
+            <div className="flex flex-col justify-between w-full content-center gap-2">
               <h2 className="text-white text-lg font-bold">Resultados de Exames Online</h2>
-              <Button
-                type="button"
-                title="Consultar resultados até dia 01/10/23 - clique aqui"
-                variant="btn_white_text"
-                onClick={handleOldResults}
-              />
               <Button
                 type="button"
                 title="Consultar resultados"
                 variant="btn_white_text"
                 onClick={handleNewResults}
               />
-              <h2 className="text-white text-sm font-bold">Precisa de ajuda?</h2>
-              <p className="text-white text-sm">Clique aqui para acessar nosso WhatsApp ou entre em contato pelo número (16) 9999-9999</p>
+              <div>
+                <h2 className="text-white text-sm font-bold">Precisa de ajuda?</h2>
+                <p className="text-white text-sm">Clique aqui para acessar nosso WhatsApp ou entre em contato pelo número (16) 9999-9999</p>
+              </div>
             </div>
           }
           rightContent={
@@ -74,15 +66,13 @@ const HomePage = () => {
             </div>
           }
         />
-        <>
-          <Satisfaction />
-          <Doubts />
-          <Rights />
-          <Services />
-        </>
+        <Satisfaction />
+        <Doubts />
+        <Rights />
+        <Services />
       </section>
       <FooterSlider footslides={footslides} height={630} backgroundColor="bg-gradient-yellow" />
-    </>
+    </div>
   );
 };
 

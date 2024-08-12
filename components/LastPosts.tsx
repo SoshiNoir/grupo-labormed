@@ -1,53 +1,64 @@
+// components/InstagramPosts.tsx
+
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const images = [
-  {
-    id: 1,
-    src: '/baby1.jpg',
-    alt: 'Image 1',
-    title: 'Sexagem Fetal',
-    gradient: 'bg-gradient-green',
-  },
-  {
-    id: 2,
-    src: '/baby2.jpg',
-    alt: 'Image 2',
-    title: 'Teste da Bochechinha',
-    gradient: 'bg-gradient-gold',
-  },
-  {
-    id: 3,
-    src: '/baby3.jpg',
-    alt: 'Image 3',
-    title: 'Teste do Pezinho',
-    gradient: 'bg-gradient-green',
-  },
-];
+// Example Instagram data structure
+interface InstagramPost {
+  id: string;
+  imgSrc: string;
+  caption: string;
+  link: string;
+}
 
-const ImageGallery = () => {
+const InstagramPosts: React.FC = () => {
+  const [posts, setPosts] = useState<InstagramPost[]>([]);
+
+  useEffect(() => {
+    // Fetch the latest 3 Instagram posts here
+    // Replace the following dummy data with your API call
+    const fetchPosts = async () => {
+      const data = [
+        { id: '1', imgSrc: '/insta1.jpg', caption: 'Post 1 caption', link: 'https://instagram.com/p/1' },
+        { id: '2', imgSrc: '/insta2.jpg', caption: 'Post 2 caption', link: 'https://instagram.com/p/2' },
+        { id: '3', imgSrc: '/insta3.jpg', caption: 'Post 3 caption', link: 'https://instagram.com/p/3' },
+      ];
+      setPosts(data);
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
-    <div className="transparent flex flex-col items-center mt-8 px-4">
-      <div className="w-full flex justify-center">
-        <div className="grid grid-cols-1 gap-4 w-full md:grid-cols-2 lg:grid-cols-3">
-          {images.map((image) => (
-            <div key={image.id} className="relative w-full h-[400px] max-w-[400px] mx-auto overflow-hidden rounded-lg">
+    <div className="flex flex-col items-center my-14">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
+        {posts.map((post) => (
+          <div
+            key={post.id}
+            className="border rounded-lg overflow-hidden shadow-lg w-full h-[400px] mx-auto"
+          >
+            <div className="relative w-full h-1/2">
               <Image
-                src={image.src}
-                alt={image.alt}
+                src={post.imgSrc}
+                alt={post.caption}
                 layout="fill"
                 objectFit="cover"
-                className="absolute inset-0"
+                className="absolute top-0 left-0"
               />
-              <div className={`absolute bottom-0 left-0 right-0 h-1/3 ${image.gradient} flex items-end justify-center p-4`}>
-                <h3 className="text-[30px] text-white font-thin">{image.title}</h3>
-              </div>
             </div>
-          ))}
-        </div>
+            <div className="h-1/2 bg-white flex flex-col justify-between items-center text-center">
+              <p className="m-2 regular-16 text-gray-600">{post.caption}</p>
+              <a href={post.link} className="w-full" target="_blank" rel="noopener noreferrer">
+                <button className="regular-18 bg-green-90 text-white p-4 rounded w-full hover:bg-green-50">
+                  View on Instagram
+                </button>
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default ImageGallery;
+export default InstagramPosts;
