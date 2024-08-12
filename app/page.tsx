@@ -37,7 +37,7 @@ const HomePage = () => {
   return (
     <div>
       <Slider slides={slides} />
-      <section className="body-container px-0.5 pt-16"> {/* Ajuste o pt-16 conforme necessário */}
+      <section className="body-container px-0.5 pt-16">
         <Card
           className="bg-green-90"
           leftContent={

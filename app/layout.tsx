@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <body>
         <Navbar />
-        <main className="relative overflow-hidden">
+        <main className="relative overflow-hidden pt-16">
           {children}
         </main>
         <Footer />

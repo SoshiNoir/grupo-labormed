@@ -21,15 +21,29 @@ const Navbar = () => {
     }
   };
 
+  const updatePadding = () => {
+    const navHeight = document.getElementById("navbar")?.offsetHeight || 0;
+    document.body.style.paddingTop = `${navHeight}px`;
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", updatePadding);
+
+    updatePadding(); // Atualiza padding na montagem do componente
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updatePadding);
     };
-  }, []);
+  }, [isMenuOpen]); // Recalcula sempre que o menu mobile for aberto/fechado
+
+  useEffect(() => {
+    updatePadding(); // Atualiza padding quando o estado de scroll mudar
+  }, [isScrolled]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-30 bg-gray-100 shadow w-full">
+    <nav id="navbar" className="fixed top-0 left-0 right-0 z-30 bg-gray-100 shadow w-full">
       <div className="max-w-screen-xl mx-auto p-4 flex-row sm:flex-col items-center">
         <div className="flex justify-center items-center">
           <Link href="/">
