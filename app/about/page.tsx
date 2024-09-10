@@ -5,22 +5,22 @@ import { FaLayerGroup, FaLock, FaRegBuilding, FaRegHeart, FaRegStar, FaRegThumbs
 const About: React.FC = () => {
   return (
     <>
-      <div className="p-6 max-w-7xl mx-auto text-center">
+      <div className="p-6 max-w-7xl mx-auto text-center px-1 md:px-6">
         {/* Seção principal */}
         <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="flex-1 p-6 md:w-2/3">
+          <div className="flex-1 p-4 md:p-6 md:w-2/3"> {/* Reduzi o padding */}
             <h2 className="text-3xl font-bold mb-4 text-green-500">Labor Med</h2>
             <p className="text-lg mb-4 text-center">
               O Laboratório Labor Med é uma empresa com mais de 37 anos atuando no mercado de Análises Clínicas com um grande portfólio de exames e atendendo a conveniados de diversos planos de saúde, além do atendimento particular e empresas que prestam serviço de saúde ocupacional.
             </p>
           </div>
-          <div className="flex-1 p-6 md:w-1/3 bg-white">
+          <div className="flex-1 p-1 md:p-6 md:w-1/3 bg-white"> {/* Reduzi o padding */}
             <div className="relative w-full h-64">
               <Image
-                src="/bg-slide-1.jpg" // Substitua pelo caminho correto da sua imagem
+                src="/bg-slide-1.jpg"
                 alt="Imagem do Sobre"
-                layout="fill" // Preenche o contêiner pai
-                objectFit="cover" // Ajusta a imagem para cobrir o contêiner
+                layout="fill"
+                objectFit="cover"
                 className="rounded-lg"
               />
             </div>
@@ -28,21 +28,21 @@ const About: React.FC = () => {
         </div>
 
         {/* Nova seção com cards */}
-        <div className="bg-green-90 py-12 mt-12 rounded-lg overflow-hidden">
-          <div className="max-w-6xl mx-auto px-6">
+        <div className="bg-green-90 py-16 mt-12 rounded-lg  overflow-hidden px-1 md:px-1">
+          <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Card 1 */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaRegHeart className="text-4xl text-green-50 mx-auto" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Qualidade</h3>
+                <h3 className="text-xl font-semibold mb-0 md:mb-4">Qualidade</h3> {/* Mudança no mb */}
                 <p className="text-green-50 text-lg">
                   Comprometidos com a qualidade dos nossos exames e atendimento, garantindo a melhor precisão e confiabilidade.
                 </p>
               </div>
               {/* Card 2 */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaRegStar className="text-4xl text-green-50 mx-auto" />
                 </div>
@@ -52,7 +52,7 @@ const About: React.FC = () => {
                 </p>
               </div>
               {/* Card 3 */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaRegThumbsUp className="text-4xl text-green-50 mx-auto" />
                 </div>
@@ -62,7 +62,7 @@ const About: React.FC = () => {
                 </p>
               </div>
               {/* Card 4 */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaRegBuilding className="text-4xl text-green-50 mx-auto" />
                 </div>
@@ -72,7 +72,7 @@ const About: React.FC = () => {
                 </p>
               </div>
               {/* Card 5 */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaLayerGroup className="text-4xl text-green-50 mx-auto" />
                 </div>
@@ -82,7 +82,7 @@ const About: React.FC = () => {
                 </p>
               </div>
               {/* Card 6 */}
-              <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+              <div className="bg-gray-100 p-2 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaLock className="text-4xl text-green-50 mx-auto" />
                 </div>
