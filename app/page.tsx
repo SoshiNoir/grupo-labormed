@@ -8,7 +8,7 @@ import Rights from "@/components/Rights";
 import Satisfaction from "@/components/Satisfaction";
 import { default as Services } from "@/components/Services";
 import Slider from "@/components/Slider";
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation'; // Updated import
 
 const slides = [
   { src: '/r2.jpeg', alt: 'Slide 1', width: 1920, height: 630 },
@@ -28,16 +28,19 @@ const footslides = [
 ];
 
 const HomePage = () => {
-  const router = useRouter();
+  const pathname = usePathname(); // Get the current pathname
 
   const handleNewResults = () => {
-    router.push('https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx');
+    window.location.href = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
   };
 
+  // Conditionally apply margin class based on the pathname
+  const containerClass = pathname === "/" ? "px-0.5 pt-16" : "px-0.5 pt-16 m-16";
+
   return (
-    <div>
+    <div className="p-0">
       <Slider slides={slides} />
-      <section className="body-container px-0.5 pt-16">
+      <section className={containerClass}>
         <Card
           className="bg-green-90"
           leftContent={

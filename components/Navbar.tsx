@@ -1,7 +1,9 @@
-"use client";
+"use client"; // Add this directive to make the component a Client Component
+
 import { NAV_LINKS } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from "react";
 import Button from "./Button";
 
@@ -10,21 +12,17 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentPage, setCurrentPage] = useState("");
   const [currentPath, setCurrentPath] = useState("");
-  const [isClient, setIsClient] = useState(false);
+  const pathname = usePathname(); // Get current pathname
 
-  // Toggle mobile menu
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
-  // Update scroll state
   const handleScroll = () => setIsScrolled(window.scrollY > 50);
 
-  // Adjust padding-top based on navbar height
   const updatePadding = () => {
     const navHeight = document.getElementById("navbar")?.offsetHeight || 0;
     document.body.style.paddingTop = `${navHeight}px`;
   };
 
-  // Add event listeners for scroll and resize
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", updatePadding);
@@ -36,33 +34,19 @@ const Navbar = () => {
     };
   }, []);
 
-  // Ensure we are on the client side
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    // Handle route change
+    const path = pathname.replace(/\/$/, ''); // Remove trailing slash
+    setCurrentPath(path);
+    const page = NAV_LINKS.find(link => link.href === path)?.label || "";
+    setCurrentPage(page);
+  }, [pathname]); // Update when pathname changes
 
-  // Update path and page title on route change
-  useEffect(() => {
-    if (!isClient) return;
+  // Determine if the navbar should have a transparent background or be green
+  const titleBarBgClass = currentPath === "/" ? "bg-transparent" : "bg-green-90";
 
-    const handleRouteChange = () => {
-      const path = window.location.pathname.replace(/\/$/, ''); // Remove trailing slash
-      setCurrentPath(path);
-      const page = NAV_LINKS.find(link => link.href === path)?.label || "";
-      setCurrentPage(page);
-    };
-
-    handleRouteChange(); // Initial call
-    window.addEventListener("popstate", handleRouteChange); // For browser back/forward
-    window.addEventListener("pushState", handleRouteChange); // For history.pushState
-    window.addEventListener("replaceState", handleRouteChange); // For history.replaceState
-
-    return () => {
-      window.removeEventListener("popstate", handleRouteChange);
-      window.removeEventListener("pushState", handleRouteChange);
-      window.removeEventListener("replaceState", handleRouteChange);
-    };
-  }, [isClient]);
+  // Hide the title bar if currentPage is empty or currentPath is "/"
+  const shouldRenderTitleBar = currentPage && currentPath !== "/";
 
   return (
     <nav id="navbar" className="fixed top-0 left-0 right-0 z-30 bg-gray-100 shadow w-full mb-14">
@@ -146,9 +130,9 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Show green bar only if not on the homepage */}
-      {currentPath !== "/" && (
-        <div className="w-full h-[4rem] overflow-hidden bg-green-90 flex justify-center">
+      {/* Render the title bar with conditional background color */}
+      {shouldRenderTitleBar && (
+        <div className={`w-full h-[3rem] flex justify-center ${titleBarBgClass}`}>
           <div className="flex items-center">
             <h1 className="text-3xl text-gray-10">{currentPage}</h1>
           </div>

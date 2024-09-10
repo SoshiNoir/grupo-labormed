@@ -23,7 +23,7 @@ const Footer = () => {
               />
             </div>
             <div className="p-2 align-middle justify-center">
-              <h3 className="text-lg font-bold mb-2 pl-3">Unidade 1 - Labor Med Centro</h3>
+              <h3 className="text-lg font-bold mb-2 pl-3">Unidade 1 - Batatais</h3>
               <div className="flex flex-column gap-2 p-2">
                 <MapPin size={38} color="var(--color-main)" />
                 <p>Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São Paulo </p>
@@ -52,14 +52,14 @@ const Footer = () => {
               />
             </div>
             <div className="p-2 align-middle justify-center">
-              <h3 className="text-lg font-bold mb-2 pl-3">Unidade 1 - Labor Med Centro</h3>
+              <h3 className="text-lg font-bold mb-2 pl-3">Unidade 2 - Batatais</h3>
               <div className="flex flex-column gap-2 p-2">
                 <MapPin size={38} color="var(--color-alt)" />
-                <p>Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São Paulo </p>
+                <p>Travessa Intendente Vigilato, 295 - Centro - Batatais - São Paulo</p>
               </div>
               <div className="flex flex-column gap-2 p-2">
                 <Phone size={28} color="var(--color-alt)" />
-                <p>(16) 3761-6066</p>
+                <p>(16) 3761-8555</p>
               </div>
               <div className="flex flex-column gap-2 p-2">
                 <Clock size={28} color="var(--color-alt)" />
@@ -81,19 +81,19 @@ const Footer = () => {
               />
             </div>
             <div className="p-2 align-middle justify-center">
-              <h3 className="text-lg font-bold mb-2 pl-3">Unidade 1 - Labor Med Centro</h3>
+              <h3 className="text-lg font-bold mb-2 pl-3">Unidade 3 - Altinópolis</h3>
               <div className="flex flex-column gap-2 p-2">
                 <MapPin size={38} color="var(--color-main)" />
-                <p>Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São Paulo </p>
+                <p>Rua Coronel Joaquim Alberto, 377 - Centro - Altinópolis - São Paulo</p>
               </div>
               <div className="flex flex-column gap-2 p-2">
                 <Phone size={28} color="var(--color-main)" />
-                <p>(16) 3761-6066</p>
+                <p>(16) 3665-3422</p>
               </div>
               <div className="flex flex-column gap-2 p-2">
                 <Clock size={28} color="var(--color-main)" />
                 <div>
-                  <p>Seg - Sex das 06h30 - 17h30</p>
+                  <p>Seg - Sex das 06h30 - 17h00</p>
                   <p>Sábado e domingo: Fechado</p>
                 </div>
               </div>

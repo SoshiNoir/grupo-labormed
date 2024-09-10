@@ -37,7 +37,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   };
 
   return (
-    <div className="pt-16 relative w-full max-h-[600px] overflow-hidden">
+    <div className="relative w-full max-h-[600px] overflow-hidden">
       <div ref={sliderRef} className="keen-slider w-full h-full">
         {slides.map((slide, index) => (
           <div key={index} className="keen-slider__slide flex justify-center items-center relative">
