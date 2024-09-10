@@ -16,6 +16,8 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   const handleScroll = () => setIsScrolled(window.scrollY > 50);
 
   const updatePadding = () => {
@@ -109,7 +111,7 @@ const Navbar = () => {
             <ul className="flex flex-col items-center justify-center h-full">
               {NAV_LINKS.map(link => (
                 <li key={link.key} className="py-4">
-                  <Link href={link.href}>
+                  <Link href={link.href} onClick={closeMenu}>
                     <span className="block text-gray-900 hover:text-green-700 text-lg sm:text-base">
                       {link.label}
                     </span>
