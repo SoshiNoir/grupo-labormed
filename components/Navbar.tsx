@@ -51,7 +51,7 @@ const Navbar = () => {
   const shouldRenderTitleBar = currentPage && currentPath !== "/";
 
   return (
-    <nav id="navbar" className="fixed top-0 left-0 right-0 z-30 bg-gray-100 shadow w-full mb-14">
+    <nav id="navbar" className="fixed top-0 left-0 right-0 z-30 bg-gray-100 shadow w-full">
       <div className="max-w-screen-xl mx-auto p-4 flex-row sm:flex-col items-center">
         <div className="flex justify-center items-center">
           <Link href="/">
