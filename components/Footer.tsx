@@ -6,14 +6,14 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="w-full mt-16 flex flex-col items-center border-t border-gray-300">
+    <footer className="w-full mt-16 ml-5 md:ml-0 flex flex-col items-center border-t border-gray-300">
       {/* Linha horizontal riscando o topo */}
       <div className="absolute inset-x-0 top-0" style={{ height: '2px', backgroundColor: 'gray', zIndex: 1 }}></div>
 
       <div className="relative pt-8 bg-gray-100" style={{ minHeight: '100px' }}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 px-4 md:px-8 lg:px-16">
           <div className="flex items-center gap-4 border-b md:border-r border-gray-300 md:border-b-0 pb-4 md:pb-0 md:pr-4">
-            <div className="w-[100px] h-[100px] relative pl-2 md:pl-0">
+            <div className="w-[100px] h-[100px] relative">
               <Image
                 src="/pinMain.svg"
                 alt="Imagem 1"
@@ -42,7 +42,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex items-center gap-4 border-b md:border-r border-gray-300 md:border-b-0 pb-4 md:pb-0 md:pr-4">
-            <div className="w-[100px] h-[100px] relative pl-2 md:pl-0">
+            <div className="w-[100px] h-[100px] relative">
               <Image
                 src="/pinGold.svg"
                 alt="Imagem 2"
@@ -71,7 +71,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex items-center gap-4 pb-4 md:pb-0">
-            <div className="w-[100px] h-[100px] relative pl-2 md:pl-0">
+            <div className="w-[100px] h-[100px] relative">
               <Image
                 src="/pinMain.svg"
                 alt="Imagem 3"
