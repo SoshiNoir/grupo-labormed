@@ -37,7 +37,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   };
 
   return (
-    <div className="relative w-full max-h-[600px] overflow-hidden">
+    <div className="pt-16 relative w-full max-h-[600px] overflow-hidden">
       <div ref={sliderRef} className="keen-slider w-full h-full">
         {slides.map((slide, index) => (
           <div key={index} className="keen-slider__slide flex justify-center items-center relative">
@@ -49,8 +49,8 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
                 src={slide.src}
                 alt={slide.alt}
                 layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
+                objectFit="cover" // Padrão para telas maiores
+                className="rounded-lg object-contain sm:object-cover" // Aplicar contain no mobile e cover a partir do sm (640px)
                 priority
               />
             </div>

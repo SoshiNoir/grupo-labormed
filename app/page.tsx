@@ -45,9 +45,10 @@ const HomePage = () => {
               <h2 className="text-white text-lg font-bold">Resultados de Exames Online</h2>
               <Button
                 type="button"
-                title="Consultar resultados"
+                title="Consultar Resultados"
                 variant="btn_white_text"
-                onClick={handleNewResults}
+                href="https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx"
+                target="_blank"
               />
               <div>
                 <h2 className="text-white text-sm font-bold">Precisa de ajuda?</h2>
