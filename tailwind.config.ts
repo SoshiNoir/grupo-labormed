@@ -1,5 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+// tailwind.config.ts
+import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
+
+const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -29,12 +32,29 @@ module.exports = {
           50: '#D2AE6D',
         },
       },
-    },
-
-    fontFamily: {
-      RobotoMono: ["Roboto Mono"],
-
+      fontFamily: {
+        RobotoMono: ["Roboto Mono"],
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addComponents }) {
+      addComponents({
+        '.fade-in': {
+          opacity: '1',
+          display: 'block',
+          transition: 'opacity 0.5s ease-in-out',
+        },
+        '.fade-out': {
+          opacity: '0',
+          transition: 'opacity 0.5s ease-in-out',
+        },
+        '.hidden': {
+          display: 'none',
+        },
+      });
+    }),
+  ],
 };
+
+export default config;

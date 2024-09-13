@@ -6,7 +6,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="w-full mt-16 ml-5 md:ml-0 flex flex-col items-center border-t border-gray-300">
+    <footer className="w-full mt-16 ml-2 md:ml-0 flex flex-col items-center border-t border-gray-300">
       {/* Linha horizontal riscando o topo */}
       <div className="absolute inset-x-0 top-0" style={{ height: '2px', backgroundColor: 'gray', zIndex: 1 }}></div>
 

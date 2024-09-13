@@ -10,6 +10,7 @@ import Button from "./Button";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isTitleBarVisible, setIsTitleBarVisible] = useState(true); // Novo estado para controlar a visibilidade
   const [currentPage, setCurrentPage] = useState("");
   const [currentPath, setCurrentPath] = useState("");
   const pathname = usePathname(); // Get current pathname
@@ -18,7 +19,11 @@ const Navbar = () => {
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleScroll = () => setIsScrolled(window.scrollY > 50);
+  const handleScroll = () => {
+    const scrolled = window.scrollY > 50;
+    setIsScrolled(scrolled);
+    setIsTitleBarVisible(!scrolled); // Define visibilidade da barra verde
+  };
 
   const updatePadding = () => {
     const navHeight = document.getElementById("navbar")?.offsetHeight || 0;
@@ -112,7 +117,7 @@ const Navbar = () => {
               {NAV_LINKS.map(link => (
                 <li key={link.key} className="py-4">
                   <Link href={link.href} onClick={closeMenu}>
-                    <span className="block text-gray-900 hover:text-green-700 text-lg sm:text-base">
+                    <span className="block text-gray-900 hover:text-green-700 text-lg sm:text-base cursor-pointer">
                       {link.label}
                     </span>
                   </Link>
@@ -134,7 +139,10 @@ const Navbar = () => {
 
       {/* Render the title bar with conditional background color */}
       {shouldRenderTitleBar && (
-        <div className={`w-full h-[3rem] flex justify-center ${titleBarBgClass}`}>
+        <div
+          className={`w-full h-[3rem] flex justify-center transition-all duration-500 ease-out ${titleBarBgClass} ${isTitleBarVisible ? "block" : "hidden"
+            }`}
+        >
           <div className="flex items-center">
             <h1 className="text-3xl text-gray-10">{currentPage}</h1>
           </div>

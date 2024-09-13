@@ -3,11 +3,10 @@ export const NAV_LINKS = [
   { href: '/', key: 'home', label: 'Início' },
   { href: '/about', key: 'sobre', label: 'Sobre' },
   { href: '/certifications', key: 'certificacoes', label: 'Certificações' },
-  { href: '/', key: 'convenios', label: 'Convênios' },
+  { href: '/covenants', key: 'convenios', label: 'Convênios' },
   { href: '/blog', key: 'blog', label: 'Blog' },
   { href: '/', key: 'duvidas_frequentes', label: 'Dúvidas Frequentes' },
-  { href: '/', key: 'unidades', label: 'Unidades' },
-  { href: '/', key: 'fale_conosco', label: 'Fale Conosco' },
+  { href: '/units', key: 'unidades', label: 'Unidades e Contato' },
 ];
 
 // CAMP SECTION

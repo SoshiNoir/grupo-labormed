@@ -1,6 +1,9 @@
-import Image from 'next/image'; // Importa o componente Image do Next.js
+"use client"; // Para garantir que o componente seja um Client Component
+
+import Button from '@/components/Button'; // Corrigido para o caminho correto do botão
+import Image from 'next/image';
 import React from 'react';
-import { FaLayerGroup, FaLock, FaRegBuilding, FaRegHeart, FaRegStar, FaRegThumbsUp, FaUserLock, } from 'react-icons/fa'; // Exemplo de ícones; ajuste conforme necessário
+import { FaLayerGroup, FaLock, FaRegBuilding, FaRegHeart, FaRegStar, FaRegThumbsUp } from 'react-icons/fa'; // Ícones usados nos cards
 
 const About: React.FC = () => {
   return (
@@ -28,11 +31,11 @@ const About: React.FC = () => {
         </div>
 
         {/* Nova seção com cards */}
-        <div className="bg-green-90 py-16 mt-12 rounded-lg  overflow-hidden px-1 md:px-1">
+        <div className="bg-green-90 py-16 mt-12 rounded-lg overflow-hidden px-1 md:px-1">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Card 1 */}
-              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center">
                 <div className="mb-4">
                   <FaRegHeart className="text-4xl text-green-50 mx-auto" />
                 </div>
@@ -82,7 +85,7 @@ const About: React.FC = () => {
                 </p>
               </div>
               {/* Card 6 */}
-              <div className="bg-gray-100 p-2 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
+              <div className="bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center"> {/* Reduzi o padding */}
                 <div className="mb-4">
                   <FaLock className="text-4xl text-green-50 mx-auto" />
                 </div>
