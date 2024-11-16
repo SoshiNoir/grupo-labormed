@@ -6,14 +6,16 @@ import Doubts from "@/components/Doubts";
 import FooterSlider from "@/components/FooterSlider";
 import Rights from "@/components/Rights";
 import Satisfaction from "@/components/Satisfaction";
+import SatisfactionSurvey from "@/components/SatisfactionSurvey"; // Importando o componente de pesquisa
 import { default as Services } from "@/components/Services";
 import Slider from "@/components/Slider";
-import { usePathname } from 'next/navigation'; // Updated import
+import { usePathname } from 'next/navigation';
+import { useState } from 'react'; // Importando useState para controle do modal
 
 const slides = [
-  { src: '/r2.jpeg', alt: 'Slide 1', width: 1920, height: 630 },
-  { src: '/r3.jpeg', alt: 'Slide 2', width: 1920, height: 630 },
-  { src: '/r1.jpeg', alt: 'Slide 3', width: 1920, height: 630 },
+  { src: '/banner1.png', alt: 'Slide 1', width: 1920, height: 630, link: 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx' },
+  { src: '/banner2.png', alt: 'Slide 2', width: 1920, height: 630, link: '/link2' },
+  { src: '/banner3.png', alt: 'Slide 3', width: 1920, height: 630, link: '/link3' },
 ];
 
 const footslides = [
@@ -21,21 +23,25 @@ const footslides = [
   { src: '/lab2.jpg', alt: 'Slide 2', width: 316, height: 259 },
   { src: '/lab3.jpg', alt: 'Slide 3', width: 316, height: 259 },
   { src: '/lab4.jpg', alt: 'Slide 4', width: 316, height: 259 },
-  { src: '/lab1.jpg', alt: 'Slide 1', width: 316, height: 259 },
-  { src: '/lab2.jpg', alt: 'Slide 2', width: 316, height: 259 },
-  { src: '/lab3.jpg', alt: 'Slide 3', width: 316, height: 259 },
-  { src: '/lab4.jpg', alt: 'Slide 4', width: 316, height: 259 },
 ];
 
 const HomePage = () => {
-  const pathname = usePathname(); // Get the current pathname
+  const pathname = usePathname();
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false); // Estado para controlar o modal
 
   const handleNewResults = () => {
     window.location.href = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
   };
 
-  // Conditionally apply margin class based on the pathname
   const containerClass = pathname === "/" ? "px-0.5 pt-16" : "px-0.5 pt-16 m-16";
+
+  const handleOpenSurvey = () => {
+    setIsSurveyOpen(true);
+  };
+
+  const handleCloseSurvey = () => {
+    setIsSurveyOpen(false);
+  };
 
   return (
     <div className="p-0">
@@ -55,7 +61,7 @@ const HomePage = () => {
               />
               <div>
                 <h2 className="text-white text-sm font-bold">Precisa de ajuda?</h2>
-                <p className="text-white text-sm">Clique aqui para acessar nosso WhatsApp ou entre em contato pelo número (16) 9999-9999</p>
+                <p className="text-white text-sm">Clique aqui para acessar nosso WhatsApp ou entre em contato pelo número (16) 3761-8555.</p>
               </div>
             </div>
           }
@@ -70,7 +76,13 @@ const HomePage = () => {
             </div>
           }
         />
-        <Satisfaction />
+        <Button
+          type="button"
+          title="Participar da Pesquisa de Satisfação"
+          variant="btn_white_text"
+          onClick={handleOpenSurvey} // Abre o modal ao clicar
+        />
+        {isSurveyOpen && <SatisfactionSurvey onClose={handleCloseSurvey} />} {/* Renderiza o modal */}
         <Doubts />
         <Rights />
         <Services />

@@ -4,8 +4,8 @@ export const NAV_LINKS = [
   { href: '/about', key: 'sobre', label: 'Sobre' },
   { href: '/certifications', key: 'certificacoes', label: 'Certificações' },
   { href: '/covenants', key: 'convenios', label: 'Convênios' },
-  { href: '/blog', key: 'blog', label: 'Blog' },
-  { href: '/', key: 'duvidas_frequentes', label: 'Dúvidas Frequentes' },
+  //  { href: '/blog', key: 'blog', label: 'Blog' },
+  { href: '/faq', key: 'duvidas_frequentes', label: 'Dúvidas Frequentes' },
   { href: '/units', key: 'unidades', label: 'Unidades e Contato' },
 ];
 

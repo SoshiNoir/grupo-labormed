@@ -81,7 +81,7 @@ const Navbar = () => {
         </div>
 
         <div className="mt-4 w-full">
-          <ul className="hidden h-full lg:flex justify-between w-full">
+          <ul className="hidden h-full lg:flex justify-between w-full items-center">
             {NAV_LINKS.map(link => (
               <li key={link.key}>
                 <Link href={link.href}>
@@ -91,7 +91,7 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-            <div className="lg:flexCenter hidden">
+            <li>
               <Button
                 type="button"
                 title="Resultados"
@@ -99,7 +99,7 @@ const Navbar = () => {
                 href="https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx"
                 target="_blank"
               />
-            </div>
+            </li>
           </ul>
         </div>
 
