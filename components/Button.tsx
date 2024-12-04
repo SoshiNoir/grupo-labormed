@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type ButtonProps = {
   type?: "button" | "submit";
   title: string;
   icon?: ReactNode;
-  variant?: string; // Variantes de estilo
-  paddingVariant?: "normal" | "spacious"; // Adicionada a propriedade
+  variant?: string;
+  paddingVariant?: "normal" | "spacious";
   onClick?: () => void;
   href?: string;
   target?: string;
@@ -17,13 +17,12 @@ const Button = ({
   type = "button",
   title,
   icon,
-  variant,
-  paddingVariant = "normal", // Definindo valor padrão
+  variant = "normal", // Variante padrão
+  paddingVariant = "normal",
   onClick,
   href,
   target,
 }: ButtonProps) => {
-  // Classes de padding baseadas na variante
   const paddingClasses =
     paddingVariant === "spacious" ? "px-6 py-3" : "px-4 py-2";
 
@@ -34,13 +33,18 @@ const Button = ({
     </div>
   );
 
+  const baseClasses =
+    variant === "normal"
+      ? "bg-white text-green-90 font-bold border-2 border-transparent hover:border-green-500 hover:shadow-inner hover:shadow-green-500 transition-all duration-200"
+      : variant;
+
   if (href) {
     return (
       <Link
         href={href}
         passHref
         target={target}
-        className={`flexCenter gap-3 rounded-full md:regular-16 ${paddingClasses} ${variant}`}
+        className={`flexCenter gap-3 rounded-full md:regular-16 ${paddingClasses} ${baseClasses}`}
       >
         {buttonContent}
       </Link>
@@ -49,7 +53,7 @@ const Button = ({
 
   return (
     <button
-      className={`flexCenter gap-3 rounded-full md:regular-16 sm:regular-14 ${paddingClasses} ${variant}`}
+      className={`flexCenter gap-3 rounded-full md:regular-16 sm:regular-14 ${paddingClasses} ${baseClasses}`}
       type={type}
       onClick={onClick}
     >

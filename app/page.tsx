@@ -5,11 +5,12 @@ import Card from "@/components/Card";
 import Doubts from "@/components/Doubts";
 import FooterSlider from "@/components/FooterSlider";
 import Satisfaction from "@/components/Satisfaction";
-import SatisfactionSurvey from "@/components/SatisfactionSurvey"; // Importando o componente de pesquisa
+import SatisfactionSurvey from "@/components/SatisfactionSurvey";
 import { default as Services } from "@/components/Services";
 import Slider from "@/components/Slider";
+import WhatsappButton from "@/components/WhatsappButton";
 import { usePathname } from 'next/navigation';
-import { useState } from 'react'; // Importando useState para controle do modal
+import { useState } from 'react';
 
 const slides = [
   { src: '/banner1.png', alt: 'Slide 1', width: 1920, height: 630, link: 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx' },
@@ -26,7 +27,7 @@ const footslides = [
 
 const HomePage = () => {
   const pathname = usePathname();
-  const [isSurveyOpen, setIsSurveyOpen] = useState(false); // Estado para controlar o modal
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
 
   const handleNewResults = () => {
     window.location.href = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
@@ -54,13 +55,16 @@ const HomePage = () => {
               <Button
                 type="button"
                 title="Consultar Resultados"
-                variant="btn_white_text"
+                variant="normal"
                 href="https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx"
                 target="_blank"
               />
               <div>
                 <h2 className="text-white text-sm font-bold">Precisa de ajuda?</h2>
-                <p className="text-white text-sm">Clique aqui para acessar nosso WhatsApp ou entre em contato pelo número (16) 3761-8555.</p>
+                <WhatsappButton
+                  phoneNumber="551637618555"
+                  label="WhatsApp: 16 3761-8555"
+                />
               </div>
             </div>
           }
@@ -79,9 +83,9 @@ const HomePage = () => {
           type="button"
           title="Participar da Pesquisa de Satisfação"
           variant="btn_white_text"
-          onClick={handleOpenSurvey} // Abre o modal ao clicar
+          onClick={handleOpenSurvey}
         />
-        {isSurveyOpen && <SatisfactionSurvey onClose={handleCloseSurvey} />} {/* Renderiza o modal */}
+        {isSurveyOpen && <SatisfactionSurvey onClose={handleCloseSurvey} />}
         <Doubts />
         <Services />
       </section>
