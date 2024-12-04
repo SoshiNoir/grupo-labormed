@@ -4,6 +4,7 @@ import { NAV_LINKS } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { YoutubeLogo } from "phosphor-react"; // Importando o ícone do YouTube
 import { useEffect, useState } from "react";
 import Button from "./Button";
 
@@ -100,11 +101,17 @@ const Navbar = () => {
                 target="_blank"
               />
             </li>
+            {/* Adicionando o ícone do YouTube */}
+            <li>
+              <Link href="https://www.youtube.com/@Labor_med/videos" target="_blank">
+                <YoutubeLogo size={32} color="#34D399" className="cursor-pointer transition-all hover:text-green-500" />
+              </Link>
+            </li>
           </ul>
         </div>
 
         {isMenuOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-white shadow-lg z-40 lg:hidden flex flex-col">
+          <div className={`fixed top-0 left-0 w-full h-full bg-white shadow-lg z-40 lg:hidden flex flex-col transition-transform duration-1000 ease-out ${isMenuOpen ? 'transform translate-y-0' : 'transform -translate-y-full'}`}>
             <div className="flex justify-end p-4">
               <button
                 className="text-gray-600 text-2xl"
@@ -132,6 +139,12 @@ const Navbar = () => {
                   target="_blank"
                 />
               </li>
+              {/* Adicionando o ícone do YouTube no menu móvel */}
+              <li className="py-4">
+                <Link href="https://www.youtube.com/@Labor_med/videos" target="_blank">
+                  <YoutubeLogo size={32} color="#34D399" className="cursor-pointer transition-all hover:text-green-500" />
+                </Link>
+              </li>
             </ul>
           </div>
         )}
@@ -140,7 +153,7 @@ const Navbar = () => {
       {/* Render the title bar with conditional background color */}
       {shouldRenderTitleBar && (
         <div
-          className={`w-full h-[3rem] flex justify-center transition-all duration-500 ease-out ${titleBarBgClass} ${isTitleBarVisible ? "block" : "hidden"
+          className={`w-full h-[3rem] flex justify-center transition-all duration-1000 ease-out ${titleBarBgClass} ${isTitleBarVisible ? "block" : "hidden"
             }`}
         >
           <div className="flex items-center">

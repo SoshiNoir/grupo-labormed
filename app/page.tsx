@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Doubts from "@/components/Doubts";
 import FooterSlider from "@/components/FooterSlider";
-import Rights from "@/components/Rights";
 import Satisfaction from "@/components/Satisfaction";
 import SatisfactionSurvey from "@/components/SatisfactionSurvey"; // Importando o componente de pesquisa
 import { default as Services } from "@/components/Services";
@@ -84,7 +83,6 @@ const HomePage = () => {
         />
         {isSurveyOpen && <SatisfactionSurvey onClose={handleCloseSurvey} />} {/* Renderiza o modal */}
         <Doubts />
-        <Rights />
         <Services />
       </section>
       <FooterSlider footslides={footslides} height={630} backgroundColor="bg-gradient-yellow" />

@@ -1,4 +1,5 @@
-import { Clock, MapPin, Phone, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import WhatsappButton from "@/components/WhatsappButton";
+import { Clock, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
 import Image from 'next/image';
 import React from 'react';
 
@@ -33,17 +34,12 @@ const Card: React.FC<CardProps> = ({ imageSrc, preTitle, title, content, mapSrc,
         <h2 className="text-2xl font-bold mb-4 text-[var(--color-main)]">{title}</h2>
         <div className="text-gray-700 mb-2">
           {content}
-          {/* Botão WhatsApp */}
+          {/* Substitua o botão WhatsApp pelo componente */}
           <div className="flex flex-col items-center mt-4">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-green-500 border border-green-500 rounded-md py-2 px-4 cursor-pointer transition-colors duration-100 hover:bg-green-500 hover:text-white"
-            >
-              <WhatsappLogo size={32} className="transition-colors duration-100" />
-              <span className="ml-2 transition-colors duration-100">Fale conosco</span>
-            </a>
+            <WhatsappButton
+              phoneNumber="551637618555"
+              label="WhatsApp: 16 3761-8555"
+            />
           </div>
         </div>
       </div>
@@ -113,7 +109,7 @@ const Units: React.FC = () => {
         </div>
       ),
       mapSrc: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3320.9272525537353!2d-47.58491778009317!3d-20.887571597239255!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9faea56fd24d1%3A0x28e0e2e22a0fc31c!2sR.%20Dr.%20Manoel%20Furtado%2C%20235%20-%20Centro%2C%20Batatais%20-%20SP%2C%2014300-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110289366!5m2!1spt-BR!2sus',
-      whatsappLink: 'https://wa.me/5516237618555', // Link para o WhatsApp
+      whatsappLink: 'https://wa.me/5516237618555',
     },
     {
       imageSrc: '/unidade3.jpg',
@@ -138,7 +134,7 @@ const Units: React.FC = () => {
           </div>
         </div>
       ),
-      mapSrc: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2558.4166046496994!2d-47.37624281591836!3d-21.025992980221528!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b760ce779031d3%3A0x3c58634861723af1!2sR.%20Cel.%20Joaquim%20Alberto%2C%20354%2C%20Altin%C3%B3polis%20-%20SP%2C%2014312-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110299724!5m2!1spt-BR!2sus',
+      mapSrc: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2558.4166046496994!2d-47.37624281591836!3d-21.025992980221528!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b760ce779031d3%3A0x3c58634861723af1!2sR.%20Cel.%20Joaquim%20Alberto%2C%20354%20-%20Centro%2C%20Altin%C3%B3polis%20-%20SP%2C%2013920-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110915783!5m2!1spt-BR!2sus',
       whatsappLink: 'https://wa.me/551636653422', // Link para o WhatsApp
     },
   ];
@@ -146,15 +142,7 @@ const Units: React.FC = () => {
   return (
     <div>
       {cardsData.map((card, index) => (
-        <Card
-          key={index}
-          imageSrc={card.imageSrc}
-          preTitle={card.preTitle}
-          title={card.title}
-          content={card.content}
-          mapSrc={card.mapSrc}
-          whatsappLink={card.whatsappLink}
-        />
+        <Card key={index} {...card} />
       ))}
     </div>
   );

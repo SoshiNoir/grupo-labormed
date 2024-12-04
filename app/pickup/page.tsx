@@ -34,7 +34,7 @@ const Pickup: React.FC = () => {
             title="WhatsApp: (16) 3761-855"
             icon={<FaWhatsapp className="text-lg text-green-500" />} // Ícone para WhatsApp
             variant="bg-white text-green-90 font-bold hover:bg-green-50 transition duration-200"
-            href="https://wa.me/55163761855"
+            href="https://wa.me/551637618555"
             target="_blank"
           />
         </div>
