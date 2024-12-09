@@ -8,8 +8,6 @@ import React from 'react';
 interface Slide {
   src: string;
   alt: string;
-  width: number;
-  height: number | string;
   link: string; // Campo para o link
 }
 
@@ -38,7 +36,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   };
 
   return (
-    <div className="relative w-full h-[140px] sm:h-[400px] md:h-[250px] lg:h-[600px] overflow-hidden">
+    <div className="relative w-full h-[140px] sm:h-[400px] md:h-[250px] lg:h-[250px] xl:h-[500px] overflow-hidden">
       <div ref={sliderRef} className="keen-slider w-full h-full">
         {slides.map((slide, index) => (
           <div key={index} className="keen-slider__slide relative flex justify-center items-center">
@@ -46,9 +44,8 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
               <Image
                 src={slide.src}
                 alt={slide.alt}
-                width={1920}
-                height={630}
-                className="w-screen h-auto object-contain sm:object-cover"
+                fill
+                className="object-cover w-full h-full" // Garante o preenchimento automático
                 priority={index === 0}
               />
             </a>

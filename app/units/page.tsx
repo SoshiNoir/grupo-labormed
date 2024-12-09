@@ -76,7 +76,7 @@ const Units: React.FC = () => {
           <div className="flex flex-row gap-2 p-2">
             <Clock size={28} color="var(--color-main)" />
             <div>
-              <p>Seg - Sex das 06h30 - 17h30</p>
+              <p>Seg - Sex das 06:30 - 17:30</p>
               <p>Sábado e domingo: Fechado</p>
             </div>
           </div>
@@ -102,8 +102,8 @@ const Units: React.FC = () => {
           <div className="flex flex-row gap-2 p-2">
             <Clock size={28} color="var(--color-alt)" />
             <div>
-              <p>Seg - Sex das 06h30 - 17h30</p>
-              <p>Sábado e domingo: Fechado</p>
+              <p>Seg - Sex: 06:30 - 18:00</p>
+              <p>Sábados 07:00 - 11:00</p>
             </div>
           </div>
         </div>
@@ -128,7 +128,7 @@ const Units: React.FC = () => {
           <div className="flex flex-row gap-2 p-2">
             <Clock size={28} color="var(--color-main)" />
             <div>
-              <p>Seg - Sex das 06h30 - 17h00</p>
+              <p>Seg - Sex das 7:00 - 17:00</p>
               <p>Sábado e domingo: Fechado</p>
             </div>
           </div>

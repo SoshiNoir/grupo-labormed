@@ -13,9 +13,10 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const slides = [
-  { src: '/banner1.png', alt: 'Slide 1', width: 1920, height: 630, link: 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx' },
-  { src: '/banner2.png', alt: 'Slide 2', width: 1920, height: 630, link: '/link2' },
-  { src: '/banner3.png', alt: 'Slide 3', width: 1920, height: 630, link: '/link3' },
+  { src: '/banner1.png', alt: 'Slide 1', link: '/units' },
+  { src: '/banner2.png', alt: 'Slide 2', link: '/FetalSexing' },
+  { src: '/banner3.png', alt: 'Slide 3', link: '/pickup' },
+  { src: '/banner4.png', alt: 'Slide 4', link: 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx' },
 ];
 
 const footslides = [
