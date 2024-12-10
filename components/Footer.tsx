@@ -100,15 +100,17 @@ const Footer = () => {
 
         <div className="w-full p-8 flex flex-col items-center border-t border-gray-300">
           <div className="flex flex-col items-center gap-4">
-            <div className="relative w-96 h-auto">
-              <Image
-                src="/horizontal.png"
-                alt="Imagem 4"
-                width={384}
-                height={216}
-                objectFit="contain"
-                className="rounded-lg"
-              />
+            <div className=" h-auto">
+              <div className='flex'>
+                <Image
+                  src="/horizontal.png"
+                  alt="Imagem 4"
+                  width={384}
+                  height={216}
+                  objectFit="contain"
+                  className="rounded-lg"
+                />
+              </div>
             </div>
             <div className="text-center">
               <p>Copyright © 2024 | Labor Med | Todos os direitos reservados.</p>
