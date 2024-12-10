@@ -1,20 +1,20 @@
-"use client"; // Add this directive to make the component a Client Component
+"use client";
 
 import { NAV_LINKS } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { YoutubeLogo } from "phosphor-react"; // Importando o ícone do YouTube
+import { InstagramLogo, YoutubeLogo } from "phosphor-react";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isTitleBarVisible, setIsTitleBarVisible] = useState(true); // Novo estado para controlar a visibilidade
+  const [isTitleBarVisible, setIsTitleBarVisible] = useState(true);
   const [currentPage, setCurrentPage] = useState("");
   const [currentPath, setCurrentPath] = useState("");
-  const pathname = usePathname(); // Get current pathname
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
@@ -23,7 +23,7 @@ const Navbar = () => {
   const handleScroll = () => {
     const scrolled = window.scrollY > 50;
     setIsScrolled(scrolled);
-    setIsTitleBarVisible(!scrolled); // Define visibilidade da barra verde
+    setIsTitleBarVisible(!scrolled);
   };
 
   const updatePadding = () => {
@@ -43,17 +43,26 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Handle route change
-    const path = pathname.replace(/\/$/, ''); // Remove trailing slash
+    const path = pathname.replace(/\/$/, '');
     setCurrentPath(path);
     const page = NAV_LINKS.find(link => link.href === path)?.label || "";
     setCurrentPage(page);
-  }, [pathname]); // Update when pathname changes
+  }, [pathname]);
 
-  // Determine if the navbar should have a transparent background or be green
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const titleBarBgClass = currentPath === "/" ? "bg-transparent" : "bg-green-90";
 
-  // Hide the title bar if currentPage is empty or currentPath is "/"
   const shouldRenderTitleBar = currentPage && currentPath !== "/";
 
   return (
@@ -101,7 +110,11 @@ const Navbar = () => {
                 target="_blank"
               />
             </li>
-            {/* Adicionando o ícone do YouTube */}
+            <li>
+              <Link href="https://www.instagram.com/labor_med/" target="_blank">
+                <InstagramLogo size={32} color="#34D399" className="cursor-pointer transition-all hover:text-green-500" />
+              </Link>
+            </li>
             <li>
               <Link href="https://www.youtube.com/@Labor_med/videos" target="_blank">
                 <YoutubeLogo size={32} color="#34D399" className="cursor-pointer transition-all hover:text-green-500" />
@@ -111,7 +124,9 @@ const Navbar = () => {
         </div>
 
         {isMenuOpen && (
-          <div className={`fixed top-0 left-0 w-full h-full bg-white shadow-lg z-40 lg:hidden flex flex-col transition-transform duration-1000 ease-out ${isMenuOpen ? 'transform translate-y-0' : 'transform -translate-y-full'}`}>
+          <div
+            className={`fixed top-0 left-0 w-full h-full bg-[rgba(255,255,255,0.95)] shadow-lg z-40 lg:hidden flex flex-col transition-transform duration-1000 ease-out ${isMenuOpen ? 'transform translate-y-0' : 'transform -translate-y-full'}`}
+          >
             <div className="flex justify-end p-4">
               <button
                 className="text-gray-600 text-2xl"
@@ -139,18 +154,30 @@ const Navbar = () => {
                   target="_blank"
                 />
               </li>
-              {/* Adicionando o ícone do YouTube no menu móvel */}
+              <li className="py-4">
+                <Link href="https://www.instagram.com/labor_med/" target="_blank">
+                  <InstagramLogo
+                    size={32}
+                    color="#34D399"
+                    className="cursor-pointer transition-all hover:text-green-500"
+                  />
+                </Link>
+              </li>
               <li className="py-4">
                 <Link href="https://www.youtube.com/@Labor_med/videos" target="_blank">
-                  <YoutubeLogo size={32} color="#34D399" className="cursor-pointer transition-all hover:text-green-500" />
+                  <YoutubeLogo
+                    size={32}
+                    color="#34D399"
+                    className="cursor-pointer transition-all hover:text-green-500"
+                  />
                 </Link>
               </li>
             </ul>
           </div>
         )}
+
       </div>
 
-      {/* Render the title bar with conditional background color */}
       {shouldRenderTitleBar && (
         <div
           className={`w-full h-[3rem] flex justify-center transition-all duration-1000 ease-out ${titleBarBgClass} ${isTitleBarVisible ? "block" : "hidden"

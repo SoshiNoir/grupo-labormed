@@ -5,7 +5,7 @@ import React from 'react';
 const images = [
   {
     id: 1,
-    src: '/baby1.jpg',
+    src: '/fetalsexing.png',
     alt: 'Image 1',
     title: 'Sexagem Fetal',
     gradient: 'bg-gradient-green',
@@ -13,7 +13,7 @@ const images = [
   },
   {
     id: 2,
-    src: '/baby2.jpg',
+    src: '/toxicologicalexam.png',
     alt: 'Image 2',
     title: 'Exame Toxicológico',
     gradient: 'bg-gradient-gold',
@@ -21,7 +21,7 @@ const images = [
   },
   {
     id: 3,
-    src: '/baby3.jpg',
+    src: '/heelpricktest.png',
     alt: 'Image 3',
     title: 'Teste do Pezinho',
     gradient: 'bg-gradient-green',
@@ -29,10 +29,10 @@ const images = [
   },
   {
     id: 4,
-    src: '/baby3.jpg',
+    src: '/paternitytest.png',
     alt: 'Image 3',
     title: 'Teste de Paternidade',
-    gradient: 'bg-gradient-green',
+    gradient: 'bg-gradient-gold',
     link: '/PaternityTest',
   },
 ];
@@ -49,10 +49,9 @@ const ImageGallery = () => {
                   <Image
                     src={image.src}
                     alt={image.alt}
-                    layout="fill"
                     objectFit="cover"
                     className="absolute inset-0"
-                  />
+                    fill />
                   <div
                     className={`absolute bottom-0 left-0 right-0 h-1/3 ${image.gradient} flex items-end justify-center p-4`}
                   >

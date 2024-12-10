@@ -41,10 +41,9 @@ const InstagramPosts: React.FC = () => {
               <Image
                 src={post.imgSrc}
                 alt={post.caption}
-                layout="fill"
                 objectFit="cover"
                 className="absolute top-0 left-0"
-              />
+                fill />
             </div>
             <div className="h-1/2 bg-white flex flex-col justify-between items-center text-center">
               <p className="m-2 regular-16 text-gray-600">{post.caption}</p>

@@ -17,10 +17,9 @@ const PostCard: React.FC<PostCardProps> = ({ photoUrl, title, date }) => {
         <Image
           src={photoUrl}
           alt={title}
-          layout="fill"
           objectFit="cover"
           className="rounded-lg"
-        />
+          fill />
       </div>
       <h2 className="text-xl font-semibold mt-2">{title}</h2>
       <p className="text-gray-500 mt-1">{new Date(date).toLocaleDateString()}</p>

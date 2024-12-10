@@ -17,10 +17,9 @@ const Footer = () => {
               <Image
                 src="/pinMain.svg"
                 alt="Imagem 1"
-                layout="fill"
                 objectFit="contain"
                 className="rounded-lg"
-              />
+                fill />
             </div>
             <div className="p-2 align-middle justify-center">
               <h3 className="text-lg font-bold mb-2 pl-3">Unidade 1 - Batatais</h3>
@@ -46,10 +45,9 @@ const Footer = () => {
               <Image
                 src="/pinGold.svg"
                 alt="Imagem 2"
-                layout="fill"
                 objectFit="contain"
                 className="rounded-lg"
-              />
+                fill />
             </div>
             <div className="p-2 align-middle justify-center">
               <h3 className="text-lg font-bold mb-2 pl-3">Unidade 2 - Batatais</h3>
@@ -75,10 +73,9 @@ const Footer = () => {
               <Image
                 src="/pinMain.svg"
                 alt="Imagem 3"
-                layout="fill"
                 objectFit="contain"
                 className="rounded-lg"
-              />
+                fill />
             </div>
             <div className="p-2 align-middle justify-center">
               <h3 className="text-lg font-bold mb-2 pl-3">Unidade 3 - Altinópolis</h3>

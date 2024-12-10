@@ -22,10 +22,9 @@ const About: React.FC = () => {
               <Image
                 src="/bg-slide-1.jpg"
                 alt="Imagem do Sobre"
-                layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
-              />
+                fill />
             </div>
           </div>
         </div>

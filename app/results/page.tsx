@@ -24,10 +24,9 @@ const ResultsPage = () => {
               <Image
                 src={card.imgSrc}
                 alt={card.title}
-                layout="fill"
                 objectFit="cover"
                 className="absolute top-0 left-0"
-              />
+                fill />
             </div>
             <div className="h-1/2 bg-white flex flex-col justify-between items-center text-center">
               <h2 className="pt-2 regular-24 font-RobotoMono text-green-90">{card.title}</h2>

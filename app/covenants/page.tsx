@@ -32,10 +32,9 @@ function Covenants() {
                 <Image
                   src={card.imageSrc}
                   alt={card.title}
-                  layout="fill"
                   objectFit="contain"
                   className="rounded-t-lg"
-                />
+                  fill />
               </div>
               <div className="p-4">
                 <h3 className="text-lg text-center font-semibold">{card.title}</h3>
