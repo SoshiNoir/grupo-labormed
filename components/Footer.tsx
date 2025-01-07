@@ -60,10 +60,15 @@ const Footer = () => {
                 <p>(16) 3761-8555</p>
               </div>
               <div className="flex flex-column gap-2 p-2">
+                <Phone size={28} color="var(--color-alt)" />
+                <p>(16) 3761-3311</p>
+              </div>
+              <div className="flex flex-column gap-2 p-2">
                 <Clock size={28} color="var(--color-alt)" />
                 <div>
-                  <p>Seg - Sex das 06h30 - 17h30</p>
-                  <p>Sábado e domingo: Fechado</p>
+                  <p>Seg - Sex das 06h30 - 18h00</p>
+                  <p>Sábado das 07h00 - 11h00</p>
+                  <p>Domingo: Fechado</p>
                 </div>
               </div>
             </div>
@@ -90,7 +95,7 @@ const Footer = () => {
               <div className="flex flex-column gap-2 p-2">
                 <Clock size={28} color="var(--color-main)" />
                 <div>
-                  <p>Seg - Sex das 06h30 - 17h00</p>
+                  <p>Seg - Sex das 07h00 - 17h00</p>
                   <p>Sábado e domingo: Fechado</p>
                 </div>
               </div>

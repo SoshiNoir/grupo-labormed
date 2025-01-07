@@ -76,16 +76,11 @@ const HomePage = () => {
                 comprovante de coleta e documento de identificação.</p>
               <p className="text-white text-sm"><b>Retirada por terceiros:</b> Indispensável a apresentação da
                 autorização de entrega para terceiros, comprovante de coleta, e
-                identificação do paciente</p>
+                identificação do paciente.</p>
             </div>
           }
         />
-        <Button
-          type="button"
-          title="Participar da Pesquisa de Satisfação"
-          variant="btn_white_text"
-          onClick={handleOpenSurvey}
-        />
+        <Satisfaction onClick={handleOpenSurvey} />
         {isSurveyOpen && <SatisfactionSurvey onClose={handleCloseSurvey} />}
         <Doubts />
         <Services />

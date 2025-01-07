@@ -1,20 +1,26 @@
-import Image from 'next/image';
-import React from 'react';
+"use client";
 
-const Satisfaction = () => {
+import Image from "next/image";
+import React from "react";
+
+interface SatisfactionProps {
+  onClick: () => void;
+}
+
+const Satisfaction: React.FC<SatisfactionProps> = ({ onClick }) => {
   return (
-    <>
-      <div className='hidden md:block'>
+    <div className="cursor-pointer" onClick={onClick}>
+      <div className="hidden md:block">
         <Image
           src="/satisfaction.png"
           alt="Pesquisa de Satisfação"
-          width={1270}
-          height={141}
+          width={1271}
+          height={143}
           layout="responsive"
           priority
         />
       </div>
-      <div className='md:hidden'>
+      <div className="md:hidden">
         <Image
           src="/satisfactionmobile.png"
           alt="Pesquisa de Satisfação"
@@ -24,7 +30,7 @@ const Satisfaction = () => {
           priority
         />
       </div>
-    </>
+    </div>
   );
 };
 

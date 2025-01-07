@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 
 const SatisfactionSurvey: React.FC<{ onClose: () => void }> = ({ onClose }) => {
@@ -10,31 +10,48 @@ const SatisfactionSurvey: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [comments, setComments] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Impede o comportamento padrão do formulário (recarregar a página).
 
-    // Enviar os dados da pesquisa
-    const response = await fetch('/api/sendSurvey', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, rating, comments }),
-    });
+    try {
+      // Faz a requisição para o endpoint /api/sendSurvey.
+      const response = await fetch('/api/sendSurvey', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, rating, comments }), // Envia os dados do formulário.
+      });
 
-    if (response.ok) {
-      alert('Obrigado pela sua resposta!');
-      onClose(); // Fechar o modal após o envio
-    } else {
-      alert('Houve um problema ao enviar sua resposta. Tente novamente.');
+      if (response.ok) {
+        // Exibe uma mensagem de sucesso se o envio for bem-sucedido.
+        alert('Obrigado pela sua resposta!');
+        onClose(); // Fecha o modal.
+      } else {
+        // Lida com possíveis erros de resposta da API.
+        const errorData = await response.json();
+        console.error('Erro ao enviar:', errorData);
+        alert('Houve um problema ao enviar sua resposta. Tente novamente.');
+      }
+    } catch (error) {
+      // Captura erros que ocorrem durante a requisição (problemas de rede, etc.).
+      console.error('Erro no envio:', error);
+      alert('Não foi possível enviar a pesquisa. Verifique sua conexão.');
     }
   };
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
-    // Verifica se o clique foi na camada de fundo e não no modal
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
+
+  // Travar scroll quando o modal estiver aberto
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <div
@@ -84,19 +101,21 @@ const SatisfactionSurvey: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           {/* Avaliação */}
           <label className="block text-left">
             <span className="text-gray-700 font-semibold">Avaliação:</span>
-            <select
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              className="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
-            >
-              <option value="">Selecione...</option>
-              <option value="1">1 - Muito Insatisfeito</option>
-              <option value="2">2 - Insatisfeito</option>
-              <option value="3">3 - Neutro</option>
-              <option value="4">4 - Satisfeito</option>
-              <option value="5">5 - Muito Satisfeito</option>
-            </select>
+            <div className="mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 w-full">
+              <select
+
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                required
+              >
+                <option value="">Selecione...</option>
+                <option value="1">1 - Muito Insatisfeito</option>
+                <option value="2">2 - Insatisfeito</option>
+                <option value="3">3 - Neutro</option>
+                <option value="4">4 - Satisfeito</option>
+                <option value="5">5 - Muito Satisfeito</option>
+              </select>
+            </div>
           </label>
 
           {/* Comentários */}
