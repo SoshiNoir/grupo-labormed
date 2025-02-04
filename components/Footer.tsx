@@ -42,8 +42,8 @@ const Footer = () => {
               <div className='flex flex-column gap-2 p-2'>
                 <Clock size={28} color='var(--color-main)' />
                 <div>
-                  <p>Seg - Sex das 06h30 - 17h30</p>
-                  <p>Sábado e domingo: Fechado</p>
+                  <p>Seg - Sex: 6h30 - 17h30</p>
+                  <p>Sábado e Domingo: Fechado</p>
                 </div>
               </div>
             </div>
@@ -80,8 +80,8 @@ const Footer = () => {
               <div className='flex flex-column gap-2 p-2'>
                 <Clock size={28} color='var(--color-alt)' />
                 <div>
-                  <p>Seg - Sex das 06h30 - 18h00</p>
-                  <p>Sábado das 07h00 - 11h00</p>
+                  <p>Seg - Sex: 6h30 - 18h</p>
+                  <p>Sábado: 7h - 11h</p>
                   <p>Domingo: Fechado</p>
                 </div>
               </div>
@@ -115,8 +115,8 @@ const Footer = () => {
               <div className='flex flex-column gap-2 p-2'>
                 <Clock size={28} color='var(--color-main)' />
                 <div>
-                  <p>Seg - Sex das 07h00 - 17h00</p>
-                  <p>Sábado e domingo: Fechado</p>
+                  <p>Seg - Sex: 7h - 17h</p>
+                  <p>Sábado e Domingo: Fechado</p>
                 </div>
               </div>
             </div>
