@@ -27,7 +27,8 @@ const Navbar = () => {
   };
 
   const updatePadding = () => {
-    const navHeight = document.getElementById('navbar')?.offsetHeight || 0;
+    const navHeight =
+      (document.getElementById('navbar')?.offsetHeight || 0) / 2;
     document.body.style.paddingTop = `${navHeight}px`;
   };
 
