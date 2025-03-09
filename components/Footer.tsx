@@ -63,7 +63,7 @@ const Footer = () => {
                 Unidade 2 - Batatais
               </h3>
               <div className='flex flex-column gap-2 p-2'>
-                <MapPin size={28} color='var(--color-alt)' />
+                <MapPin size={38} color='var(--color-alt)' />
                 <p>
                   Travessa Intendente Vigilato, 295 - Centro - Batatais - São
                   Paulo

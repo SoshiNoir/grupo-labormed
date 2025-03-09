@@ -14,9 +14,23 @@ const SatisfactionSurvey: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [comments, setComments] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Impede o comportamento padrão do formulário (recarregar a página).
+    e.preventDefault(); // Impede o comportamento padrão do formulário.
 
-    sendMail(`<p>${name} ${email} ${rating} ${comments}</p>`)
+    // 🔹 Novo template HTML para formatar o e-mail 🔹
+    const emailTemplate = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+        <h2 style="color: #4CAF50; text-align: center;">Pesquisa de Satisfação</h2>
+        <p><strong>Nome:</strong> ${name}</p>
+        <p><strong>E-mail:</strong> ${email}</p>
+        <p><strong>Avaliação:</strong> ${rating} ⭐</p>
+        <p><strong>Comentários:</strong></p>
+        <blockquote style="border-left: 4px solid #4CAF50; padding-left: 10px; color: #555;">
+          ${comments || 'Nenhum comentário.'}
+        </blockquote>
+      </div>
+    `;
+
+    sendMail(emailTemplate)
       .then(() => {
         alert('Obrigado pela sua resposta!');
         onClose(); // Fecha o modal.

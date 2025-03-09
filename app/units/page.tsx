@@ -77,7 +77,7 @@ const Units: React.FC = () => {
       content: (
         <div>
           <div className='flex flex-row gap-2 p-2'>
-            <MapPin size={38} color='var(--color-main)' />
+            <MapPin size={28} color='var(--color-main)' />
             <p>
               Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São Paulo{' '}
             </p>
@@ -106,7 +106,7 @@ const Units: React.FC = () => {
       content: (
         <div>
           <div className='flex flex-row gap-2 p-2'>
-            <MapPin size={38} color='var(--color-alt)' />
+            <MapPin size={28} color='var(--color-alt)' />
             <p>
               Travessa Intendente Vigilato, 295 - Centro - Batatais - São Paulo
             </p>
@@ -135,7 +135,7 @@ const Units: React.FC = () => {
       content: (
         <div>
           <div className='flex flex-row gap-2 p-2'>
-            <MapPin size={38} color='var(--color-main)' />
+            <MapPin size={28} color='var(--color-main)' />
             <p>
               Rua Coronel Joaquim Alberto, 377 - Centro - Altinópolis - São
               Paulo
