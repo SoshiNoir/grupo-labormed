@@ -16,7 +16,7 @@ const slides = [
   {
     src: '/mesdamulher.png',
     alt: 'Slide 1',
-    link: '/https://wa.me/551637618555',
+    link: 'https://wa.me/551637618555',
   },
   { src: '/banner1.png', alt: 'Slide 2', link: '/units' },
   { src: '/banner2.png', alt: 'Slide 3', link: '/FetalSexing' },
