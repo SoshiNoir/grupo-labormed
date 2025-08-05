@@ -80,7 +80,7 @@ const Footer = () => {
               <div className='flex flex-column gap-2 p-2'>
                 <Clock size={28} color='var(--color-alt)' />
                 <div>
-                  <p>Seg - Sex: 6h30 - 18h</p>
+                  <p>Seg - Sex: 6h30 - 17h30</p>
                   <p>Sábado: 7h - 11h</p>
                   <p>Domingo: Fechado</p>
                 </div>
