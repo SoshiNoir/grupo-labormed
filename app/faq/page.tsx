@@ -1,5 +1,8 @@
-"use client"; // Para usar Client Components
-import React, { useState } from "react";
+'use client';
+
+import PageShell from '@/components/PageShell';
+import { CaretDown } from '@phosphor-icons/react';
+import React, { useState } from 'react';
 
 interface FAQItem {
   question: string;
@@ -8,80 +11,95 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "Quais exames de rotina devo fazer?",
+    question: 'Quais exames de rotina devo fazer?',
     answer:
-      "Os exames de rotina variam conforme a idade, sexo e histórico de saúde, mas geralmente incluem hemograma completo, glicemia, perfil lipídico, exames de função hepática e renal, além de exames hormonais e urinálise. É recomendável conversar com seu médico para definir quais exames são mais adequados ao seu perfil.",
+      'Os exames de rotina variam conforme idade, sexo e histórico de saúde. Em geral incluem hemograma, glicemia, perfil lipídico, função hepática e renal, além de exames hormonais e urinários. O ideal é seguir orientação médica.',
   },
   {
-    question: "É necessário estar em jejum para fazer os exames?",
+    question: 'É necessário estar em jejum para fazer os exames?',
     answer:
-      "Nem todos os exames exigem jejum, mas muitos sim, como o de glicemia e o perfil lipídico. Normalmente, o jejum recomendado é de 8 a 12 horas. Siga as orientações do laboratório ou consulte seu médico para confirmar o tempo exato.",
+      'Nem todos os exames exigem jejum, mas alguns sim, como glicemia e perfil lipídico. O período costuma variar entre 8 e 12 horas. Sempre confirme a orientação correta com o laboratório ou com seu médico.',
   },
   {
-    question: "Posso beber água enquanto estou em jejum para o exame?",
+    question: 'Posso beber água enquanto estou em jejum?',
     answer:
-      "Sim, a água geralmente é permitida, pois ajuda na hidratação e pode facilitar a coleta de sangue. No entanto, evite exagerar na quantidade e consulte o laboratório, pois alguns exames específicos podem ter orientações diferentes.",
+      'Em geral sim. A água costuma ser permitida e pode ajudar na hidratação. Ainda assim, alguns exames específicos podem ter orientações diferentes.',
   },
   {
-    question: "Quais medicamentos devo suspender antes dos exames?",
+    question: 'Quais medicamentos devo suspender antes dos exames?',
     answer:
-      "Alguns medicamentos podem interferir nos resultados dos exames. Informe seu médico sobre todos os medicamentos que você usa, e ele orientará se algum deve ser interrompido e por quanto tempo.",
+      'Alguns medicamentos interferem nos resultados. Informe tudo o que você usa e siga a orientação do seu médico antes de suspender qualquer medicamento.',
   },
   {
-    question: "Preciso parar de tomar café antes dos exames?",
+    question: 'Preciso parar de tomar café antes dos exames?',
     answer:
-      "Café, chás e outros estimulantes devem ser evitados antes de exames que exigem jejum, pois podem afetar os resultados. Se o exame não requer jejum, verifique com o laboratório se o café é permitido.",
+      'Café, chás e outros estimulantes devem ser evitados quando o exame exige jejum. Quando não houver essa exigência, vale confirmar a recomendação específica do laboratório.',
   },
   {
-    question: "Com que frequência devo fazer exames laboratoriais de rotina?",
+    question: 'Com que frequência devo fazer exames laboratoriais de rotina?',
     answer:
-      "A frequência dos exames depende de fatores como idade, histórico familiar e condições de saúde. Em geral, recomenda-se exames anuais para adultos saudáveis, mas pessoas com condições específicas podem precisar de monitoramento mais frequente.",
+      'A frequência depende de idade, histórico familiar e condições clínicas. Para adultos saudáveis, o acompanhamento anual costuma ser o mais comum.',
   },
   {
-    question: "Posso fazer exame de rotina mesmo sem pedido médico?",
+    question: 'Posso fazer exame de rotina sem pedido médico?',
     answer:
-      "Sim, é possível realizar exames sem pedido médico, mas é recomendável ter acompanhamento médico para interpretar os resultados corretamente e garantir que você esteja realizando os exames apropriados para seu perfil de saúde.",
+      'Sim, mas o acompanhamento médico continua importante para interpretar corretamente os resultados e indicar os exames mais adequados ao seu perfil.',
   },
   {
-    question: "O que fazer se um resultado estiver alterado?",
+    question: 'O que fazer se um resultado estiver alterado?',
     answer:
-      "Se algum resultado estiver fora do normal, é importante não tirar conclusões sem orientação médica. Marque uma consulta para que seu médico avalie o resultado e, se necessário, solicite exames adicionais para um diagnóstico mais preciso.",
+      'Evite conclusões isoladas. O melhor caminho é marcar consulta para avaliação médica e, se necessário, complementar a investigação com novos exames.',
   },
 ];
 
-const FAQ: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="space-y-4">
-        {faqData.map((item, index) => (
-          <div
-            key={index}
-            className="bg-gray-200 rounded-lg shadow-lg overflow-hidden"
-          >
-            <button
-              onClick={() => toggleFAQ(index)}
-              className="w-full text-left p-4 flex justify-between items-center text-lg font-medium text-green-700 focus:outline-none"
+    <PageShell
+      eyebrow='Dúvidas Frequentes'
+      title='Orientações claras antes e depois dos exames.'
+      description='A página foi redesenhada para ficar coerente com a home, com melhor hierarquia visual e leitura mais confortável.'
+      imageSrc='/doc.jpg'
+      imageAlt='Informações e dúvidas frequentes'
+    >
+      <section className='space-y-4'>
+        {faqData.map((item, index) => {
+          const isOpen = openIndex === index;
+
+          return (
+            <article
+              key={item.question}
+              className='overflow-hidden rounded-[1.5rem] border border-white/50 bg-[linear-gradient(180deg,rgba(226,232,240,0.68)_0%,rgba(203,213,225,0.48)_100%)] shadow-[0_20px_50px_-36px_rgba(15,23,42,0.55)] backdrop-blur-xl'
             >
-              {item.question}
-              <span className="text-2xl">
-                {openIndex === index ? "−" : "+"}
-              </span>
-            </button>
-            {openIndex === index && (
-              <div className="p-6 bg-gray-70 text-green-700">
-                {item.answer}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+              <button
+                onClick={() => toggleFAQ(index)}
+                className='flex w-full items-center justify-between gap-4 p-6 text-left'
+              >
+                <span className='text-lg font-semibold text-slate-950'>
+                  {item.question}
+                </span>
+                <CaretDown
+                  size={20}
+                  className={`shrink-0 text-emerald-900 transition ${
+                    isOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              {isOpen ? (
+                <div className='border-t border-slate-300/70 px-6 py-5 text-sm leading-7 text-slate-700'>
+                  {item.answer}
+                </div>
+              ) : null}
+            </article>
+          );
+        })}
+      </section>
+    </PageShell>
   );
 };
 

@@ -1,14 +1,16 @@
 'use client';
 
+import { ArrowLeft, ArrowRight } from '@phosphor-icons/react';
 import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
 interface Slide {
   src: string;
   alt: string;
-  link: string; // Campo para o link
+  link: string;
 }
 
 interface SliderProps {
@@ -16,14 +18,30 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ slides }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     loop: true,
-    mode: 'free-snap',
+    mode: 'snap',
+    slideChanged(instance) {
+      setCurrentSlide(instance.track.details.rel);
+    },
     slides: {
       perView: 1,
-      spacing: 10,
+      spacing: 0,
     },
   });
+
+  useEffect(() => {
+    if (!slider.current) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      slider.current?.next();
+    }, 5000);
+
+    return () => window.clearInterval(timer);
+  }, [slider]);
 
   const handlePrev = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -36,80 +54,71 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   };
 
   return (
-    <div className='relative w-full h-[140px] sm:h-[400px] md:h-[250px] lg:h-[250px] xl:h-[500px] overflow-hidden'>
-      <div ref={sliderRef} className='keen-slider w-full h-full'>
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className='keen-slider__slide relative flex justify-center items-center'
-          >
-            <a
-              href={slide.link}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='w-full h-full'
-            >
-              <Image
-                src={slide.src}
-                alt={slide.alt}
-                fill
-                className='object-contain w-full h-full' // Garante o preenchimento automático
-                priority={index === 0}
-              />
-            </a>
-          </div>
-        ))}
+    <section className='relative overflow-hidden rounded-[2rem] border border-white/60 bg-white shadow-[0_35px_90px_-45px_rgba(15,23,42,0.45)]'>
+      <div className='relative aspect-[3/1] w-full'>
+        <div ref={sliderRef} className='keen-slider h-full w-full'>
+          {slides.map((slide, index) => (
+            <div key={index} className='keen-slider__slide relative h-full w-full'>
+              {slide.link.startsWith('http') ? (
+                <a
+                  href={slide.link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='block h-full w-full'
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    className='object-cover'
+                    priority={index === 0}
+                  />
+                </a>
+              ) : (
+                <Link href={slide.link} className='block h-full w-full'>
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    className='object-cover'
+                    priority={index === 0}
+                  />
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Botão de Anterior */}
       <button
-        className='absolute left-2 sm:left-5 top-1/2 transform -translate-y-1/2 bg-transparent text-white p-1 sm:p-3 rounded-full shadow-md hover:bg-gray-300 focus:outline-none focus:ring-0 sm:bg-opacity-100 bg-opacity-50'
+        className='absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/40 bg-slate-950/45 p-2 text-white backdrop-blur transition hover:bg-slate-950/65 sm:left-6 sm:p-3'
         onClick={handlePrev}
+        aria-label='Slide anterior'
       >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-4 w-4 sm:h-6 sm:w-6'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
-          strokeWidth='2'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M15 19l-7-7 7-7'
-          />
-        </svg>
+        <ArrowLeft size={24} weight='bold' />
       </button>
 
-      {/* Botão de Próximo */}
       <button
-        className='absolute right-2 sm:right-5 top-1/2 transform -translate-y-1/2 bg-transparent text-white p-1 sm:p-3 rounded-full shadow-md hover:bg-gray-300 focus:outline-none focus:ring-0 sm:bg-opacity-100 bg-opacity-50'
+        className='absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/40 bg-slate-950/45 p-2 text-white backdrop-blur transition hover:bg-slate-950/65 sm:right-6 sm:p-3'
         onClick={handleNext}
+        aria-label='Proximo slide'
       >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-4 w-4 sm:h-6 sm:w-6'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
-          strokeWidth='2'
-        >
-          <path strokeLinecap='round' strokeLinejoin='round' d='M9 5l7 7-7 7' />
-        </svg>
+        <ArrowRight size={24} weight='bold' />
       </button>
 
-      {/* Indicadores de slide (dots) */}
-      <div className='absolute bottom-2 sm:bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2'>
+      <div className='absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full border border-white/40 bg-slate-950/45 px-3 py-2 backdrop-blur'>
         {slides.map((_, index) => (
           <button
             key={index}
-            className='w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full border border-gray-400'
+            className={`h-2.5 rounded-full transition-all ${
+              currentSlide === index ? 'w-8 bg-white' : 'w-2.5 bg-white/55'
+            }`}
             onClick={() => slider.current?.moveToIdx(index)}
-          ></button>
+            aria-label={`Ir para o slide ${index + 1}`}
+          />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

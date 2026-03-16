@@ -1,74 +1,45 @@
+import { SERVICE_CARDS } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
-const images = [
-  {
-    id: 1,
-    src: '/fetalsexing.png',
-    alt: 'Image 1',
-    title: 'Sexagem Fetal',
-    gradient: 'bg-gradient-green',
-    link: '/FetalSexing',
-  },
-  {
-    id: 2,
-    src: '/toxicologicalexam.png',
-    alt: 'Image 2',
-    title: 'Exame Toxicológico',
-    gradient: 'bg-gradient-gold',
-    link: '/toxicological',
-  },
-  {
-    id: 3,
-    src: '/heelpricktest.png',
-    alt: 'Image 3',
-    title: 'Teste do Pezinho',
-    gradient: 'bg-gradient-green',
-    link: '/HeelPrickTest',
-  },
-  {
-    id: 4,
-    src: '/paternitytest.png',
-    alt: 'Image 3',
-    title: 'Teste de Paternidade',
-    gradient: 'bg-gradient-gold',
-    link: '/PaternityTest',
-  },
-];
+import SectionHeading from './SectionHeading';
 
 const ImageGallery = () => {
   return (
-    <div className='flex flex-col items-center mt-8 px-4'>
-      <div className='w-full flex justify-center'>
-        <div className='grid grid-cols-1 gap-4 w-full sm:grid-cols-2 lg:grid-cols-4'>
-          {images.map((image) => (
-            <Link key={image.id} href={image.link} passHref>
-              <div className='group relative w-full h-[400px] max-w-[400px] mx-auto overflow-hidden rounded-lg cursor-pointer transition duration-300'>
-                <div className='absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300 z-10 pointer-events-none' />
-
-                <div className='relative w-full h-full z-20'>
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    objectFit='cover'
-                    className='absolute inset-0'
-                    fill
-                  />
-                  <div
-                    className={`absolute bottom-0 left-0 right-0 h-1/3 ${image.gradient} flex items-end justify-center p-4`}
-                  >
-                    <h3 className='text-[30px] text-center text-white font-bold font-RobotoMono'>
-                      {image.title}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+    <section className='mt-20 space-y-8 px-1'>
+      <SectionHeading
+        eyebrow='Especialidades'
+        title='Exames especializados com segurança, tecnologia e apoio técnico'
+        description='Conheça alguns dos exames mais procurados no Labormed, com informações claras para orientar pacientes e famílias.'
+      />
+      <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4'>
+        {SERVICE_CARDS.map((image) => (
+          <Link
+            key={image.id}
+            href={image.link}
+            className='group relative mx-auto flex h-[380px] w-full max-w-[360px] overflow-hidden rounded-[1.75rem] border border-white/60 bg-slate-950 shadow-[0_30px_80px_-38px_rgba(15,23,42,0.75)]'
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              className='object-cover transition duration-500 group-hover:scale-105'
+            />
+            <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent' />
+            <div
+              className={`absolute inset-x-0 bottom-0 flex h-48 flex-col justify-end bg-gradient-to-t ${image.gradient} p-6`}
+            >
+              <p className='text-xs font-semibold uppercase tracking-[0.26em] text-white/70'>
+                {image.eyebrow}
+              </p>
+              <h3 className='mt-3 text-3xl font-semibold leading-tight text-white'>
+                {image.title}
+              </h3>
+            </div>
+          </Link>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 

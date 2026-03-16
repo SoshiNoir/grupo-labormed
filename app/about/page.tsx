@@ -1,8 +1,4 @@
-'use client'; // Para garantir que o componente seja um Client Component
-
-import Button from '@/components/Button'; // Corrigido para o caminho correto do botão
-import Image from 'next/image';
-import React from 'react';
+import PageShell from '@/components/PageShell';
 import {
   FaLayerGroup,
   FaLock,
@@ -10,145 +6,79 @@ import {
   FaRegHeart,
   FaRegStar,
   FaRegThumbsUp,
-} from 'react-icons/fa'; // Ícones usados nos cards
+} from 'react-icons/fa';
 
-const About: React.FC = () => {
+const values = [
+  {
+    title: 'Qualidade',
+    description:
+      'Comprometidos com a qualidade dos exames e do atendimento, com foco em confiabilidade e precisão.',
+    icon: FaRegHeart,
+  },
+  {
+    title: 'Excelência',
+    description:
+      'Equipe qualificada, processos consistentes e busca contínua por melhora operacional.',
+    icon: FaRegStar,
+  },
+  {
+    title: 'Satisfação',
+    description:
+      'Atendimento humanizado, respostas objetivas e experiência mais fluida para o paciente.',
+    icon: FaRegThumbsUp,
+  },
+  {
+    title: 'Estrutura',
+    description:
+      'Unidades em Batatais e Altinópolis com recepções organizadas, salas de coleta e núcleo técnico operacional.',
+    icon: FaRegBuilding,
+  },
+  {
+    title: 'Equipamentos e equipe',
+    description:
+      'Equipamentos automatizados e profissionais capacitados para mais agilidade e qualidade analítica.',
+    icon: FaLayerGroup,
+  },
+  {
+    title: 'Segurança e qualidade',
+    description:
+      'Participação em programas de controle de qualidade e apoio consultivo para treinamento e melhoria contínua.',
+    icon: FaLock,
+  },
+];
+
+const About = () => {
   return (
-    <>
-      <div className='p-6 max-w-7xl mx-auto text-center px-1 md:px-6'>
-        {/* Seção principal */}
-        <div className='flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden'>
-          <div className='flex-1 p-4 md:p-6 md:w-2/3'>
-            {' '}
-            {/* Reduzi o padding */}
-            <h2 className='text-3xl font-bold mb-4 text-green-500'>
-              Labor Med
-            </h2>
-            <p className='text-lg mb-4 text-center'>
-              O Laboratório Labor Med é uma empresa com mais de 37 anos atuando
-              no mercado de Análises Clínicas com um grande portfólio de exames
-              e atendendo a conveniados de diversos planos de saúde, além do
-              atendimento particular e empresas que prestam serviço de saúde
-              ocupacional.
-            </p>
-          </div>
-          <div className='flex-1 p-1 md:p-6 md:w-1/3 bg-white'>
-            {' '}
-            {/* Reduzi o padding */}
-            <div className='relative w-full h-64'>
-              <Image
-                src='/bg-slide-1.jpg'
-                alt='Imagem do Sobre'
-                objectFit='cover'
-                className='rounded-lg'
-                fill
-              />
-            </div>
-          </div>
-        </div>
+    <PageShell
+      eyebrow='Sobre'
+      title='Mais de três décadas de atuação em análises clínicas.'
+      description='O Labormed atende convênios, particulares e empresas de saúde ocupacional com foco em confiança técnica e atendimento humano.'
+      imageSrc='/bg-slide-1.jpg'
+      imageAlt='Equipe e estrutura do Labormed'
+    >
+      <section className='grid gap-5 md:grid-cols-2 xl:grid-cols-3'>
+        {values.map((item) => {
+          const Icon = item.icon;
 
-        {/* Nova seção com cards */}
-        <div className='bg-green-90 py-16 mt-12 rounded-lg overflow-hidden px-1 md:px-1'>
-          <div className='max-w-6xl mx-auto'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-              {/* Card 1 */}
-              <div className='bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center'>
-                <div className='mb-4'>
-                  <FaRegHeart className='text-4xl text-green-50 mx-auto' />
-                </div>
-                <h3 className='text-xl font-semibold mb-0 md:mb-4'>
-                  Qualidade
-                </h3>{' '}
-                {/* Mudança no mb */}
-                <p className='text-green-50 text-lg'>
-                  Comprometidos com a qualidade dos nossos exames e atendimento,
-                  garantindo a melhor precisão e confiabilidade.
-                </p>
+          return (
+            <article
+              key={item.title}
+              className='rounded-[1.75rem] border border-white/70 bg-white/80 p-6 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur'
+            >
+              <div className='flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-900'>
+                <Icon size={22} />
               </div>
-              {/* Card 2 */}
-              <div className='bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center'>
-                {' '}
-                {/* Reduzi o padding */}
-                <div className='mb-4'>
-                  <FaRegStar className='text-4xl text-green-50 mx-auto' />
-                </div>
-                <h3 className='text-xl font-semibold mb-2'>Excelência</h3>
-                <p className='text-green-50 text-lg'>
-                  Buscamos sempre a excelência em todos os nossos serviços, com
-                  uma equipe altamente qualificada e dedicada.
-                </p>
-              </div>
-              {/* Card 3 */}
-              <div className='bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center'>
-                {' '}
-                {/* Reduzi o padding */}
-                <div className='mb-4'>
-                  <FaRegThumbsUp className='text-4xl text-green-50 mx-auto' />
-                </div>
-                <h3 className='text-xl font-semibold mb-2'>Satisfação</h3>
-                <p className='text-green-50 text-lg'>
-                  Garantimos a satisfação dos nossos clientes com um atendimento
-                  personalizado e eficiente.
-                </p>
-              </div>
-              {/* Card 4 */}
-              <div className='bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center'>
-                {' '}
-                {/* Reduzi o padding */}
-                <div className='mb-4'>
-                  <FaRegBuilding className='text-4xl text-green-50 mx-auto' />
-                </div>
-                <h3 className='text-xl font-semibold mb-2'>Estrutura</h3>
-                <p className='text-green-50 text-lg'>
-                  O Laboratório conta com duas unidades de atendimento na cidade
-                  de Batatais e uma unidade de atendimento na cidade de
-                  Altinópolis. Todas as unidades contam com recepções e salas de
-                  coletas organizadas e aconchegantes e Núcleo Técnico
-                  Operacional (NTO) para a realização dos exames.
-                </p>
-              </div>
-              {/* Card 5 */}
-              <div className='bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center'>
-                {' '}
-                {/* Reduzi o padding */}
-                <div className='mb-4'>
-                  <FaLayerGroup className='text-4xl text-green-50 mx-auto' />
-                </div>
-                <h3 className='text-xl font-semibold mb-2'>
-                  Equipamentos e Equipe
-                </h3>
-                <p className='text-green-50 text-lg'>
-                  O Laboratório conta com equipamentos automatizados e modernos,
-                  o que garante melhor precisão, agilidade e qualidade no
-                  processo analítico. Conta com profissionais capacitados para
-                  cada tipo de processo, sempre atualizados para executar os
-                  serviços com qualidade, cordialidade e empatia.
-                </p>
-              </div>
-              {/* Card 6 */}
-              <div className='bg-gray-100 p-4 md:p-6 rounded-lg shadow-lg text-center'>
-                {' '}
-                {/* Reduzi o padding */}
-                <div className='mb-4'>
-                  <FaLock className='text-4xl text-green-50 mx-auto' />
-                </div>
-                <h3 className='text-xl font-semibold mb-2'>
-                  Segurança e Qualidade
-                </h3>
-                <p className='text-green-50 text-lg'>
-                  Nosso Laboratório participa de um sistema de Avaliação de
-                  Resultados em Qualidade com outros Laboratórios do Brasil
-                  (PNCQ – Programa Nacional de Controle Qualidade) o qual
-                  recebemos o título de “Excelência”. Possuímos parceria com
-                  Consultoria de Análises Clínicas que nos auxilia em constantes
-                  treinamentos e melhoria de processos.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+              <h2 className='mt-5 text-2xl font-semibold text-slate-950'>
+                {item.title}
+              </h2>
+              <p className='mt-3 text-sm leading-7 text-slate-600'>
+                {item.description}
+              </p>
+            </article>
+          );
+        })}
+      </section>
+    </PageShell>
   );
 };
 
