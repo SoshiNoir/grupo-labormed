@@ -9,29 +9,24 @@ export const NAV_LINKS = [
 
 export const HERO_SLIDES = [
   {
-    src: '/SAUDEPUBLICA.png',
-    alt: 'Campanha de saúde pública',
-    link: 'https://wa.me/551637618555',
+    src: '/art1.jpg.jpeg',
+    alt: 'Resultados de exames online',
+    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20ver%20meus%20resultados.',
   },
   {
-    src: '/banner1.png',
-    alt: 'Conheça nossas unidades',
-    link: '/units',
+    src: '/art2.jpg.jpeg',
+    alt: 'Nossos serviços de excelência',
+    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20agendar%20um%20exame.',
   },
   {
-    src: '/banner2.png',
-    alt: 'Sexagem fetal',
-    link: '/FetalSexing',
-  },
-  {
-    src: '/banner3.png',
+    src: '/art3.jpg.jpeg',
     alt: 'Coleta domiciliar',
-    link: '/pickup',
+    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20agendar%20coleta%20domiciliar.',
   },
   {
-    src: '/banner4.png',
-    alt: 'Resultados online',
-    link: 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx',
+    src: '/art4.jpg.jpeg',
+    alt: 'Campanha da prevenção inteligente',
+    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20fazer%20um%20check-up.',
   },
 ];
 
@@ -43,7 +38,7 @@ export const SERVICE_CARDS = [
     title: 'Sexagem Fetal',
     eyebrow: 'Biologia molecular',
     gradient: 'from-emerald-950/95 via-emerald-900/60 to-transparent',
-    link: '/FetalSexing',
+    whatsappMessage: 'Olá, quero saber mais sobre Sexagem Fetal.',
   },
   {
     id: 2,
@@ -52,7 +47,7 @@ export const SERVICE_CARDS = [
     title: 'Exame Toxicológico',
     eyebrow: 'Rastreio ocupacional',
     gradient: 'from-[#d2ae6d]/95 via-[#d2ae6d]/70 to-transparent',
-    link: '/toxicological',
+    whatsappMessage: 'Olá, quero saber mais sobre Exame Toxicológico.',
   },
   {
     id: 3,
@@ -61,7 +56,7 @@ export const SERVICE_CARDS = [
     title: 'Teste do Pezinho',
     eyebrow: 'Cuidado neonatal',
     gradient: 'from-emerald-950/95 via-emerald-900/60 to-transparent',
-    link: '/HeelPrickTest',
+    whatsappMessage: 'Olá, quero saber mais sobre Teste do Pezinho.',
   },
   {
     id: 4,
@@ -70,7 +65,7 @@ export const SERVICE_CARDS = [
     title: 'Teste de Paternidade',
     eyebrow: 'DNA e vínculos biológicos',
     gradient: 'from-[#d2ae6d]/95 via-[#d2ae6d]/70 to-transparent',
-    link: '/PaternityTest',
+    whatsappMessage: 'Olá, quero saber mais sobre Teste de Paternidade.',
   },
 ];
 
@@ -114,26 +109,11 @@ export const LAB_PHOTOS = [
 
 export const UNIT_LOCATIONS = [
   {
-    id: 'batatais-centro',
-    accent: 'main',
-    city: 'Batatais',
-    shortTitle: 'Unidade 1',
-    title: 'Labormed Centro',
-    imageSrc: '/unidade1.jpg',
-    pinSrc: '/pinMain.svg',
-    address: 'Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São Paulo',
-    phones: ['(16) 3761-6066'],
-    whatsappNumber: '551637618555',
-    hours: ['Seg - Sex: 6h30 - 17h30', 'Sábado e Domingo: Fechado'],
-    mapSrc:
-      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5748.634419824107!2d-47.584351371662414!3d-20.891059671670032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9fac1ed8f2b9d%3A0x8e287a8d5b1dbbc1!2sR.%20Cel.%20Joaquim%20Rosa%2C%20457%20-%20Centro%2C%20Batatais%20-%20SP%2C%2014300-039%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110436198!5m2!1spt-BR!2sus',
-  },
-  {
     id: 'batatais-forum',
     accent: 'gold',
     city: 'Batatais',
-    shortTitle: 'Unidade 2',
-    title: 'Labormed Fórum',
+    shortTitle: 'Unidade de Batatais',
+    title: 'Labormed Batatais',
     imageSrc: '/unidade2.jpg',
     pinSrc: '/pinGold.svg',
     address: 'Travessa Intendente Vigilato, 295 - Centro - Batatais - São Paulo',
@@ -147,7 +127,7 @@ export const UNIT_LOCATIONS = [
     id: 'altinopolis',
     accent: 'main',
     city: 'Altinópolis',
-    shortTitle: 'Unidade 3',
+    shortTitle: 'Unidade de Altinópolis',
     title: 'Labormed Altinópolis',
     imageSrc: '/unidade3.jpg',
     pinSrc: '/pinMain.svg',

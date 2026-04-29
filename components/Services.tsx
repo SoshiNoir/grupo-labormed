@@ -9,14 +9,16 @@ const ImageGallery = () => {
     <section className='mt-20 space-y-8 px-1'>
       <SectionHeading
         eyebrow='Especialidades'
-        title='Exames especializados com segurança, tecnologia e apoio técnico'
-        description='Conheça alguns dos exames mais procurados no Labormed, com informações claras para orientar pacientes e famílias.'
+        title='Exames mais procurados'
+        description='Selecione o exame desejado e fale com a equipe pelo WhatsApp para receber orientação rápida.'
       />
       <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4'>
         {SERVICE_CARDS.map((image) => (
           <Link
             key={image.id}
-            href={image.link}
+            href={`https://wa.me/551637618555?text=${encodeURIComponent(image.whatsappMessage)}`}
+            target='_blank'
+            rel='noopener noreferrer'
             className='group relative mx-auto flex h-[380px] w-full max-w-[360px] overflow-hidden rounded-[1.75rem] border border-white/60 bg-slate-950 shadow-[0_30px_80px_-38px_rgba(15,23,42,0.75)]'
           >
             <Image

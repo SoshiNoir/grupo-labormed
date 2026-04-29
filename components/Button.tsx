@@ -8,6 +8,7 @@ type ButtonProps = {
   icon?: ReactNode;
   variant?: string;
   paddingVariant?: 'normal' | 'spacious';
+  className?: string;
   onClick?: () => void;
   href?: string;
   target?: string;
@@ -19,6 +20,7 @@ const Button = ({
   icon,
   variant = 'normal',
   paddingVariant = 'normal',
+  className = '',
   onClick,
   href,
   target,
@@ -45,7 +47,7 @@ const Button = ({
       ? 'border border-emerald-200 bg-white text-emerald-950 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-lg'
       : variant;
 
-  const sharedClasses = `inline-flex items-center justify-center rounded-full ${paddingClasses} ${baseClasses}`;
+  const sharedClasses = `inline-flex items-center justify-center rounded-full ${paddingClasses} ${baseClasses} ${className}`;
   const rel = target === '_blank' ? 'noopener noreferrer' : undefined;
 
   if (href) {

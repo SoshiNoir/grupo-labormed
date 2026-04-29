@@ -18,6 +18,7 @@ const WhatsappButton: React.FC<WhatsappButtonProps> = ({
       title={label}
       icon={<FaWhatsapp className='text-lg text-green-500' />}
       variant='border border-emerald-200 bg-white text-emerald-950 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-lg'
+      className='w-full'
       href={whatsappUrl}
       target='_blank'
     />

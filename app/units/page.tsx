@@ -2,7 +2,6 @@ import SectionHeading from '@/components/SectionHeading';
 import WhatsappButton from '@/components/WhatsappButton';
 import { UNIT_LOCATIONS } from '@/constants';
 import { Clock, MapPin, Phone } from '@phosphor-icons/react/dist/ssr';
-import Image from 'next/image';
 import React from 'react';
 
 const Units: React.FC = () => {
@@ -11,8 +10,8 @@ const Units: React.FC = () => {
       <section className='rounded-[2rem] border border-white/70 bg-white/80 p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur'>
         <SectionHeading
           eyebrow='Unidades'
-          title='Contato e localização organizados em componentes reutilizáveis'
-          description='As informações das três unidades agora usam a mesma fonte de dados do rodapé, reduzindo manutenção duplicada.'
+          title='Atendimento em Batatais e Altinópolis'
+          description='As informações abaixo centralizam contato, endereço e horários das unidades ativas.'
         />
       </section>
 
@@ -20,17 +19,8 @@ const Units: React.FC = () => {
         {UNIT_LOCATIONS.map((unit) => (
           <article
             key={unit.id}
-            className='grid overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur lg:grid-cols-[320px_1fr_420px]'
+            className='grid overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur lg:grid-cols-[1fr_420px]'
           >
-            <div className='relative min-h-[260px]'>
-              <Image
-                src={unit.imageSrc}
-                alt={unit.title}
-                fill
-                className='object-cover'
-              />
-            </div>
-
             <div className='space-y-6 p-8'>
               <div>
                 <p className='text-sm font-semibold uppercase tracking-[0.24em] text-emerald-800'>

@@ -5,82 +5,145 @@ import Card from '@/components/Card';
 import Doubts from '@/components/Doubts';
 import Satisfaction from '@/components/Satisfaction';
 import SatisfactionSurvey from '@/components/SatisfactionSurvey';
-import Services from '@/components/Services';
 import SectionHeading from '@/components/SectionHeading';
+import Services from '@/components/Services';
 import Slider from '@/components/Slider';
 import WhatsappButton from '@/components/WhatsappButton';
-import { HERO_SLIDES, LAB_PHOTOS } from '@/constants';
-import Image from 'next/image';
+import { HERO_SLIDES } from '@/constants';
 import { useState } from 'react';
 
 const HomePage = () => {
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   const [surveyInitialRating, setSurveyInitialRating] = useState('');
+  const whatsappBaseUrl = 'https://wa.me/551637618555';
+
+  const buildWhatsappUrl = (message?: string) => {
+    if (!message) {
+      return whatsappBaseUrl;
+    }
+
+    return `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
+  };
+
+  const attendanceOptions = [
+    {
+      title: 'Estou com sintomas gripais',
+      message: 'Olá, estou com sintomas gripais e preciso de orientação.',
+    },
+    {
+      title: 'Quero fazer um Check-up',
+      message: 'Olá, quero agendar um check-up.',
+    },
+    {
+      title: 'Preciso de exames específicos',
+      message: 'Olá, preciso de exames específicos e gostaria de orientação.',
+    },
+    {
+      title: 'Quero coleta domiciliar',
+      message: 'Olá, quero agendar coleta domiciliar.',
+    },
+  ];
+
+  const experiencePoints = [
+    'Resultados rápidos e confiáveis',
+    'Atendimento humanizado',
+    'Estrutura moderna e segura',
+    'Coleta domiciliar',
+  ];
 
   return (
     <div className='space-y-8 pb-8'>
       <Slider slides={HERO_SLIDES} />
 
-      <section className='grid gap-5 lg:grid-cols-[1.25fr_0.75fr]'>
-        <div className='rounded-[2rem] border border-white/70 bg-white/80 p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur'>
-          <span className='inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-900'>
-            Grupo Labormed
-          </span>
-          <h1 className='mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl'>
-            Diagnóstico clínico com confiança, agilidade e atendimento próximo.
-          </h1>
-          <p className='mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg'>
-            Há mais de 37 anos, o Grupo Labormed realiza análises clínicas para
-            pacientes particulares, convênios, empresas e saúde ocupacional,
-            com atendimento humanizado e unidades em Batatais e Altinópolis.
-          </p>
-          <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
-            <Button
-              title='Consultar Resultados'
-              href='https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx'
-              target='_blank'
-              variant='bg-emerald-950 text-white shadow-lg shadow-emerald-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-900'
-              paddingVariant='spacious'
-            />
-            <Button
-              title='Ver Unidades'
-              href='/units'
-              paddingVariant='spacious'
-            />
-          </div>
-        </div>
+      <Card
+        leftContent={
+          <div className='flex h-full flex-col justify-between gap-6'>
+            <div>
+              <span className='inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-900'>
+                Grupo Labormed
+              </span>
+              <h1 className='mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl'>
+                Cuide da sua saúde com resultados rápidos e confiáveis.
+              </h1>
+              <p className='mt-5 max-w-3xl text-base leading-8 text-slate-600 md:text-lg'>
+                Há mais de 40 anos referência em exames laboratoriais com
+                tecnologia, precisão e atendimento humanizado.
+              </p>
 
-        <div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-1'>
-          <div className='rounded-[2rem] border border-white/70 bg-emerald-950 p-7 text-white shadow-[0_28px_70px_-40px_rgba(6,78,59,0.85)]'>
-            <p className='text-sm font-semibold uppercase tracking-[0.24em] text-emerald-200'>
-              Atendimento
-            </p>
-            <h2 className='mt-4 text-2xl font-semibold'>Fale com nossa equipe</h2>
-            <p className='mt-3 text-sm leading-7 text-emerald-100/85'>
-              Tire dúvidas sobre preparo, agende exames e receba orientação
-              rápida pelo WhatsApp.
-            </p>
-            <div className='mt-6'>
-              <WhatsappButton
-                phoneNumber='551637618555'
-                label='WhatsApp: 16 3761-8555'
-              />
+              <div className='mt-8 rounded-[1.5rem] border border-slate-200/80 bg-slate-50/90 p-5'>
+                <p className='text-sm font-semibold uppercase tracking-[0.24em] text-[#b08943]'>
+                  Experiência
+                </p>
+                <h2 className='mt-4 text-2xl font-semibold text-slate-950'>
+                  Porque escolher o Laboratório Labor Med?
+                </h2>
+                <ul className='mt-5 grid gap-x-5 gap-y-3 text-sm leading-7 text-slate-700 md:grid-cols-2'>
+                  {experiencePoints.map((point) => (
+                    <li key={point} className='flex gap-3'>
+                      <span className='mt-2 h-2 w-2 shrink-0 rounded-full bg-[#b08943]' />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <p className='mt-5 text-sm font-medium uppercase tracking-[0.22em] text-slate-500'>
+                Atendimento ágil * Coleta segura * Resultados online
+              </p>
             </div>
           </div>
-          <div className='rounded-[2rem] border border-white/70 bg-white/80 p-7 shadow-[0_28px_70px_-40px_rgba(15,23,42,0.55)] backdrop-blur'>
-            <p className='text-sm font-semibold uppercase tracking-[0.24em] text-[#b08943]'>
-              Estrutura
-            </p>
-            <h2 className='mt-4 text-2xl font-semibold text-slate-950'>
-              Três unidades, equipe qualificada e rotina técnica segura.
-            </h2>
-            <p className='mt-3 text-sm leading-7 text-slate-600'>
-              Recepções organizadas, coleta humanizada e núcleo técnico
-              operacional para mais precisão, agilidade e confiança.
-            </p>
+        }
+        rightContent={
+          <div className='flex h-full w-full flex-col gap-4'>
+            <div className='rounded-[1.5rem] border border-white/70 bg-emerald-950 p-7 text-white shadow-[0_20px_50px_-35px_rgba(6,78,59,0.75)]'>
+              <p className='text-sm font-semibold uppercase tracking-[0.24em] text-emerald-200'>
+                Atendimento
+              </p>
+              <h2 className='mt-4 text-2xl font-semibold'>
+                Como Podemos te ajudar hoje?
+              </h2>
+              <div className='mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-1'>
+                {attendanceOptions.map((option) => (
+                  <Button
+                    key={option.title}
+                    title={option.title}
+                    href={buildWhatsappUrl(option.message)}
+                    target='_blank'
+                    variant='border border-white/15 bg-white/10 text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white/15'
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className='rounded-[1.5rem] border border-white/70 bg-white p-7 shadow-[0_20px_50px_-35px_rgba(15,23,42,0.35)]'>
+              <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-1'>
+                <Button
+                  title='Agendar exame'
+                  href={buildWhatsappUrl('Olá, quero agendar um exame.')}
+                  target='_blank'
+                  variant='bg-emerald-950 text-white shadow-lg shadow-emerald-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-900'
+                  paddingVariant='spacious'
+                />
+                <Button
+                  title='Ver resultados'
+                  href={buildWhatsappUrl('Olá, quero ver meus resultados.')}
+                  target='_blank'
+                  variant='border border-[#d2ae6d]/40 bg-[#d2ae6d]/10 text-slate-950 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[#d2ae6d]/20'
+                  paddingVariant='spacious'
+                />
+                <div className='md:col-span-2 lg:col-span-1'>
+                <WhatsappButton
+                  phoneNumber='551637618555'
+                  label='Falar no WhatsApp'
+                />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       <Card
         leftContent={
@@ -126,24 +189,29 @@ const HomePage = () => {
                   Retirada por terceiros
                 </h3>
                 <p className='mt-3 text-sm leading-7 text-slate-600'>
-                  Leve autorização, comprovante de coleta e documento do paciente.
+                  Leve autorização, comprovante de coleta e documento do
+                  paciente.
                 </p>
               </div>
             </div>
             <div className='w-full max-w-[36rem] rounded-[1.5rem] border border-slate-200 bg-white/80 p-5'>
-              <div className='flex flex-col items-center justify-center gap-3 sm:flex-row'>
+              <div className='grid gap-3'>
                 <Button
-                  title='Portal de Resultados'
-                  href='https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx'
+                  title='Agendar exame'
+                  href={buildWhatsappUrl('Olá, quero agendar um exame.')}
                   target='_blank'
                   variant='bg-emerald-950 text-white shadow-lg shadow-emerald-950/20 transition duration-200 hover:-translate-y-0.5 hover:bg-emerald-900'
                 />
-                <div className='min-w-[220px]'>
-                  <WhatsappButton
-                    phoneNumber='551637618555'
-                    label='Precisa de ajuda?'
-                  />
-                </div>
+                <Button
+                  title='Ver resultados'
+                  href={buildWhatsappUrl('Olá, quero ver meus resultados.')}
+                  target='_blank'
+                  variant='border border-[#d2ae6d]/40 bg-[#d2ae6d]/10 text-slate-950 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[#d2ae6d]/20'
+                />
+                <WhatsappButton
+                  phoneNumber='551637618555'
+                  label='Falar no WhatsApp'
+                />
               </div>
             </div>
           </div>
@@ -167,30 +235,6 @@ const HomePage = () => {
         />
       ) : null}
       <Doubts />
-
-      <section className='mt-20 space-y-8'>
-        <SectionHeading
-          eyebrow='Ambiente'
-          title='Estrutura preparada para acolher com organização e cuidado'
-          description='Conheça alguns ambientes do Labormed, com espaços pensados para atendimento, coleta e rotina laboratorial.'
-        />
-        <div className='grid gap-5 sm:grid-cols-2 xl:grid-cols-4'>
-          {LAB_PHOTOS.map((photo) => (
-            <div
-              key={photo.src}
-              className='group relative h-[280px] overflow-hidden rounded-[1.75rem] border border-white/60 bg-slate-950 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.75)]'
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                className='object-cover transition duration-500 group-hover:scale-105'
-              />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent' />
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   );
 };
