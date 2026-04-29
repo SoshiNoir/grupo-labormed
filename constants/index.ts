@@ -9,22 +9,22 @@ export const NAV_LINKS = [
 
 export const HERO_SLIDES = [
   {
-    src: '/art1.jpg.jpeg',
+    src: '/banner1.png',
     alt: 'Resultados de exames online',
     link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20ver%20meus%20resultados.',
   },
   {
-    src: '/art2.jpg.jpeg',
+    src: '/banner2.png',
     alt: 'Nossos serviços de excelência',
     link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20agendar%20um%20exame.',
   },
   {
-    src: '/art3.jpg.jpeg',
+    src: '/banner3.png',
     alt: 'Coleta domiciliar',
     link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20agendar%20coleta%20domiciliar.',
   },
   {
-    src: '/art4.jpg.jpeg',
+    src: '/banner4.png',
     alt: 'Campanha da prevenção inteligente',
     link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20fazer%20um%20check-up.',
   },
