@@ -32,7 +32,7 @@ function Covenants() {
     <PageShell
       eyebrow='Convênios'
       title='Cobertura ampla para pacientes e empresas.'
-      description='A listagem foi reorganizada em cards mais limpos, com logos mais bem enquadrados e o mesmo padrão visual do restante do site.'
+      description='Cobertura ampla para pacientes e empresas, com logotipos organizados em uma grade clara e consistente.'
       imageSrc='/company.jpeg'
       imageAlt='Convênios atendidos pelo Labormed'
     >

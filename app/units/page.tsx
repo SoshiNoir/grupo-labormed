@@ -19,6 +19,7 @@ const Units: React.FC = () => {
         {UNIT_LOCATIONS.map((unit) => (
           <article
             key={unit.id}
+            id={unit.id === 'batatais-forum' ? 'batatais' : unit.id}
             className='grid overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur lg:grid-cols-[1fr_420px]'
           >
             <div className='space-y-6 p-8'>

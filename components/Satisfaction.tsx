@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  SmileyMeh,
-  SmileySad,
-  SmileyWink,
-} from '@phosphor-icons/react';
+import { SmileyMeh, SmileySad, SmileyWink } from '@phosphor-icons/react';
 import React from 'react';
 import SectionHeading from './SectionHeading';
 
@@ -16,51 +12,62 @@ const moods = [
   {
     value: '1' as const,
     label: 'Precisa melhorar',
-    description: 'Paciente não saiu satisfeito.',
+    description: 'Não fiquei satisfeito',
     icon: SmileySad,
-    accent: 'from-rose-500/20 to-rose-100/40 text-rose-600',
+    color: 'text-rose-500',
+    bg: 'bg-rose-50',
+    border: 'hover:border-rose-200',
   },
   {
     value: '3' as const,
     label: 'Foi ok',
-    description: 'Experiência neutra, sem destaque.',
+    description: 'Experiência neutra',
     icon: SmileyMeh,
-    accent: 'from-[#d2ae6d]/20 to-[#f4e6c4]/40 text-[#8c6b33]',
+    color: 'text-[#8c6b33]',
+    bg: 'bg-[#fdf8ec]',
+    border: 'hover:border-[#d2ae6d]/30',
   },
   {
     value: '5' as const,
     label: 'Foi ótimo',
-    description: 'Atendimento resolveu bem.',
+    description: 'Atendimento excelente',
     icon: SmileyWink,
-    accent: 'from-emerald-500/20 to-emerald-100/40 text-emerald-700',
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-50',
+    border: 'hover:border-emerald-200',
   },
 ];
 
 const Satisfaction: React.FC<SatisfactionProps> = ({ onSelectRating }) => {
   return (
-    <section className='mt-20 space-y-8'>
-      <SectionHeading
-        eyebrow='Experiência'
-        title='Sua opinião ajuda a melhorar nosso atendimento'
-        description='Conte como foi sua experiência no Labormed e contribua para a melhoria contínua dos nossos serviços.'
-      />
-      <div className='grid w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/76 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur-xl md:grid-cols-[0.9fr_1.1fr]'>
-        <div className='flex flex-col justify-between gap-6 p-8 text-left md:p-10'>
-          <div>
-            <span className='inline-flex rounded-full border border-emerald-200 bg-emerald-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-900'>
-              Sua opinião
+    <section className='mt-32 space-y-12'>
+      <div className='flex flex-col items-center text-center'>
+        <SectionHeading
+          eyebrow='Feedback'
+          title='Sua opinião é fundamental'
+          description='Conte como foi sua experiência no Labormed. Sua avaliação direta nos ajuda a manter a excelência no atendimento.'
+        />
+      </div>
+
+      <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-slate-50 rounded-[2.5rem] border border-slate-200 p-4 md:p-8'>
+        {/* Left Info Panel */}
+        <div className='lg:col-span-4 flex flex-col justify-center p-6 md:p-8 space-y-6'>
+          <div className='space-y-4'>
+            <span className='inline-flex px-3 py-1 rounded-full bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-widest text-slate-400'>
+              Pesquisa Rápida
             </span>
-            <h3 className='mt-5 text-3xl font-semibold tracking-tight text-slate-950'>
-              Como foi o seu atendimento no Labormed?
+            <h3 className='text-3xl font-bold text-slate-900 leading-tight'>
+              Como foi o seu atendimento?
             </h3>
-            <p className='mt-4 max-w-xl text-base leading-7 text-slate-600'>
-              Escolha a opção que melhor representa sua experiência. A pesquisa
-              será aberta com a nota correspondente já selecionada.
+            <p className='text-slate-500 leading-relaxed'>
+              Clique em um dos humores ao lado para iniciar sua avaliação
+              detalhada.
             </p>
           </div>
         </div>
 
-        <div className='grid gap-4 bg-[linear-gradient(180deg,rgba(255,255,255,0.55)_0%,rgba(241,245,249,0.95)_100%)] p-6 md:grid-cols-3 md:p-8'>
+        {/* Right Interaction Panel */}
+        <div className='lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-4'>
           {moods.map((mood) => {
             const Icon = mood.icon;
 
@@ -69,17 +76,22 @@ const Satisfaction: React.FC<SatisfactionProps> = ({ onSelectRating }) => {
                 key={mood.label}
                 type='button'
                 onClick={() => onSelectRating(mood.value)}
-                className={`flex min-h-[210px] flex-col items-center justify-center rounded-[1.5rem] border border-white/70 bg-gradient-to-b ${mood.accent} px-5 py-6 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] transition duration-200 hover:-translate-y-1`}
+                className={`group flex flex-col items-center justify-center p-8 rounded-3xl bg-white border border-transparent shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-2 ${mood.border}`}
               >
-                <div className='flex h-20 w-20 items-center justify-center rounded-full border border-white/70 bg-white/70 shadow-sm backdrop-blur'>
-                  <Icon size={42} weight='fill' />
+                <div
+                  className={`mb-6 flex h-20 w-20 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 group-active:scale-90 ${mood.bg} ${mood.color}`}
+                >
+                  <Icon size={48} weight='duotone' />
                 </div>
-                <h4 className='mt-5 text-xl font-semibold text-slate-950'>
-                  {mood.label}
-                </h4>
-                <p className='mt-2 text-sm leading-6 text-slate-600'>
-                  {mood.description}
-                </p>
+
+                <div className='text-center'>
+                  <h4 className='text-lg font-bold text-slate-900 group-hover:text-slate-950'>
+                    {mood.label}
+                  </h4>
+                  <p className='mt-1 text-sm text-slate-400 font-medium'>
+                    {mood.description}
+                  </p>
+                </div>
               </button>
             );
           })}

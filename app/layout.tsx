@@ -1,4 +1,5 @@
 import Footer from '@/components/Footer';
+import FloatingWhatsappBubble from '@/components/FloatingWhatsappBubble';
 import Navbar from '@/components/Navbar';
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono, Manrope } from 'next/font/google';
@@ -29,10 +30,11 @@ export default function RootLayout({
     <html lang='pt-BR'>
       <body className={`${manrope.variable} ${plexMono.variable}`}>
         <Navbar />
-        <main className='relative overflow-hidden px-3 pt-28 md:px-5 md:pt-32'>
+        <main className='relative overflow-hidden px-3 pt-[88px] md:px-5 md:pt-32'>
           <div className='mx-auto max-w-7xl'>{children}</div>
         </main>
         <Footer />
+        <FloatingWhatsappBubble />
       </body>
     </html>
   );

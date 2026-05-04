@@ -5,10 +5,11 @@ import 'keen-slider/keen-slider.min.css';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 interface Slide {
   src: string;
+  mobileSrc?: string;
   alt: string;
   link: string;
 }
@@ -18,13 +19,9 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ slides }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: 'snap',
-    slideChanged(instance) {
-      setCurrentSlide(instance.track.details.rel);
-    },
     slides: {
       perView: 1,
       spacing: 0,
@@ -32,33 +29,42 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   });
 
   useEffect(() => {
-    if (!slider.current) {
-      return;
-    }
-
+    if (!slider.current) return;
     const timer = window.setInterval(() => {
       slider.current?.next();
     }, 5000);
-
     return () => window.clearInterval(timer);
   }, [slider]);
 
-  const handlePrev = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    slider.current?.prev();
-  };
-
-  const handleNext = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    slider.current?.next();
-  };
+  const renderSlideImage = (slide: Slide, index: number) => (
+    <div className='absolute inset-0'>
+      <picture className='block h-full w-full'>
+        {slide.mobileSrc && (
+          <source media='(max-width: 639px)' srcSet={slide.mobileSrc} />
+        )}
+        <Image
+          src={slide.src}
+          alt={slide.alt}
+          fill
+          /* Changed object-fill to object-cover to remove white edges/gaps */
+          className='object-cover'
+          priority={index === 0}
+          sizes='100vw'
+        />
+      </picture>
+    </div>
+  );
 
   return (
-    <section className='relative overflow-hidden rounded-[2rem] border border-white/60 bg-white shadow-[0_35px_90px_-45px_rgba(15,23,42,0.45)]'>
-      <div className='relative aspect-[3/1] w-full'>
+    <section className='group relative w-full overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-xl shadow-slate-200/50'>
+      <div className='relative aspect-[9/16] w-full sm:aspect-[3/1]'>
+        {/* Main Slider Content */}
         <div ref={sliderRef} className='keen-slider h-full w-full'>
           {slides.map((slide, index) => (
-            <div key={index} className='keen-slider__slide relative h-full w-full'>
+            <div
+              key={index}
+              className='keen-slider__slide relative h-full w-full'
+            >
               {slide.link.startsWith('http') ? (
                 <a
                   href={slide.link}
@@ -66,57 +72,38 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
                   rel='noopener noreferrer'
                   className='block h-full w-full'
                 >
-                  <Image
-                    src={slide.src}
-                    alt={slide.alt}
-                    fill
-                    className='object-cover'
-                    priority={index === 0}
-                  />
+                  {renderSlideImage(slide, index)}
                 </a>
               ) : (
                 <Link href={slide.link} className='block h-full w-full'>
-                  <Image
-                    src={slide.src}
-                    alt={slide.alt}
-                    fill
-                    className='object-cover'
-                    priority={index === 0}
-                  />
+                  {renderSlideImage(slide, index)}
                 </Link>
               )}
             </div>
           ))}
         </div>
-      </div>
 
-      <button
-        className='absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-white/40 bg-slate-950/45 p-2 text-white backdrop-blur transition hover:bg-slate-950/65 sm:left-6 sm:p-3'
-        onClick={handlePrev}
-        aria-label='Slide anterior'
-      >
-        <ArrowLeft size={24} weight='bold' />
-      </button>
-
-      <button
-        className='absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-white/40 bg-slate-950/45 p-2 text-white backdrop-blur transition hover:bg-slate-950/65 sm:right-6 sm:p-3'
-        onClick={handleNext}
-        aria-label='Proximo slide'
-      >
-        <ArrowRight size={24} weight='bold' />
-      </button>
-
-      <div className='absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full border border-white/40 bg-slate-950/45 px-3 py-2 backdrop-blur'>
-        {slides.map((_, index) => (
+        {/* Desktop Controls - Arrows only */}
+        <div className='absolute inset-x-4 top-1/2 z-10 flex -translate-y-1/2 justify-between opacity-0 transition-opacity group-hover:opacity-100 hidden sm:flex'>
           <button
-            key={index}
-            className={`h-2.5 rounded-full transition-all ${
-              currentSlide === index ? 'w-8 bg-white' : 'w-2.5 bg-white/55'
-            }`}
-            onClick={() => slider.current?.moveToIdx(index)}
-            aria-label={`Ir para o slide ${index + 1}`}
-          />
-        ))}
+            className='flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-slate-900 shadow-lg backdrop-blur-md transition hover:bg-white active:scale-90'
+            onClick={(e) => {
+              e.stopPropagation();
+              slider.current?.prev();
+            }}
+          >
+            <ArrowLeft size={24} weight='bold' />
+          </button>
+          <button
+            className='flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-slate-900 shadow-lg backdrop-blur-md transition hover:bg-white active:scale-90'
+            onClick={(e) => {
+              e.stopPropagation();
+              slider.current?.next();
+            }}
+          >
+            <ArrowRight size={24} weight='bold' />
+          </button>
+        </div>
       </div>
     </section>
   );

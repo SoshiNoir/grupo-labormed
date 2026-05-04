@@ -1,176 +1,212 @@
 import { UNIT_LOCATIONS } from '@/constants';
-import { Clock, MapPin, Phone } from '@phosphor-icons/react/dist/ssr';
+import {
+  ArrowUpRight,
+  CaretRight,
+  Clock,
+  MapPin,
+  Phone,
+} from '@phosphor-icons/react/dist/ssr';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const RESULTS_URL = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
+
+const quickAccessLinks = [
+  { href: '/about', label: 'Sobre o Labormed' },
+  { href: '/units#batatais', label: 'Batatais' },
+  { href: '/units#altinopolis', label: 'Altinópolis' },
+  {
+    href: RESULTS_URL,
+    label: 'Resultados Online',
+    external: true,
+    highlight: true,
+  },
+] as const;
+
 const Footer = () => {
+  const buildMapsUrl = (address: string) =>
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+  const phoneToTel = (phone: string) => `tel:${phone.replace(/\D/g, '')}`;
+
   return (
-    <footer className='mt-24 border-t border-slate-200 bg-[linear-gradient(180deg,rgba(248,250,252,0.96)_0%,rgba(226,232,240,0.98)_100%)] text-slate-900'>
-      <div className='mx-auto max-w-7xl px-4 py-14 md:px-6'>
-        <div className='grid gap-6 rounded-[2rem] border border-white/70 bg-white/78 p-8 shadow-[0_28px_80px_-42px_rgba(15,23,42,0.28)] backdrop-blur-xl lg:grid-cols-[1.2fr_0.8fr_0.8fr]'>
-          <div>
-            <span className='inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-emerald-900'>
-              Grupo Labormed
-            </span>
-            <div className='mt-5 max-w-sm'>
+    <footer className='mt-24 border-t border-slate-200 bg-slate-50 text-slate-900'>
+      <div className='mx-auto max-w-7xl px-6 py-16'>
+        {/* Top Section: Branding & Quick Links */}
+        <div className='grid grid-cols-1 gap-12 lg:grid-cols-12'>
+          {/* Brand Column */}
+          <div className='lg:col-span-5 space-y-8'>
+            <div className='space-y-6'>
               <Image
                 src='/horizontal.png'
                 alt='Logo Labormed'
-                width={320}
-                height={96}
-                className='h-auto w-full object-contain object-left'
+                width={240}
+                height={70}
+                className='h-auto w-48 object-contain'
               />
+              <p className='max-w-md text-base leading-relaxed text-slate-600'>
+                Liderança em análises clínicas há mais de 37 anos. Compromisso
+                com a precisão diagnóstica e o atendimento humanizado em toda a
+                nossa rede.
+              </p>
             </div>
-            <p className='mt-5 max-w-xl text-sm leading-7 text-slate-600'>
-              Laboratório de análises clínicas com mais de 37 anos de atuação,
-              atendimento humanizado e estrutura preparada para pacientes
-              particulares, convênios, empresas e saúde ocupacional.
-            </p>
-            <div className='mt-6 flex flex-wrap gap-3 text-sm text-slate-600'>
-              <span className='rounded-full border border-slate-200 bg-white px-4 py-2'>
-                Batatais
-              </span>
-              <span className='rounded-full border border-slate-200 bg-white px-4 py-2'>
-                Altinópolis
-              </span>
-              <span className='rounded-full border border-slate-200 bg-white px-4 py-2'>
-                Resultados online
-              </span>
+
+            <div className='flex flex-wrap gap-2'>
+              {[
+                'PNCQ Certificado',
+                'Atendimento Humanizado',
+                'Saúde Ocupacional',
+              ].map((stat) => (
+                <span
+                  key={stat}
+                  className='inline-flex items-center rounded-md bg-white border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500 shadow-sm'
+                >
+                  {stat}
+                </span>
+              ))}
             </div>
           </div>
 
-          <div className='space-y-5 rounded-[1.75rem] border border-slate-200/80 bg-white/80 p-6'>
-            <div>
-              <p className='text-xs font-semibold uppercase tracking-[0.24em] text-emerald-900'>
-                Acesso rápido
-              </p>
-              <h2 className='mt-3 text-2xl font-semibold tracking-tight text-slate-950'>
-                Navegação essencial
-              </h2>
-            </div>
-            <div className='grid gap-3 text-sm text-slate-600'>
-              <Link href='/about' className='rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-200 hover:text-slate-950'>
-                Sobre o Labormed
-              </Link>
-              <Link href='/units' className='rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-200 hover:text-slate-950'>
-                Unidades e contato
-              </Link>
-              <Link href='/covenants' className='rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-200 hover:text-slate-950'>
-                Convênios atendidos
-              </Link>
-              <Link href='/faq' className='rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-emerald-200 hover:text-slate-950'>
-                Dúvidas frequentes
-              </Link>
-            </div>
+          {/* Quick Links Column */}
+          <div className='lg:col-span-3'>
+            <h4 className='text-sm font-bold uppercase tracking-widest text-slate-400 mb-6'>
+              Navegação
+            </h4>
+            <ul className='space-y-4'>
+              {quickAccessLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    className={`group flex items-center gap-2 text-base font-medium transition-colors ${
+                      link.highlight
+                        ? 'text-emerald-600 hover:text-emerald-700'
+                        : 'text-slate-600 hover:text-slate-950'
+                    }`}
+                  >
+                    {link.label}
+                    {link.external ? (
+                      <ArrowUpRight size={14} />
+                    ) : (
+                      <CaretRight
+                        size={14}
+                        className='opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0'
+                      />
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className='space-y-5 rounded-[1.75rem] border border-slate-200/80 bg-white/80 p-6'>
-            <div>
-              <p className='text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6b33]'>
-                Qualidade e atendimento
-              </p>
-              <h2 className='mt-3 text-2xl font-semibold tracking-tight text-slate-950'>
-                Serviços digitais e certificação
-              </h2>
+          {/* Accreditation / Portal Card */}
+          <div className='lg:col-span-4'>
+            <div className='rounded-2xl bg-emerald-900 p-8 text-white shadow-xl shadow-emerald-900/10 relative overflow-hidden group'>
+              <div className='relative z-10'>
+                <h4 className='text-emerald-300 text-xs font-bold uppercase tracking-widest mb-2'>
+                  Portal do Paciente
+                </h4>
+                <p className='text-xl font-semibold mb-6'>
+                  Acesse seus resultados com segurança.
+                </p>
+                <Link
+                  href={RESULTS_URL}
+                  target='_blank'
+                  className='inline-flex items-center justify-center w-full rounded-xl bg-white px-6 py-3 text-emerald-900 font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]'
+                >
+                  Ver Resultados
+                </Link>
+              </div>
+              {/* Decorative Circle */}
+              <div className='absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-emerald-800 transition-transform group-hover:scale-150' />
             </div>
-            <Link
-              href='https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx'
-              target='_blank'
-              className='flex items-center justify-between rounded-[1.5rem] border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-100'
+          </div>
+        </div>
+
+        <hr className='my-16 border-slate-200' />
+
+        {/* Units Section */}
+        <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
+          {UNIT_LOCATIONS.map((unit) => (
+            <div
+              key={unit.id}
+              className='flex flex-col sm:flex-row gap-6 p-6 rounded-2xl border border-slate-200 bg-white hover:border-emerald-200 transition-colors'
             >
-              Portal de Resultados
-              <span aria-hidden='true'>↗</span>
-            </Link>
-            <div className='rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4'>
-              <p className='text-sm font-semibold text-slate-950'>
-                Programa Nacional de Controle de Qualidade
-              </p>
-              <div className='mt-4 flex min-h-[116px] items-center justify-center rounded-[1.25rem] bg-white p-4'>
+              <div className='relative h-16 w-16 shrink-0 rounded-xl bg-slate-50 p-2 border border-slate-100'>
                 <Image
-                  src='/pncq.webp'
-                  alt='Certificação PNCQ'
-                  width={260}
-                  height={96}
-                  className='h-auto w-full object-contain'
+                  src={unit.pinSrc}
+                  alt={unit.title}
+                  fill
+                  className='object-contain p-2'
                 />
               </div>
-            </div>
-          </div>
-        </div>
 
-        <div className='mt-6 grid gap-4 xl:grid-cols-3'>
-          {UNIT_LOCATIONS.map((unit) => {
-            const accentClass =
-              unit.accent === 'gold'
-                ? 'text-[#8c6b33] border-[#d2ae6d]/30 bg-[#d2ae6d]/12'
-                : 'text-emerald-900 border-emerald-200 bg-emerald-50';
-
-            return (
-              <div
-                key={unit.id}
-                className='rounded-[1.75rem] border border-white/70 bg-white/78 p-6 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.2)] backdrop-blur-xl'
-              >
-                <div className='flex items-start justify-between gap-4'>
-                  <div className='min-w-0'>
-                    <span
-                      className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${accentClass}`}
-                    >
-                      {unit.shortTitle}
-                    </span>
-                    <h3 className='mt-4 text-2xl font-semibold leading-tight tracking-tight text-slate-950'>
-                      {unit.title}
-                    </h3>
-                    <p className='mt-2 text-sm text-slate-500'>{unit.city}</p>
-                  </div>
-                  <div className='relative h-12 w-12 shrink-0'>
-                    <Image
-                      src={unit.pinSrc}
-                      alt={unit.title}
-                      fill
-                      className='object-contain'
-                    />
-                  </div>
+              <div className='space-y-4 flex-1'>
+                <div>
+                  <h3 className='text-xl font-bold text-slate-950'>
+                    {unit.title}
+                  </h3>
+                  <p className='text-sm font-medium text-emerald-600 uppercase tracking-tight'>
+                    {unit.city}
+                  </p>
                 </div>
 
-                <div className='mt-6 space-y-4 text-sm leading-7 text-slate-600'>
+                <div className='grid gap-3 text-sm text-slate-600'>
+                  <Link
+                    href={buildMapsUrl(unit.address)}
+                    target='_blank'
+                    className='flex gap-3 hover:text-emerald-700 transition-colors'
+                  >
+                    <MapPin size={18} className='shrink-0 text-slate-400' />
+                    <span>{unit.address}</span>
+                  </Link>
+
                   <div className='flex gap-3'>
-                    <MapPin size={18} className='mt-1 shrink-0 text-slate-700' />
-                    <p>{unit.address}</p>
-                  </div>
-                  <div className='flex gap-3'>
-                    <Phone size={18} className='mt-1 shrink-0 text-slate-700' />
-                    <div>
+                    <Phone size={18} className='shrink-0 text-slate-400' />
+                    <div className='flex flex-wrap gap-x-4'>
                       {unit.phones.map((phone) => (
-                        <p key={phone}>{phone}</p>
+                        <a
+                          key={phone}
+                          href={phoneToTel(phone)}
+                          className='hover:text-emerald-700 font-medium'
+                        >
+                          {phone}
+                        </a>
                       ))}
                     </div>
                   </div>
+
                   <div className='flex gap-3'>
-                    <Clock size={18} className='mt-1 shrink-0 text-slate-700' />
-                    <div>
+                    <Clock size={18} className='shrink-0 text-slate-400' />
+                    <div className='space-y-1'>
                       {unit.hours.map((hour) => (
-                        <p key={hour}>{hour}</p>
+                        <p key={hour} className='text-xs'>
+                          {hour}
+                        </p>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
-        <div className='mt-8 flex flex-col gap-3 border-t border-slate-300/70 pt-5 text-sm text-slate-500 md:flex-row md:items-center md:justify-between'>
-          <p>Copyright © 2026 | Labormed Laboratório Clínico | Todos os direitos reservados.</p>
-          <div className='flex flex-wrap gap-4'>
-            <Link href='/ethics' className='transition hover:text-slate-900'>
-              Código de Conduta Ética
-            </Link>
-            <Link href='/RightsAndDuties' className='transition hover:text-slate-900'>
-              Direitos e deveres
-            </Link>
-            <Link href='/pickup' className='transition hover:text-slate-900'>
-              Coleta domiciliar
-            </Link>
+        {/* Bottom Bar */}
+        <div className='mt-16 flex flex-col gap-6 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between'>
+          <p className='text-xs text-slate-500 font-medium'>
+            © 2026 Labormed Laboratório Clínico. CNPJ: 00.000.000/0001-00
+          </p>
+          <div className='flex flex-wrap gap-6'>
+            {['Ethics', 'RightsAndDuties', 'pickup'].map((path) => (
+              <Link
+                key={path}
+                href={`/${path}`}
+                className='text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-emerald-600 transition-colors'
+              >
+                {path === 'pickup' ? 'Coleta Domiciliar' : path}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
