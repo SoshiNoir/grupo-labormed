@@ -11,7 +11,14 @@ import Link from 'next/link';
 
 const RESULTS_URL = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
 
-const quickAccessLinks = [
+type QuickAccessLink = {
+  href: string;
+  label: string;
+  external?: boolean;
+  highlight?: boolean;
+};
+
+const quickAccessLinks: QuickAccessLink[] = [
   { href: '/about', label: 'Sobre o Labormed' },
   { href: '/units#batatais', label: 'Batatais' },
   { href: '/units#altinopolis', label: 'Altinópolis' },
@@ -78,6 +85,7 @@ const Footer = () => {
                   <Link
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
                     className={`group flex items-center gap-2 text-base font-medium transition-colors ${
                       link.highlight
                         ? 'text-emerald-600 hover:text-emerald-700'

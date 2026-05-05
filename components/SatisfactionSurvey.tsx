@@ -32,6 +32,50 @@ const ratingOptions = [
   },
 ];
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const buildEmailTemplate = ({
+  name,
+  email,
+  rating,
+  comments,
+}: {
+  name: string;
+  email: string;
+  rating: string;
+  comments: string;
+}) => {
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeRating = escapeHtml(rating);
+  const safeComments = escapeHtml(comments).replace(/\n/g, '<br />');
+
+  return `
+    <div style="font-family:Arial,sans-serif;background:#f8fafc;padding:24px;color:#0f172a">
+      <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden">
+        <div style="background:#1d5d43;color:#fff;padding:24px 28px">
+          <h1 style="margin:0;font-size:22px;line-height:1.2">Pesquisa de Satisfação</h1>
+        </div>
+        <div style="padding:28px">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.7"><strong>Nome:</strong> ${safeName}</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.7"><strong>E-mail:</strong> ${safeEmail}</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.7"><strong>Avaliação:</strong> ${safeRating}</p>
+          <div style="font-size:15px;line-height:1.7">
+            <strong>Mensagem:</strong>
+            <div style="margin-top:8px;padding:16px;border-radius:14px;background:#f8fafc;border:1px solid #e2e8f0">${safeComments || 'Sem comentário adicional.'}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
 const SatisfactionSurvey: React.FC<{
   onClose: () => void;
   initialRating?: string;
@@ -55,8 +99,14 @@ const SatisfactionSurvey: React.FC<{
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
-    // ... same emailTemplate logic as before
     try {
+      const emailTemplate = buildEmailTemplate({
+        name,
+        email,
+        rating,
+        comments,
+      });
+
       await sendMail(emailTemplate);
       onClose();
     } catch (error) {

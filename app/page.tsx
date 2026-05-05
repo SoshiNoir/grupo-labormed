@@ -61,7 +61,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className='bg-white'>
+    <div className='relative overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.08),transparent_24%),radial-gradient(circle_at_top_right,rgba(210,174,109,0.08),transparent_22%),linear-gradient(180deg,#fafcff_0%,#f4f7fb_42%,#eef3f8_100%)]'>
       {/* Hero Section */}
       <Slider slides={HERO_SLIDES} />
 
