@@ -10,7 +10,7 @@ const Certifications = () => {
       imageSrc='/bg-slide-1.jpg'
       imageAlt='Certificações Labormed'
     >
-      < className='rounded-[1rem] border border-white/70 bg-white/80 p-3 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur md:p-8'>
+      <section className='rounded-[1rem] border border-white/70 bg-white/80 p-3 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.55)] backdrop-blur md:p-8'>
         <div className='grid gap-6 lg:grid-cols-[0.85fr_1.15fr]'>
           <div className='space-y-4'>
             <span className='inline-flex rounded-full border border-[#d2ae6d]/40 bg-[#d2ae6d]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#8c6b33]'>
@@ -36,7 +36,7 @@ const Certifications = () => {
             />
           </div>
         </div>
-      </>
+      </section>
     </PageShell>
   );
 };
