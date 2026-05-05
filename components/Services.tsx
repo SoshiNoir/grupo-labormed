@@ -6,7 +6,8 @@ import SectionHeading from './SectionHeading';
 
 const ImageGallery = () => {
   return (
-    <section className='mt-20 space-y-8 px-1'>
+    // FIX: Removed mt-20 and px-1 to inherit proper spacing from main container
+    <section className='space-y-8'>
       <SectionHeading
         eyebrow='Especialidades'
         title='Exames mais procurados'
@@ -29,7 +30,7 @@ const ImageGallery = () => {
             />
             <div className='absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent' />
             <div
-              className={`absolute inset-x-0 bottom-0 flex h-36 flex-col justify-end bg-gradient-to-t ${image.gradient} p-4 sm:h-48 sm:p-6`}
+              className={`absolute inset-x-0 bottom-0 flex h-36 flex-col justify-end bg-gradient-to-t ${image.gradient} p-3 sm:h-48 sm:p-6`}
             >
               <p className='text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-white/70 sm:text-xs sm:tracking-[0.26em]'>
                 {image.eyebrow}

@@ -40,14 +40,14 @@ function Covenants() {
         {cardData.map((card) => (
           <article
             key={card.id}
-            className='rounded-[1.75rem] border border-white/70 bg-white/80 p-5 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur'
+            className='rounded-[1.75rem] border border-white/70 bg-white/80 p-3 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur sm:p-5'
           >
-            <div className='relative flex h-40 items-center justify-center overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white p-4'>
+            <div className='relative flex h-40 items-center justify-center overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white p-3 sm:p-4'>
               <Image
                 src={card.imageSrc}
                 alt={card.title}
                 fill
-                className='object-contain p-4'
+                className='object-contain p-3 sm:p-4'
               />
             </div>
             <h2 className='mt-5 text-center text-lg font-semibold text-slate-950'>

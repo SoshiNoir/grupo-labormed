@@ -20,8 +20,8 @@ const PageShell = ({
   children,
 }: PageShellProps) => {
   const shellGridClass = imageSrc
-    ? 'grid gap-5 p-6 md:p-8 lg:grid-cols-[1.15fr_auto] lg:items-start'
-    : 'grid gap-5 p-6 md:p-8 lg:grid-cols-1';
+    ? 'grid gap-5 p-3 md:p-8 lg:grid-cols-[1.15fr_auto] lg:items-start'
+    : 'grid gap-5 p-3 md:p-8 lg:grid-cols-1';
 
   return (
     <div className='space-y-8 pb-8'>

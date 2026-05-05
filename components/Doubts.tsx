@@ -5,7 +5,8 @@ import SectionHeading from './SectionHeading';
 
 const Doubts = () => {
   return (
-    <section className='mt-32 space-y-12'>
+    // FIX: Removed mt-32, letting parent handle spacing
+    <section className='space-y-8 md:space-y-12'>
       <SectionHeading
         eyebrow='Informações'
         title='O que você precisa saber'
@@ -16,7 +17,7 @@ const Doubts = () => {
           <Link
             key={card.id}
             href={card.href}
-            className='group flex flex-col justify-between p-8 rounded-3xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1'
+            className='group flex flex-col justify-between p-3 md:p-8 rounded-3xl bg-slate-50 border border-slate-100 transition-all hover:bg-white hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1'
           >
             <div className='space-y-4'>
               <h3 className='text-xl font-bold text-slate-900 leading-tight group-hover:text-emerald-700 transition-colors'>

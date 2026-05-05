@@ -78,7 +78,7 @@ const FAQ = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className='flex w-full items-center justify-between gap-4 p-6 text-left'
+                className='flex w-full items-center justify-between gap-4 p-3 md:p-6 text-left'
               >
                 <span className='text-lg font-semibold text-slate-950'>
                   {item.question}
@@ -91,7 +91,7 @@ const FAQ = () => {
                 />
               </button>
               {isOpen ? (
-                <div className='border-t border-slate-300/70 px-6 py-5 text-sm leading-7 text-slate-700'>
+                <div className='border-t border-slate-300/70 px-3 py-4 text-sm leading-7 text-slate-700 md:px-6 md:py-5'>
                   {item.answer}
                 </div>
               ) : null}

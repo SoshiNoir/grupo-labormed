@@ -34,7 +34,7 @@ const Footer = () => {
 
   return (
     <footer className='mt-24 border-t border-slate-200 bg-slate-50 text-slate-900'>
-      <div className='mx-auto max-w-7xl px-0 py-12 sm:px-6 sm:py-16'>
+      <div className='mx-auto max-w-7xl px-3 py-12 sm:px-6 sm:py-16'>
         <div className='grid grid-cols-1 gap-10 lg:grid-cols-12'>
           <div className='space-y-8 lg:col-span-5'>
             <div className='space-y-6'>
@@ -151,6 +151,7 @@ const Footer = () => {
               key={unit.id}
               unit={unit}
               mapHref={buildMapsUrl(unit.address)}
+              compact
             />
           ))}
         </div>

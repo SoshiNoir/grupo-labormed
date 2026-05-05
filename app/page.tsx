@@ -64,11 +64,11 @@ const HomePage = () => {
       {/* Hero Section */}
       <Slider slides={HERO_SLIDES} />
 
-      <main className='mx-auto max-w-7xl px-6 space-y-24 py-16'>
+      <main className='w-full px-3 py-12 space-y-16 md:px-5 md:py-16 md:space-y-24'>
         {/* Main Introduction & Action Hub */}
         <section className='grid grid-cols-1 lg:grid-cols-12 gap-12 items-start'>
           {/* Left: Branding & Value Proposition */}
-          <div className='lg:col-span-7 space-y-10'>
+          <div className='lg:col-span-7 space-y-8 md:space-y-10'>
             <div className='space-y-6'>
               <span className='inline-flex items-center rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-emerald-700 border border-emerald-100'>
                 Liderança em Diagnóstico
@@ -86,14 +86,14 @@ const HomePage = () => {
             </div>
 
             {/* Why Choose Us "Bento" mini-grid */}
-            <div className='rounded-3xl bg-slate-50 border border-slate-100 p-8 shadow-sm'>
+            <div className='rounded-[1rem] bg-slate-50 border border-slate-100 p-3 md:p-8 shadow-sm'>
               <h3 className='text-sm font-bold uppercase tracking-widest text-[#b08943] mb-6'>
                 Por que escolher a Labormed?
               </h3>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
                 {experiencePoints.map((point) => (
                   <div key={point} className='flex items-center gap-3 group'>
-                    <div className='h-2 w-2 rounded-full bg-[#b08943] transition-transform group-hover:scale-150' />
+                    <div className='h-2 w-2 flex-shrink-0 rounded-full bg-[#b08943] transition-transform group-hover:scale-150' />
                     <span className='text-slate-700 font-medium'>{point}</span>
                   </div>
                 ))}
@@ -103,7 +103,7 @@ const HomePage = () => {
 
           {/* Right: Quick Action Hub */}
           <div className='lg:col-span-5 space-y-4'>
-            <div className='rounded-[2rem] bg-emerald-950 p-8 text-white shadow-2xl shadow-emerald-900/20'>
+            <div className='rounded-[1rem] bg-emerald-950 p-3 md:p-8 text-white shadow-2xl shadow-emerald-900/20'>
               <div className='mb-8'>
                 <p className='text-emerald-400 text-xs font-bold uppercase tracking-widest mb-2'>
                   Central de Atendimento
@@ -146,8 +146,9 @@ const HomePage = () => {
         </section>
 
         {/* Results Info Section */}
-        <section className='bg-slate-50 rounded-[3rem] p-8 md:p-16 border border-slate-200'>
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
+        {/* FIX: Adjusted padding (p-6 to p-16) and border-radius (2rem to 3rem) for mobile gracefully */}
+        <section className='bg-slate-50 rounded-[1rem] md:rounded-[3rem] p-3 md:p-16 border border-slate-200'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center'>
             <div className='space-y-6'>
               <SectionHeading
                 eyebrow='Acesso Facilitado'
@@ -156,7 +157,7 @@ const HomePage = () => {
               />
 
               <div className='flex flex-col sm:flex-row gap-4 pt-4'>
-                <div className='flex-1 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm'>
+                <div className='flex-1 p-3 md:p-6 rounded-2xl bg-white border border-slate-100 shadow-sm'>
                   <div className='h-10 w-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 mb-4'>
                     <ShieldCheck size={24} weight='bold' />
                   </div>
@@ -167,7 +168,7 @@ const HomePage = () => {
                     Acesso criptografado e download imediato de laudos.
                   </p>
                 </div>
-                <div className='flex-1 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm'>
+                <div className='flex-1 p-3 md:p-6 rounded-2xl bg-white border border-slate-100 shadow-sm'>
                   <div className='h-10 w-10 rounded-full bg-[#d2ae6d]/10 flex items-center justify-center text-[#8c6b33] mb-4'>
                     <MapPin size={24} weight='bold' />
                   </div>
@@ -180,12 +181,12 @@ const HomePage = () => {
             </div>
 
             {/* Practical Rules Card */}
-            <div className='bg-white rounded-[2rem] p-8 shadow-xl shadow-slate-200/50 border border-slate-100'>
-              <h3 className='text-xl font-bold text-slate-900 mb-8'>
+            <div className='bg-white rounded-[1rem] p-3 md:p-8 shadow-xl shadow-slate-200/50 border border-slate-100'>
+              <h3 className='text-xl font-bold text-slate-900 mb-6 md:mb-8'>
                 Regras para Retirada
               </h3>
-              <div className='space-y-8'>
-                <div className='relative pl-8'>
+              <div className='space-y-6 md:space-y-8'>
+                <div className='relative pl-6 md:pl-8'>
                   <div className='absolute left-0 top-1 h-full w-1 bg-emerald-500 rounded-full' />
                   <h4 className='font-bold text-slate-900 uppercase text-xs tracking-widest mb-2'>
                     O Próprio Cliente
@@ -195,7 +196,7 @@ const HomePage = () => {
                     canhoto de coleta.
                   </p>
                 </div>
-                <div className='relative pl-8'>
+                <div className='relative pl-6 md:pl-8'>
                   <div className='absolute left-0 top-1 h-full w-1 bg-[#d2ae6d] rounded-full' />
                   <h4 className='font-bold text-slate-900 uppercase text-xs tracking-widest mb-2'>
                     Por Terceiros
@@ -207,7 +208,7 @@ const HomePage = () => {
                 </div>
               </div>
 
-              <div className='mt-10 pt-8 border-t border-slate-100'>
+              <div className='mt-8 pt-8 border-t border-slate-100'>
                 <Button
                   title='Ver Resultados Online'
                   href={RESULTS_URL}

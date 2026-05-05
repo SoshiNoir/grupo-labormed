@@ -63,17 +63,21 @@ const About = () => {
           return (
             <article
               key={item.title}
-              className='rounded-[1.75rem] border border-white/70 bg-white/80 p-6 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur'
+              className='rounded-[1.75rem] border border-white/70 bg-white/80 p-3 md:p-6 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur'
             >
-              <div className='flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-900'>
-                <Icon size={22} />
+              <div className='flex items-start gap-4 md:block'>
+                <div className='flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-900'>
+                  <Icon size={22} />
+                </div>
+                <div className='flex-1'>
+                  <h2 className='text-2xl font-semibold text-slate-950 md:mt-5'>
+                    {item.title}
+                  </h2>
+                  <p className='mt-3 text-sm leading-7 text-slate-600'>
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <h2 className='mt-5 text-2xl font-semibold text-slate-950'>
-                {item.title}
-              </h2>
-              <p className='mt-3 text-sm leading-7 text-slate-600'>
-                {item.description}
-              </p>
             </article>
           );
         })}

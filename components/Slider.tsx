@@ -55,7 +55,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   );
 
   return (
-    <section className='group relative w-full overflow-hidden rounded-none border border-slate-200 bg-[#f7f2e6] shadow-xl shadow-slate-200/50 sm:rounded-[2.5rem]'>
+    <section className='group relative w-full overflow-hidden rounded-[1.75rem] border border-slate-200 bg-[#f7f2e6] shadow-xl shadow-slate-200/50 sm:rounded-[2.5rem]'>
       <div className='relative aspect-[9/16] w-full sm:aspect-[3/1]'>
         {/* Main Slider Content */}
         <div ref={sliderRef} className='keen-slider h-full w-full'>

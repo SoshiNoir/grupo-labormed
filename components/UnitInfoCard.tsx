@@ -17,6 +17,7 @@ type UnitInfoCardProps = {
   unit: UnitInfoCardData;
   mapHref?: string;
   phoneHrefBuilder?: (phone: string) => string;
+  compact?: boolean;
   className?: string;
   footerSlot?: ReactNode;
 };
@@ -25,20 +26,23 @@ const UnitInfoCard = ({
   unit,
   mapHref,
   phoneHrefBuilder = (phone) => `tel:${phone.replace(/\D/g, '')}`,
+  compact = false,
   className = '',
   footerSlot,
 }: UnitInfoCardProps) => {
   const content = (
     <div
-      className={`grid overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] transition-colors hover:border-emerald-200 ${className}`}
+      className={`grid overflow-hidden rounded-[1rem] border border-slate-200 bg-white shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] transition-colors hover:border-emerald-200 ${className}`}
     >
-      <div className='flex flex-col gap-6 p-6 sm:flex-row'>
-        <div className='relative h-16 w-16 shrink-0 rounded-xl border border-slate-100 bg-slate-50 p-2'>
+      <div
+        className={`flex gap-6 p-3 md:p-6 ${compact ? 'flex-row' : 'flex-col sm:flex-row'}`}
+      >
+        <div className='relative h-16 w-16 shrink-0'>
           <Image
             src={unit.pinSrc}
             alt={unit.title}
             fill
-            className='object-contain p-2'
+            className='object-contain'
           />
         </div>
 
@@ -97,7 +101,9 @@ const UnitInfoCard = ({
         </div>
       </div>
 
-      {footerSlot ? <div className='border-t border-slate-100 p-6'>{footerSlot}</div> : null}
+      {footerSlot ? (
+        <div className='border-t border-slate-100 p-3 md:p-6'>{footerSlot}</div>
+      ) : null}
     </div>
   );
 

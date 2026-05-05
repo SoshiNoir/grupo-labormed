@@ -1,7 +1,7 @@
 import { cn } from '@/lib/cn';
 
 export const glassSurfaceClass = cn(
-  'relative overflow-hidden rounded-[2rem] border border-white/70',
+  'relative overflow-hidden rounded-[1rem] border border-white/70',
   'bg-[linear-gradient(180deg,rgba(255,255,255,0.84)_0%,rgba(241,245,249,0.66)_100%)]',
   'shadow-[0_26px_80px_-44px_rgba(15,23,42,0.5)]',
   'backdrop-blur-xl',

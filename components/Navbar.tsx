@@ -1,7 +1,6 @@
 'use client';
 
-import { NAV_LINKS } from '@/constants';
-import { RESULTS_URL } from '@/constants';
+import { NAV_LINKS, RESULTS_URL } from '@/constants';
 import { InstagramLogo, List, X, YoutubeLogo } from '@phosphor-icons/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
@@ -56,7 +55,7 @@ const Navbar = () => {
 
       <div className='mx-auto max-w-7xl px-4 md:px-6'>
         <div
-          className={`relative flex items-center justify-between rounded-[2rem] border px-3 py-2 transition-all duration-500 ${
+          className={`relative flex items-center justify-between rounded-[1rem] border px-3 py-2 transition-all duration-500 ${
             isScrolled
               ? 'border-slate-200 bg-white/90 shadow-xl shadow-slate-200/50 backdrop-blur-xl'
               : 'border-white/0 bg-transparent'
@@ -169,7 +168,7 @@ const Navbar = () => {
               exit={{ opacity: 0, y: -10 }}
               className='absolute inset-x-4 top-[calc(100%+12px)] z-[101] lg:hidden'
             >
-              <div className='rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl text-center'>
+              <div className='rounded-[1rem] border border-slate-200 bg-white p-3 sm:p-6 shadow-2xl text-center'>
                 <ul className='grid gap-2'>
                   {NAV_LINKS.map((link) => {
                     const isActive = pathname === link.href;

@@ -8,7 +8,7 @@ type GlassCardProps = {
 
 const GlassCard = ({ title, children, className = '' }: GlassCardProps) => {
   return (
-    <section className={`${glassSurfaceSoftClass} p-6 ${className}`}>
+    <section className={`${glassSurfaceSoftClass} p-3 md:p-6 ${className}`}>
       {title ? (
         <h2 className='text-2xl font-semibold tracking-tight text-slate-950'>
           {title}
