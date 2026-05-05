@@ -1,3 +1,5 @@
+export const RESULTS_URL = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
+
 export const NAV_LINKS = [
   { href: '/', key: 'home', label: 'Início' },
   { href: '/about', key: 'sobre', label: 'Sobre' },

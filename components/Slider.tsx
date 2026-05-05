@@ -46,8 +46,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
           src={slide.src}
           alt={slide.alt}
           fill
-          /* Changed object-fill to object-cover to remove white edges/gaps */
-          className='object-cover'
+          className='object-contain sm:object-cover'
           priority={index === 0}
           sizes='100vw'
         />
@@ -56,7 +55,7 @@ const Slider: React.FC<SliderProps> = ({ slides }) => {
   );
 
   return (
-    <section className='group relative w-full overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-xl shadow-slate-200/50'>
+    <section className='group relative w-full overflow-hidden rounded-none border border-slate-200 bg-[#f7f2e6] shadow-xl shadow-slate-200/50 sm:rounded-[2.5rem]'>
       <div className='relative aspect-[9/16] w-full sm:aspect-[3/1]'>
         {/* Main Slider Content */}
         <div ref={sliderRef} className='keen-slider h-full w-full'>

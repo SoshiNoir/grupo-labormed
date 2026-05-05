@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang='pt-BR'>
       <body className={`${manrope.variable} ${plexMono.variable}`}>
         <Navbar />
-        <main className='relative overflow-hidden px-3 pt-[88px] md:px-5 md:pt-32'>
+        <main className='relative overflow-hidden px-0 pt-20 sm:px-3 md:px-5 md:pt-32'>
           <div className='mx-auto max-w-7xl'>{children}</div>
         </main>
         <Footer />

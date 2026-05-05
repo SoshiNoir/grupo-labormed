@@ -1,7 +1,6 @@
 'use client';
 
 import Button from '@/components/Button';
-import Card from '@/components/Card';
 import Doubts from '@/components/Doubts';
 import Satisfaction from '@/components/Satisfaction';
 import SatisfactionSurvey from '@/components/SatisfactionSurvey';
@@ -9,7 +8,7 @@ import SectionHeading from '@/components/SectionHeading';
 import Services from '@/components/Services';
 import Slider from '@/components/Slider';
 import WhatsappButton from '@/components/WhatsappButton';
-import { HERO_SLIDES } from '@/constants';
+import { HERO_SLIDES, RESULTS_URL } from '@/constants';
 import {
   CaretRight,
   House,
@@ -133,8 +132,8 @@ const HomePage = () => {
             {/* Core Action Buttons */}
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3'>
               <Button
-                title='Agendar Exame Agora'
-                href={buildWhatsappUrl('Olá, quero agendar um exame.')}
+                title='Ver Resultados Online'
+                href={RESULTS_URL}
                 target='_blank'
                 variant='bg-emerald-600 text-white font-bold py-5 rounded-2xl hover:bg-emerald-700 shadow-xl shadow-emerald-600/20 transition-all active:scale-95'
               />

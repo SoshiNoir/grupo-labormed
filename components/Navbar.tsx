@@ -2,7 +2,6 @@
 
 import { NAV_LINKS } from '@/constants';
 import {
-  ArrowUpRight,
   InstagramLogo,
   List,
   X,
@@ -14,8 +13,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Button from './Button';
-
-const RESULTS_URL = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
+import { RESULTS_URL } from '@/constants';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,7 +44,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
-        isScrolled ? 'pt-4' : 'pt-6'
+        isScrolled ? 'pt-2 md:pt-4' : 'pt-2 md:pt-6'
       }`}
     >
       <AnimatePresence>
@@ -106,6 +104,7 @@ const Navbar = () => {
                       {isActive && (
                         <motion.div
                           layoutId='nav-pill'
+                          initial={false}
                           transition={{
                             type: 'spring',
                             duration: 0.5,

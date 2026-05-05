@@ -1,15 +1,13 @@
-import { UNIT_LOCATIONS } from '@/constants';
+import { UNIT_LOCATIONS, RESULTS_URL } from '@/constants';
 import {
   ArrowUpRight,
   CaretRight,
-  Clock,
-  MapPin,
-  Phone,
+  InstagramLogo,
+  YoutubeLogo,
 } from '@phosphor-icons/react/dist/ssr';
 import Image from 'next/image';
 import Link from 'next/link';
-
-const RESULTS_URL = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
+import UnitInfoCard from './UnitInfoCard';
 
 type QuickAccessLink = {
   href: string;
@@ -28,21 +26,17 @@ const quickAccessLinks: QuickAccessLink[] = [
     external: true,
     highlight: true,
   },
-] as const;
+];
 
 const Footer = () => {
   const buildMapsUrl = (address: string) =>
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
-  const phoneToTel = (phone: string) => `tel:${phone.replace(/\D/g, '')}`;
-
   return (
     <footer className='mt-24 border-t border-slate-200 bg-slate-50 text-slate-900'>
-      <div className='mx-auto max-w-7xl px-6 py-16'>
-        {/* Top Section: Branding & Quick Links */}
-        <div className='grid grid-cols-1 gap-12 lg:grid-cols-12'>
-          {/* Brand Column */}
-          <div className='lg:col-span-5 space-y-8'>
+      <div className='mx-auto max-w-7xl px-0 py-12 sm:px-6 sm:py-16'>
+        <div className='grid grid-cols-1 gap-10 lg:grid-cols-12'>
+          <div className='space-y-8 lg:col-span-5'>
             <div className='space-y-6'>
               <Image
                 src='/horizontal.png'
@@ -52,21 +46,17 @@ const Footer = () => {
                 className='h-auto w-48 object-contain'
               />
               <p className='max-w-md text-base leading-relaxed text-slate-600'>
-                Liderança em análises clínicas há mais de 37 anos. Compromisso
+                Liderança em análises clínicas há mais de 40 anos. Compromisso
                 com a precisão diagnóstica e o atendimento humanizado em toda a
                 nossa rede.
               </p>
             </div>
 
             <div className='flex flex-wrap gap-2'>
-              {[
-                'PNCQ Certificado',
-                'Atendimento Humanizado',
-                'Saúde Ocupacional',
-              ].map((stat) => (
+              {['PNCQ Certificado', 'Atendimento Humanizado', 'Saúde Ocupacional'].map((stat) => (
                 <span
                   key={stat}
-                  className='inline-flex items-center rounded-md bg-white border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500 shadow-sm'
+                  className='inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-500 shadow-sm'
                 >
                   {stat}
                 </span>
@@ -74,9 +64,8 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links Column */}
           <div className='lg:col-span-3'>
-            <h4 className='text-sm font-bold uppercase tracking-widest text-slate-400 mb-6'>
+            <h4 className='mb-6 text-sm font-bold uppercase tracking-widest text-slate-400'>
               Navegação
             </h4>
             <ul className='space-y-4'>
@@ -98,119 +87,84 @@ const Footer = () => {
                     ) : (
                       <CaretRight
                         size={14}
-                        className='opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0'
+                        className='-translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100'
                       />
                     )}
                   </Link>
                 </li>
               ))}
             </ul>
+
+            <div className='mt-6 border-t border-slate-200 pt-5'>
+              <p className='text-xs font-bold uppercase tracking-widest text-slate-400'>
+                Redes sociais
+              </p>
+              <div className='mt-3 flex items-center gap-3'>
+                <Link
+                  href='https://www.instagram.com/labor_med/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition-colors hover:text-emerald-600'
+                >
+                  <InstagramLogo size={18} weight='bold' />
+                </Link>
+                <Link
+                  href='https://www.youtube.com/@Labor_med/videos'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition-colors hover:text-emerald-600'
+                >
+                  <YoutubeLogo size={18} weight='bold' />
+                </Link>
+              </div>
+            </div>
           </div>
 
-          {/* Accreditation / Portal Card */}
           <div className='lg:col-span-4'>
-            <div className='rounded-2xl bg-emerald-900 p-8 text-white shadow-xl shadow-emerald-900/10 relative overflow-hidden group'>
+            <div className='group relative overflow-hidden rounded-2xl bg-emerald-900 p-8 text-white shadow-xl shadow-emerald-900/10'>
               <div className='relative z-10'>
-                <h4 className='text-emerald-300 text-xs font-bold uppercase tracking-widest mb-2'>
+                <h4 className='mb-2 text-xs font-bold uppercase tracking-widest text-emerald-300'>
                   Portal do Paciente
                 </h4>
-                <p className='text-xl font-semibold mb-6'>
+                <p className='mb-6 text-xl font-semibold'>
                   Acesse seus resultados com segurança.
                 </p>
                 <Link
                   href={RESULTS_URL}
                   target='_blank'
-                  className='inline-flex items-center justify-center w-full rounded-xl bg-white px-6 py-3 text-emerald-900 font-bold transition-transform hover:scale-[1.02] active:scale-[0.98]'
+                  rel='noopener noreferrer'
+                  className='inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-3 font-bold text-emerald-900 transition-transform hover:scale-[1.02] active:scale-[0.98]'
                 >
                   Ver Resultados
                 </Link>
               </div>
-              {/* Decorative Circle */}
               <div className='absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-emerald-800 transition-transform group-hover:scale-150' />
             </div>
           </div>
         </div>
 
-        <hr className='my-16 border-slate-200' />
+        <hr className='my-10 border-slate-200 sm:my-12' />
 
-        {/* Units Section */}
         <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
           {UNIT_LOCATIONS.map((unit) => (
-            <div
+            <UnitInfoCard
               key={unit.id}
-              className='flex flex-col sm:flex-row gap-6 p-6 rounded-2xl border border-slate-200 bg-white hover:border-emerald-200 transition-colors'
-            >
-              <div className='relative h-16 w-16 shrink-0 rounded-xl bg-slate-50 p-2 border border-slate-100'>
-                <Image
-                  src={unit.pinSrc}
-                  alt={unit.title}
-                  fill
-                  className='object-contain p-2'
-                />
-              </div>
-
-              <div className='space-y-4 flex-1'>
-                <div>
-                  <h3 className='text-xl font-bold text-slate-950'>
-                    {unit.title}
-                  </h3>
-                  <p className='text-sm font-medium text-emerald-600 uppercase tracking-tight'>
-                    {unit.city}
-                  </p>
-                </div>
-
-                <div className='grid gap-3 text-sm text-slate-600'>
-                  <Link
-                    href={buildMapsUrl(unit.address)}
-                    target='_blank'
-                    className='flex gap-3 hover:text-emerald-700 transition-colors'
-                  >
-                    <MapPin size={18} className='shrink-0 text-slate-400' />
-                    <span>{unit.address}</span>
-                  </Link>
-
-                  <div className='flex gap-3'>
-                    <Phone size={18} className='shrink-0 text-slate-400' />
-                    <div className='flex flex-wrap gap-x-4'>
-                      {unit.phones.map((phone) => (
-                        <a
-                          key={phone}
-                          href={phoneToTel(phone)}
-                          className='hover:text-emerald-700 font-medium'
-                        >
-                          {phone}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className='flex gap-3'>
-                    <Clock size={18} className='shrink-0 text-slate-400' />
-                    <div className='space-y-1'>
-                      {unit.hours.map((hour) => (
-                        <p key={hour} className='text-xs'>
-                          {hour}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              unit={unit}
+              mapHref={buildMapsUrl(unit.address)}
+            />
           ))}
         </div>
 
-        {/* Bottom Bar */}
-        <div className='mt-16 flex flex-col gap-6 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between'>
-          <p className='text-xs text-slate-500 font-medium'>
-            © 2026 Labormed Laboratório Clínico. CNPJ: 00.000.000/0001-00
+        <div className='mt-10 flex flex-col gap-4 border-t border-slate-200 pt-6 md:mt-12 md:flex-row md:items-center md:justify-between md:gap-6 md:pt-8'>
+          <p className='text-xs font-medium text-slate-500'>
+            Â© 2026 Labormed Laboratório Clínico. CNPJ: 00.000.000/0001-00
           </p>
-          <div className='flex flex-wrap gap-6'>
+          <div className='flex flex-nowrap gap-4 overflow-x-auto whitespace-nowrap md:gap-6'>
             {['Ethics', 'RightsAndDuties', 'pickup'].map((path) => (
               <Link
                 key={path}
                 href={`/${path}`}
-                className='text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-emerald-600 transition-colors'
+                className='text-[11px] font-bold uppercase tracking-widest text-slate-400 transition-colors hover:text-emerald-600'
               >
                 {path === 'pickup' ? 'Coleta Domiciliar' : path}
               </Link>
