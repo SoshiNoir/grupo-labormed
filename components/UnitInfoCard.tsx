@@ -16,11 +16,18 @@ export type UnitInfoCardData = {
 type UnitInfoCardProps = {
   unit: UnitInfoCardData;
   mapHref?: string;
+  phoneHrefBuilder?: (phone: string) => string;
   className?: string;
   footerSlot?: ReactNode;
 };
 
-const UnitInfoCard = ({ unit, mapHref, className = '', footerSlot }: UnitInfoCardProps) => {
+const UnitInfoCard = ({
+  unit,
+  mapHref,
+  phoneHrefBuilder = (phone) => `tel:${phone.replace(/\D/g, '')}`,
+  className = '',
+  footerSlot,
+}: UnitInfoCardProps) => {
   const content = (
     <div
       className={`grid overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] transition-colors hover:border-emerald-200 ${className}`}
@@ -65,9 +72,13 @@ const UnitInfoCard = ({ unit, mapHref, className = '', footerSlot }: UnitInfoCar
               <Phone size={18} className='shrink-0 text-slate-400' />
               <div className='flex flex-wrap gap-x-4'>
                 {unit.phones.map((phone) => (
-                  <span key={phone} className='font-medium text-slate-600'>
+                  <a
+                    key={phone}
+                    href={phoneHrefBuilder(phone)}
+                    className='font-medium text-slate-600 transition-colors hover:text-emerald-700'
+                  >
                     {phone}
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>

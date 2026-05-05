@@ -157,7 +157,7 @@ const Footer = () => {
 
         <div className='mt-10 flex flex-col gap-4 border-t border-slate-200 pt-6 md:mt-12 md:flex-row md:items-center md:justify-between md:gap-6 md:pt-8'>
           <p className='text-xs font-medium text-slate-500'>
-            Â© 2026 Labormed Laboratório Clínico. CNPJ: 00.000.000/0001-00
+            © 2026 Labormed Laboratório Clínico. CNPJ: 00.000.000/0001-00
           </p>
           <div className='flex flex-nowrap gap-4 overflow-x-auto whitespace-nowrap md:gap-6'>
             {['Ethics', 'RightsAndDuties', 'pickup'].map((path) => (

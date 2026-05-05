@@ -1,19 +1,14 @@
 'use client';
 
 import { NAV_LINKS } from '@/constants';
-import {
-  InstagramLogo,
-  List,
-  X,
-  YoutubeLogo,
-} from '@phosphor-icons/react';
+import { RESULTS_URL } from '@/constants';
+import { InstagramLogo, List, X, YoutubeLogo } from '@phosphor-icons/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Button from './Button';
-import { RESULTS_URL } from '@/constants';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -165,7 +160,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay[cite: 12] */}
+        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div

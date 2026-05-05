@@ -210,7 +210,7 @@ const HomePage = () => {
               <div className='mt-10 pt-8 border-t border-slate-100'>
                 <Button
                   title='Ver Resultados Online'
-                  href={buildWhatsappUrl('Olá, quero ver meus resultados.')}
+                  href={RESULTS_URL}
                   target='_blank'
                   variant='w-full bg-emerald-500 text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-colors'
                 />
