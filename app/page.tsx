@@ -8,7 +8,12 @@ import SectionHeading from '@/components/SectionHeading';
 import Services from '@/components/Services';
 import Slider from '@/components/Slider';
 import WhatsappButton from '@/components/WhatsappButton';
-import { HERO_SLIDES, RESULTS_URL } from '@/constants';
+import {
+  buildWhatsappUrl,
+  HERO_SLIDES,
+  RESULTS_URL,
+  WHATSAPP_NUMBER,
+} from '@/constants';
 import {
   CaretRight,
   House,
@@ -22,12 +27,6 @@ import { useState } from 'react';
 const HomePage = () => {
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   const [surveyInitialRating, setSurveyInitialRating] = useState('');
-  const whatsappBaseUrl = 'https://wa.me/551637618555';
-
-  const buildWhatsappUrl = (message?: string) => {
-    if (!message) return whatsappBaseUrl;
-    return `${whatsappBaseUrl}?text=${encodeURIComponent(message)}`;
-  };
 
   const attendanceOptions = [
     {
@@ -138,7 +137,7 @@ const HomePage = () => {
                 variant='bg-emerald-600 text-white font-bold py-5 rounded-2xl hover:bg-emerald-700 shadow-xl shadow-emerald-600/20 transition-all active:scale-95'
               />
               <WhatsappButton
-                phoneNumber='551637618555'
+                phoneNumber={WHATSAPP_NUMBER}
                 label='Suporte via WhatsApp'
               />
             </div>

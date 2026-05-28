@@ -2,6 +2,7 @@ import GlassCard from '@/components/GlassCard';
 import InfoListItem from '@/components/InfoListItem';
 import PageShell from '@/components/PageShell';
 import WhatsappButton from '@/components/WhatsappButton';
+import { WHATSAPP_NUMBER, WHATSAPP_NUMBER_DISPLAY } from '@/constants';
 
 const FetalSexing = () => {
   return (
@@ -15,23 +16,41 @@ const FetalSexing = () => {
       <div className='grid gap-5'>
         <GlassCard title='O que é a sexagem fetal?'>
           <p className='text-sm leading-8 text-slate-600'>
-            O exame detecta a presença do cromossomo Y no sangue materno. Sua presença indica bebê do sexo masculino; a ausência indica bebê do sexo feminino. É um procedimento simples, realizado a partir da amostra de sangue da mãe.
+            O exame detecta a presença do cromossomo Y no sangue materno. Sua
+            presença indica bebê do sexo masculino; a ausência indica bebê do
+            sexo feminino. É um procedimento simples, realizado a partir da
+            amostra de sangue da mãe.
           </p>
         </GlassCard>
 
         <div className='grid gap-5 lg:grid-cols-2'>
           <GlassCard title='Por que realizar no Labormed?'>
             <ul className='space-y-4 text-left text-sm leading-7'>
-              <InfoListItem title='Confiabilidade' text='Resultados precisos com tecnologia de ponta.' />
-              <InfoListItem title='Rapidez' text='Entrega do laudo em poucos dias úteis.' />
-              <InfoListItem title='Atendimento acolhedor' text='Acompanhamento cuidadoso em um momento especial da gestação.' />
+              <InfoListItem
+                title='Confiabilidade'
+                text='Resultados precisos com tecnologia de ponta.'
+              />
+              <InfoListItem
+                title='Rapidez'
+                text='Entrega do laudo em poucos dias úteis.'
+              />
+              <InfoListItem
+                title='Atendimento acolhedor'
+                text='Acompanhamento cuidadoso em um momento especial da gestação.'
+              />
             </ul>
           </GlassCard>
 
           <GlassCard title='Recomendações'>
             <ul className='space-y-4 text-left text-sm leading-7'>
-              <InfoListItem title='Idade gestacional' text='Realizar a coleta a partir da 8ª semana para garantir confiabilidade.' />
-              <InfoListItem title='Agendamento' text='Consulte nossa equipe para esclarecer dúvidas e marcar a coleta.' />
+              <InfoListItem
+                title='Idade gestacional'
+                text='Realizar a coleta a partir da 8ª semana para garantir confiabilidade.'
+              />
+              <InfoListItem
+                title='Agendamento'
+                text='Consulte nossa equipe para esclarecer dúvidas e marcar a coleta.'
+              />
             </ul>
           </GlassCard>
         </div>
@@ -41,10 +60,14 @@ const FetalSexing = () => {
             Entre em contato
           </h2>
           <p className='mt-4 text-sm leading-7 text-emerald-100/85'>
-            Para mais informações ou esclarecimento de dúvidas, fale com a equipe de atendimento.
+            Para mais informações ou esclarecimento de dúvidas, fale com a
+            equipe de atendimento.
           </p>
           <div className='mt-6'>
-            <WhatsappButton phoneNumber='551637618555' label='WhatsApp: 16 3761-8555' />
+            <WhatsappButton
+              phoneNumber={WHATSAPP_NUMBER}
+              label={`WhatsApp: ${WHATSAPP_NUMBER_DISPLAY}`}
+            />
           </div>
         </GlassCard>
       </div>

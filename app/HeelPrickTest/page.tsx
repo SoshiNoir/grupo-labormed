@@ -2,6 +2,7 @@ import GlassCard from '@/components/GlassCard';
 import InfoListItem from '@/components/InfoListItem';
 import PageShell from '@/components/PageShell';
 import WhatsappButton from '@/components/WhatsappButton';
+import { WHATSAPP_NUMBER, WHATSAPP_NUMBER_DISPLAY } from '@/constants';
 
 const HeelPrickTest = () => {
   return (
@@ -15,30 +16,56 @@ const HeelPrickTest = () => {
       <div className='grid gap-5 lg:grid-cols-2'>
         <GlassCard title='Opções disponíveis'>
           <ul className='space-y-4 text-left text-sm leading-7'>
-            <InfoListItem title='Teste do Pezinho Plus' text='Detecta 10 condições, oferecendo análise ampla e confiável.' />
-            <InfoListItem title='Teste do Pezinho Ampliado' text='Abrange 8 exames, com foco nas doenças mais comuns.' />
-            <InfoListItem title='Teste do Pezinho Master' text='Avaliação mais completa, com detecção de 15 condições.' />
+            <InfoListItem
+              title='Teste do Pezinho Plus'
+              text='Detecta 10 condições, oferecendo análise ampla e confiável.'
+            />
+            <InfoListItem
+              title='Teste do Pezinho Ampliado'
+              text='Abrange 8 exames, com foco nas doenças mais comuns.'
+            />
+            <InfoListItem
+              title='Teste do Pezinho Master'
+              text='Avaliação mais completa, com detecção de 15 condições.'
+            />
           </ul>
         </GlassCard>
 
         <GlassCard title='Importância do exame'>
           <ul className='space-y-4 text-left text-sm leading-7'>
-            <InfoListItem title='Diagnóstico precoce' text='Identifica doenças antes que os sintomas apareçam.' />
-            <InfoListItem title='Prevenção de complicações' text='Permite iniciar o tratamento adequado imediatamente.' />
-            <InfoListItem title='Saúde integral' text='Contribui para o desenvolvimento saudável da criança.' />
+            <InfoListItem
+              title='Diagnóstico precoce'
+              text='Identifica doenças antes que os sintomas apareçam.'
+            />
+            <InfoListItem
+              title='Prevenção de complicações'
+              text='Permite iniciar o tratamento adequado imediatamente.'
+            />
+            <InfoListItem
+              title='Saúde integral'
+              text='Contribui para o desenvolvimento saudável da criança.'
+            />
           </ul>
         </GlassCard>
 
         <GlassCard title='Como é realizado'>
           <ul className='space-y-4 text-left text-sm leading-7'>
-            <InfoListItem title='Procedimento' text='Coleta de sangue simples, rápida e segura.' />
-            <InfoListItem title='Conforto' text='Com foco no bem-estar do recém-nascido e tranquilidade dos pais.' />
+            <InfoListItem
+              title='Procedimento'
+              text='Coleta de sangue simples, rápida e segura.'
+            />
+            <InfoListItem
+              title='Conforto'
+              text='Com foco no bem-estar do recém-nascido e tranquilidade dos pais.'
+            />
           </ul>
         </GlassCard>
 
         <GlassCard title='Compromisso com a qualidade'>
           <p className='text-sm leading-8 text-slate-600'>
-            Contamos com equipamentos modernos, equipe especializada e compromisso com a qualidade para assegurar resultados precisos e confiáveis.
+            Contamos com equipamentos modernos, equipe especializada e
+            compromisso com a qualidade para assegurar resultados precisos e
+            confiáveis.
           </p>
         </GlassCard>
 
@@ -50,7 +77,10 @@ const HeelPrickTest = () => {
             Para mais informações, fale com nossa equipe de atendimento.
           </p>
           <div className='mt-6'>
-            <WhatsappButton phoneNumber='551637618555' label='WhatsApp: 16 3761-8555' />
+            <WhatsappButton
+              phoneNumber={WHATSAPP_NUMBER}
+              label={`WhatsApp: ${WHATSAPP_NUMBER_DISPLAY}`}
+            />
           </div>
         </GlassCard>
       </div>

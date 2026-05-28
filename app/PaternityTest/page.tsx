@@ -2,6 +2,7 @@ import GlassCard from '@/components/GlassCard';
 import InfoListItem from '@/components/InfoListItem';
 import PageShell from '@/components/PageShell';
 import WhatsappButton from '@/components/WhatsappButton';
+import { WHATSAPP_NUMBER, WHATSAPP_NUMBER_DISPLAY } from '@/constants';
 
 const PaternityTest = () => {
   return (
@@ -15,31 +16,54 @@ const PaternityTest = () => {
       <div className='grid gap-5'>
         <GlassCard title='O que é o teste de paternidade?'>
           <p className='text-sm leading-8 text-slate-600'>
-            O exame compara o DNA das pessoas envolvidas para confirmar, com alta confiabilidade, a relação biológica entre o suposto pai e o filho.
+            O exame compara o DNA das pessoas envolvidas para confirmar, com
+            alta confiabilidade, a relação biológica entre o suposto pai e o
+            filho.
           </p>
         </GlassCard>
 
         <div className='grid gap-5 lg:grid-cols-2'>
           <GlassCard title='Opções disponíveis'>
             <ul className='space-y-4 text-left text-sm leading-7'>
-              <InfoListItem title='Teste Trio' text='Coleta por saliva com pai, filho e mãe. Recomendado para maior confiabilidade.' />
-              <InfoListItem title='Teste Duo' text='Coleta por saliva com pai e filho. Disponível quando o filho é maior de 18 anos ou já registrado em cartório.' />
+              <InfoListItem
+                title='Teste Trio'
+                text='Coleta por saliva com pai, filho e mãe. Recomendado para maior confiabilidade.'
+              />
+              <InfoListItem
+                title='Teste Duo'
+                text='Coleta por saliva com pai e filho. Disponível quando o filho é maior de 18 anos ou já registrado em cartório.'
+              />
             </ul>
           </GlassCard>
 
           <GlassCard title='Por que realizar no Labormed?'>
             <ul className='space-y-4 text-left text-sm leading-7'>
-              <InfoListItem title='Segurança e precisão' text='Tecnologia avançada para garantir resultados confiáveis.' />
-              <InfoListItem title='Sigilo absoluto' text='Todo o processo é tratado com discrição e respeito.' />
-              <InfoListItem title='Rapidez' text='Resultados ágeis sem comprometer a qualidade da análise.' />
+              <InfoListItem
+                title='Segurança e precisão'
+                text='Tecnologia avançada para garantir resultados confiáveis.'
+              />
+              <InfoListItem
+                title='Sigilo absoluto'
+                text='Todo o processo é tratado com discrição e respeito.'
+              />
+              <InfoListItem
+                title='Rapidez'
+                text='Resultados ágeis sem comprometer a qualidade da análise.'
+              />
             </ul>
           </GlassCard>
         </div>
 
         <GlassCard title='Como funciona o exame?'>
           <ul className='space-y-4 text-left text-sm leading-7'>
-            <InfoListItem title='Procedimento' text='A coleta é simples, indolor e realizada com amostra de saliva.' />
-            <InfoListItem title='Apoio especializado' text='Nossa equipe oferece suporte durante todas as etapas do processo.' />
+            <InfoListItem
+              title='Procedimento'
+              text='A coleta é simples, indolor e realizada com amostra de saliva.'
+            />
+            <InfoListItem
+              title='Apoio especializado'
+              text='Nossa equipe oferece suporte durante todas as etapas do processo.'
+            />
           </ul>
         </GlassCard>
 
@@ -51,7 +75,10 @@ const PaternityTest = () => {
             Para mais informações, fale com a equipe de atendimento.
           </p>
           <div className='mt-6'>
-            <WhatsappButton phoneNumber='551637618555' label='WhatsApp: 16 3761-8555' />
+            <WhatsappButton
+              phoneNumber={WHATSAPP_NUMBER}
+              label={`WhatsApp: ${WHATSAPP_NUMBER_DISPLAY}`}
+            />
           </div>
         </GlassCard>
       </div>

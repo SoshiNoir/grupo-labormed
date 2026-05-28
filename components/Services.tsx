@@ -1,4 +1,4 @@
-import { SERVICE_CARDS } from '@/constants';
+import { SERVICE_CARDS, buildWhatsappUrl } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -16,7 +16,7 @@ const ImageGallery = () => {
         {SERVICE_CARDS.map((image) => (
           <Link
             key={image.id}
-            href={`https://wa.me/551637618555?text=${encodeURIComponent(image.whatsappMessage)}`}
+            href={buildWhatsappUrl(image.whatsappMessage)}
             target='_blank'
             rel='noopener noreferrer'
             aria-label={image.title}

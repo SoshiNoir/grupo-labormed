@@ -1,5 +1,11 @@
 export const RESULTS_URL = 'https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx';
 
+export const WHATSAPP_NUMBER = '5516992023156';
+export const WHATSAPP_NUMBER_DISPLAY = '16 99202-3156';
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+export const buildWhatsappUrl = (message?: string) =>
+  message ? `${WHATSAPP_URL}?text=${encodeURIComponent(message)}` : WHATSAPP_URL;
+
 export const NAV_LINKS = [
   { href: '/', key: 'home', label: 'Início' },
   { href: '/about', key: 'sobre', label: 'Sobre' },
@@ -14,25 +20,25 @@ export const HERO_SLIDES = [
     src: '/banner_1.png',
     mobileSrc: '/banner_1_mobile.png',
     alt: 'Resultados de exames online',
-    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20ver%20meus%20resultados.',
+    link: buildWhatsappUrl('Olá, quero ver meus resultados.'),
   },
   {
     src: '/banner_2.png',
     mobileSrc: '/banner_2_mobile.png',
     alt: 'Nossos serviços de excelência',
-    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20agendar%20um%20exame.',
+    link: buildWhatsappUrl('Olá, quero agendar um exame.'),
   },
   {
     src: '/banner_3.png',
     mobileSrc: '/banner_3_mobile.png',
     alt: 'Coleta domiciliar',
-    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20agendar%20coleta%20domiciliar.',
+    link: buildWhatsappUrl('Olá, quero agendar coleta domiciliar.'),
   },
   {
     src: '/banner_4.png',
     mobileSrc: '/banner_4_mobile.png',
     alt: 'Campanha da prevenção inteligente',
-    link: 'https://wa.me/551637618555?text=Ol%C3%A1%2C%20quero%20fazer%20um%20check-up.',
+    link: buildWhatsappUrl('Olá, quero fazer um check-up.'),
   },
 ];
 

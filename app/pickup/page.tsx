@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import GlassCard from '@/components/GlassCard';
 import PageShell from '@/components/PageShell';
+import { WHATSAPP_NUMBER_DISPLAY, WHATSAPP_URL } from '@/constants';
 import { FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
 
 const Pickup = () => {
@@ -28,10 +29,10 @@ const Pickup = () => {
               href='tel:1637613311'
             />
             <Button
-              title='WhatsApp: (16) 3761-8555'
+              title={`WhatsApp: (${WHATSAPP_NUMBER_DISPLAY})`}
               icon={<FaWhatsapp className='text-lg text-green-500' />}
               variant='border border-white/20 bg-white/95 text-emerald-950 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white'
-              href='https://wa.me/551637618555'
+              href={WHATSAPP_URL}
               target='_blank'
             />
           </div>
