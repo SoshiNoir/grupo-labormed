@@ -128,7 +128,7 @@ export const UNIT_LOCATIONS = [
     address: 'Rua Coronel Joaquim Alberto, 377 - Centro - Altinópolis - São Paulo',
     phones: ['(16) 3665-3422'],
     whatsappNumber: '551636653422',
-    hours: ['Seg - Sex: 6h30 - 17h', 'Sábado e Domingo: Fechado'],
+    hours: ['Seg - Sex: 6h50 - 17h', 'Sábado e Domingo: Fechado'],
     mapSrc:
       'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2558.4166046496994!2d-47.37624281591836!3d-21.025992980221528!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b760ce779031d3%3A0x3c58634861723af1!2sR.%20Cel.%20Joaquim%20Alberto%2C%20354%20-%20Centro%2C%20Altin%C3%B3polis%20-%20SP%2C%2013920-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110915783!5m2!1spt-BR!2sus',
   },
