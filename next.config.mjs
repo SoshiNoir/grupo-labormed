@@ -2,7 +2,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['i.kym-cdn.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.kym-cdn.com',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

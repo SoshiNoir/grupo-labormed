@@ -1,63 +1,28 @@
 'use client';
 
-import { NAV_LINKS } from '@/constants';
+import { NAV_LINKS, RESULTS_URL } from '@/constants';
+import { InstagramLogo, List, X, YoutubeLogo } from '@phosphor-icons/react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { InstagramLogo, YoutubeLogo } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import Button from './Button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isTitleBarVisible, setIsTitleBarVisible] = useState(true);
-  const [currentPage, setCurrentPage] = useState('');
-  const [currentPath, setCurrentPath] = useState('');
   const pathname = usePathname();
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
-
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleScroll = () => {
-    const scrolled = window.scrollY > 50;
-    setIsScrolled(scrolled);
-    setIsTitleBarVisible(!scrolled);
-  };
-
-  const updatePadding = () => {
-    const navHeight =
-      (document.getElementById('navbar')?.offsetHeight || 0) / 2;
-    document.body.style.paddingTop = `${navHeight}px`;
-  };
-
   useEffect(() => {
-    const handleInitialScroll = () => {
-      const scrolled = window.scrollY > 50;
-      setIsScrolled(scrolled);
-      setIsTitleBarVisible(!scrolled);
-    };
-
-    // Ajusta o estado inicial baseado na posição do scroll
-    handleInitialScroll();
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', updatePadding);
-    updatePadding();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updatePadding);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    const path = pathname.replace(/\/$/, '');
-    setCurrentPath(path);
-    const page = NAV_LINKS.find((link) => link.href === path)?.label || '';
-    setCurrentPage(page);
-  }, [pathname]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -65,161 +30,178 @@ const Navbar = () => {
     } else {
       document.body.style.overflow = '';
     }
-
     return () => {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
 
-  const titleBarBgClass =
-    currentPath === '/' ? 'bg-transparent' : 'bg-green-90';
-
-  const shouldRenderTitleBar = currentPage && currentPath !== '/';
-
   return (
     <nav
-      id='navbar'
-      className='fixed top-0 left-0 right-0 z-30 bg-gray-100 shadow w-full'
+      className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
+        isScrolled ? 'pt-2 md:pt-4' : 'pt-2 md:pt-6'
+      }`}
     >
-      <div className='max-w-screen-xl mx-auto p-4 flex-row sm:flex-col items-center'>
-        <div className='flex justify-center items-center'>
-          <Link href='/'>
-            <Image
-              src='/horizontalcrop.png'
-              alt='logo'
-              width={isScrolled ? 253 : 506}
-              height={isScrolled ? 144 : 288}
-              className='transition-all duration-300 object-contain'
-            />
-          </Link>
-          <div className='flex justify-end items-center ml-auto lg:hidden'>
-            <Image
-              src='menu.svg'
-              alt='menu'
-              width={32}
-              height={32}
-              className='inline-block cursor-pointer'
-              onClick={toggleMenu}
-            />
-          </div>
-        </div>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='fixed inset-0 bg-slate-950/40 backdrop-blur-md lg:hidden'
+            onClick={closeMenu}
+          />
+        )}
+      </AnimatePresence>
 
-        <div className='mt-4 w-full'>
-          <ul className='hidden h-full lg:flex justify-between w-full items-center'>
-            {NAV_LINKS.map((link) => (
-              <li key={link.key}>
-                <Link href={link.href}>
-                  <span className='tracking-wider regular-16 text-gray-50 flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold hover:text-green-90 lg:regular-16 lg:text-center 3xl:regular-18'>
-                    {link.label}
-                  </span>
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Button
-                type='button'
-                title='Resultados'
-                variant='btn_dark_green'
-                href='https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx'
-                target='_blank'
+      <div className='mx-auto max-w-7xl px-4 md:px-6'>
+        <div
+          className={`relative flex items-center justify-between rounded-[1rem] border px-3 py-2 transition-all duration-500 ${
+            isScrolled
+              ? 'border-slate-200 bg-white/90 shadow-xl shadow-slate-200/50 backdrop-blur-xl'
+              : 'border-white/0 bg-transparent'
+          }`}
+        >
+          {/* Logo Section - Reduced width to save space */}
+          <div className='flex w-[130px] md:w-[180px] items-center shrink-0'>
+            <Link
+              href='/'
+              className='relative z-10 transition-transform hover:scale-[1.02]'
+            >
+              <Image
+                src='/horizontalcrop.png'
+                alt='Grupo Labormed'
+                width={180}
+                height={45}
+                className={`h-auto transition-all duration-500 ${
+                  isScrolled ? 'scale-90 origin-left' : 'scale-100 origin-left'
+                }`}
+                priority
               />
-            </li>
-            <li>
-              <Link href='https://www.instagram.com/labor_med/' target='_blank'>
-                <InstagramLogo
-                  size={32}
-                  color='#34D399'
-                  className='cursor-pointer transition-all hover:text-green-500'
-                />
+            </Link>
+          </div>
+
+          {/* Centered Navigation Links - Tightened spacing */}
+          <div className='hidden lg:flex flex-1 justify-center px-2'>
+            <ul className='flex items-center gap-0.5 rounded-full border border-slate-100 bg-slate-50/50 p-1'>
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <li key={link.key} className='relative'>
+                    <Link
+                      href={link.href}
+                      className={`relative flex items-center justify-center whitespace-nowrap px-3 xl:px-4 py-2 text-[13px] xl:text-sm font-semibold transition-colors duration-300 ${
+                        isActive
+                          ? 'text-white'
+                          : 'text-slate-600 hover:text-slate-900'
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId='nav-pill'
+                          initial={false}
+                          transition={{
+                            type: 'spring',
+                            duration: 0.5,
+                            bounce: 0.2,
+                          }}
+                          className='absolute inset-0 z-0 rounded-full bg-emerald-950 shadow-md'
+                        />
+                      )}
+                      <span className='relative z-10'>{link.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Right Actions - Optimized width and spacing */}
+          <div className='hidden lg:flex items-center gap-2 xl:gap-4 shrink-0 justify-end min-w-fit'>
+            <div className='flex items-center gap-2 border-r border-slate-200 pr-2 xl:pr-4'>
+              <Link
+                href='https://www.instagram.com/labor_med/'
+                target='_blank'
+                className='text-slate-400 hover:text-emerald-600 transition-colors'
+              >
+                <InstagramLogo size={18} weight='bold' />
               </Link>
-            </li>
-            <li>
               <Link
                 href='https://www.youtube.com/@Labor_med/videos'
                 target='_blank'
+                className='text-slate-400 hover:text-emerald-600 transition-colors'
               >
-                <YoutubeLogo
-                  size={32}
-                  color='#34D399'
-                  className='cursor-pointer transition-all hover:text-green-500'
-                />
+                <YoutubeLogo size={18} weight='bold' />
               </Link>
-            </li>
-          </ul>
-        </div>
+            </div>
+            <Button
+              title='Resultados'
+              href={RESULTS_URL}
+              target='_blank'
+              variant='bg-emerald-600 text-white font-bold px-4 xl:px-6 py-2 text-xs xl:text-sm rounded-full hover:bg-emerald-700 transition-all'
+            />
+          </div>
 
-        {isMenuOpen && (
-          <div
-            className={`fixed top-0 left-0 w-full h-full bg-[rgba(255,255,255,0.95)] shadow-lg z-40 lg:hidden flex flex-col transition-transform duration-1000 ease-out ${
+          {/* Mobile Menu Toggle */}
+          <button
+            type='button'
+            onClick={toggleMenu}
+            className={`relative z-10 flex h-9 w-9 items-center justify-center rounded-full border transition-all lg:hidden ${
               isMenuOpen
-                ? 'transform translate-y-0'
-                : 'transform -translate-y-full'
+                ? 'border-emerald-100 bg-emerald-50 text-emerald-900'
+                : 'border-slate-200 bg-white text-slate-900'
             }`}
           >
-            <div className='flex justify-end p-4'>
-              <button className='text-gray-600 text-2xl' onClick={toggleMenu}>
-                &times;
-              </button>
-            </div>
-            <ul className='flex flex-col items-center justify-center h-full'>
-              {NAV_LINKS.map((link) => (
-                <li key={link.key} className='py-4'>
-                  <Link href={link.href} onClick={closeMenu}>
-                    <span className='block text-gray-900 hover:text-green-700 text-lg sm:text-base cursor-pointer'>
-                      {link.label}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-              <li className='py-4'>
-                <Button
-                  type='button'
-                  title='Resultados'
-                  variant='btn_dark_green'
-                  href='https://labormed.dyndns.org/matrixnet/wfrmLogin.aspx'
-                  target='_blank'
-                />
-              </li>
-              <li className='py-4'>
-                <Link
-                  href='https://www.instagram.com/labor_med/'
-                  target='_blank'
-                >
-                  <InstagramLogo
-                    size={32}
-                    color='#34D399'
-                    className='cursor-pointer transition-all hover:text-green-500'
-                  />
-                </Link>
-              </li>
-              <li className='py-4'>
-                <Link
-                  href='https://www.youtube.com/@Labor_med/videos'
-                  target='_blank'
-                >
-                  <YoutubeLogo
-                    size={32}
-                    color='#34D399'
-                    className='cursor-pointer transition-all hover:text-green-500'
-                  />
-                </Link>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
-
-      {shouldRenderTitleBar && (
-        <div
-          className={`w-full h-[3rem] flex justify-center transition-all duration-1000 ease-out ${titleBarBgClass} ${
-            isTitleBarVisible ? 'block' : 'hidden'
-          }`}
-        >
-          <div className='flex items-center'>
-            <h1 className='text-3xl text-gray-10'>{currentPage}</h1>
-          </div>
+            {isMenuOpen ? (
+              <X size={20} weight='bold' />
+            ) : (
+              <List size={20} weight='bold' />
+            )}
+          </button>
         </div>
-      )}
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className='absolute inset-x-4 top-[calc(100%+12px)] z-[101] lg:hidden'
+            >
+              <div className='rounded-[1rem] border border-slate-200 bg-white p-3 sm:p-6 shadow-2xl text-center'>
+                <ul className='grid gap-2'>
+                  {NAV_LINKS.map((link) => {
+                    const isActive = pathname === link.href;
+                    return (
+                      <li key={link.key}>
+                        <Link
+                          href={link.href}
+                          onClick={closeMenu}
+                          className={`flex items-center justify-center whitespace-nowrap rounded-xl px-5 py-3 text-base font-bold transition-all active:scale-[0.98] ${
+                            isActive
+                              ? 'bg-emerald-50 text-emerald-900 border border-emerald-100'
+                              : 'bg-slate-50 text-slate-600'
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className='mt-6 pt-6 border-t border-slate-100'>
+                  <Button
+                    title='Resultados Online'
+                    href={RESULTS_URL}
+                    target='_blank'
+                    variant='w-full bg-emerald-950 text-white font-bold py-4 rounded-xl flex justify-center shadow-lg'
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 };

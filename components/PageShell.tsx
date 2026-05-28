@@ -1,0 +1,53 @@
+import Image from 'next/image';
+import SectionHeading from './SectionHeading';
+import { glassSurfaceSoftClass } from './glass';
+
+type PageShellProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  children: React.ReactNode;
+};
+
+const PageShell = ({
+  eyebrow,
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  children,
+}: PageShellProps) => {
+  const shellGridClass = imageSrc
+    ? 'grid gap-5 p-3 md:p-8 lg:grid-cols-[1.15fr_auto] lg:items-start'
+    : 'grid gap-5 p-3 md:p-8 lg:grid-cols-1';
+
+  return (
+    <div className='space-y-8 pb-8'>
+      <section className={`${glassSurfaceSoftClass} ${shellGridClass}`}>
+        <div className='flex items-center'>
+          <SectionHeading
+            eyebrow={eyebrow}
+            title={title}
+            description={description}
+          />
+        </div>
+        {imageSrc ? (
+          <div className='mx-auto w-full max-w-[320px] overflow-hidden rounded-[1.75rem] border border-white/70 bg-[linear-gradient(180deg,#f8fafc_0%,#eef2f7_100%)] shadow-[0_24px_60px_-40px_rgba(15,23,42,0.32)] lg:mx-0 lg:justify-self-end'>
+            <Image
+              src={imageSrc}
+              alt={imageAlt ?? ''}
+              width={640}
+              height={640}
+              className='h-auto w-full object-cover'
+            />
+          </div>
+        ) : null}
+      </section>
+      {children}
+    </div>
+  );
+};
+
+export default PageShell;

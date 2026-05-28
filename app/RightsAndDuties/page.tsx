@@ -1,137 +1,48 @@
-"use client";
+import GlassCard from '@/components/GlassCard';
+import InfoListItem from '@/components/InfoListItem';
+import PageShell from '@/components/PageShell';
 
-import React from "react";
-
-interface ListItemProps {
-  title: string;
-  text: string;
-  titleColor?: string;
-  textColor?: string;
-}
-
-const ListItem: React.FC<ListItemProps> = ({
-  title,
-  text,
-  titleColor = "text-green-500",
-  textColor = "text-gray-700",
-}) => {
+const RightsAndDuties = () => {
   return (
-    <li className="border-b border-gray-300 pb-2">
-      <span className={`font-bold ${titleColor}`}>{title}:</span>{" "}
-      <span className={textColor}>{text}</span>
-    </li>
-  );
-};
+    <PageShell
+      eyebrow='Direitos e deveres'
+      title='Uma experiência mais clara para pacientes e acompanhantes.'
+      description='O conteúdo foi mantido, mas agora aparece em blocos de leitura mais confortável e coerentes com o restante do site.'
+      imageSrc='/patient.jpg'
+      imageAlt='Direitos e deveres dos pacientes'
+    >
+      <div className='grid gap-5 lg:grid-cols-2'>
+        <GlassCard title='Direitos dos pacientes'>
+          <ul className='space-y-4 text-left text-sm leading-7'>
+            <InfoListItem title='Atendimento humanizado e respeitoso' text='Ser tratado com cordialidade, livre de preconceito de raça, etnia, credo, sexo, idade ou origem.' />
+            <InfoListItem title='Identidade respeitada' text='Ser identificado pelo nome, sobrenome ou nome social, sem apelidos ou termos desrespeitosos.' />
+            <InfoListItem title='Integridade e privacidade garantidas' text='Ter segurança, individualidade e valores éticos, culturais e morais respeitados.' />
+            <InfoListItem title='Identificação dos profissionais' text='Reconhecer os profissionais envolvidos por meio de crachás visíveis e legíveis.' />
+            <InfoListItem title='Informações claras' text='Receber orientações compreensíveis sobre preparo, coleta, valores, convênios e prazos.' />
+            <InfoListItem title='Direito à expressão' text='Manifestar insatisfações ou preocupações por canais de atendimento e pesquisas de satisfação.' />
+            <InfoListItem title='Acesso aos laudos' text='Obter resultados com segurança pelo site ou presencialmente, com identificação adequada.' />
+            <InfoListItem title='Confidencialidade' text='Ter a privacidade de dados pessoais e laudos assegurada.' />
+          </ul>
+        </GlassCard>
 
-const RightsAndDuties: React.FC = () => {
-  return (
-    <div className="p-6 max-w-7xl mx-auto text-center px-4 md:px-6">
-      {/* Header da página */}
-      <div className="bg-gray-200 rounded-lg shadow-lg overflow-hidden p-4 md:p-6">
-        <h1 className="text-3xl font-bold text-green-50 mb-4">
-          Direitos e Deveres dos Pacientes
-        </h1>
-        <p className="text-lg text-gray-700">
-          No Laboratório Clínico Labor Med, garantimos uma experiência de
-          qualidade baseada no respeito, ética e confiança.
-        </p>
+        <GlassCard className='border border-green-50/20 bg-green-90 text-white backdrop-blur-2xl'>
+          <h2 className='text-2xl font-semibold tracking-tight text-white'>
+            Deveres dos pacientes
+          </h2>
+          <ul className='mt-4 space-y-4 text-left text-sm leading-7'>
+            <InfoListItem light title='Busca por informações' text='Informar-se sobre condições e normas de atendimento do laboratório.' />
+            <InfoListItem light title='Cumprimento das regras' text='Respeitar orientações e normas para realização dos exames.' />
+            <InfoListItem light title='Identificação pessoal' text='Apresentar documento oficial com foto para o atendimento.' />
+            <InfoListItem light title='Responsabilidade financeira' text='Honrar os compromissos financeiros assumidos.' />
+            <InfoListItem light title='Documentação de convênios' text='Providenciar os documentos necessários para autorizações de convênios e parcerias.' />
+            <InfoListItem light title='Respeito mútuo' text='Tratar os demais pacientes e profissionais com civilidade e cortesia.' />
+            <InfoListItem light title='Zelo pelo patrimônio' text='Preservar o patrimônio da instituição para garantir conforto a todos.' />
+            <InfoListItem light title='Proibição de fumar' text='Não fumar dentro das dependências do laboratório.' />
+            <InfoListItem light title='Responsabilidade dos responsáveis' text='No caso de menores, pais ou responsáveis devem cumprir esses deveres.' />
+          </ul>
+        </GlassCard>
       </div>
-
-      {/* Direitos dos Pacientes */}
-      <div className="bg-gray-200 rounded-lg shadow-lg p-4 md:p-6 mt-6">
-        <h2 className="text-2xl font-semibold text-green-50 mb-4">
-          Direitos dos Pacientes
-        </h2>
-        <ul className="space-y-4 text-left">
-          <ListItem
-            title="Atendimento humanizado e respeitoso"
-            text="Ser tratado com cordialidade, livre de qualquer preconceito de raça, etnia, credo, sexo, idade ou origem."
-          />
-          <ListItem
-            title="Identidade respeitada"
-            text="Ser identificado pelo seu nome, sobrenome ou nome social, nunca por apelidos ou termos desrespeitosos."
-          />
-          <ListItem
-            title="Integridade e privacidade garantidas"
-            text="Ter sua segurança, individualidade e valores éticos, culturais e morais respeitados, preservando sua imagem e identidade."
-          />
-          <ListItem
-            title="Identificação dos profissionais"
-            text="Reconhecer os profissionais envolvidos no atendimento por meio de crachás visíveis e legíveis."
-          />
-          <ListItem
-            title="Informações claras"
-            text="Receber explicações compreensíveis sobre o preparo, coleta de exames, valores, convênios, parcerias e prazos para entrega dos resultados."
-          />
-          <ListItem
-            title="Direito à expressão"
-            text="Manifestar insatisfações ou preocupações por meio de canais de atendimento e Pesquisas de Satisfação."
-          />
-          <ListItem
-            title="Acesso aos laudos"
-            text="Obter resultados de forma segura, seja pelo site do laboratório mediante login e senha, ou presencialmente, com apresentação de documento ou autorização para terceiros."
-          />
-          <ListItem
-            title="Confidencialidade"
-            text="Ter a privacidade de seus dados pessoais e laudos assegurada."
-          />
-        </ul>
-      </div>
-
-      {/* Deveres dos Pacientes */}
-      <div className="bg-green-90 rounded-lg shadow-lg p-6 mt-6">
-        <h2 className="text-2xl font-semibold text-green-500 mb-4">
-          Deveres dos Pacientes
-        </h2>
-        <ul className="space-y-4 text-left">
-          <ListItem
-            title="Busca por informações"
-            text="Informar-se sobre as condições e normas de atendimento do Laboratório."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Cumprimento das regras"
-            text="Respeitar as orientações e normas para realização dos exames."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Identificação pessoal"
-            text="Apresentar documento oficial com foto para o atendimento."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Responsabilidade financeira"
-            text="Honrar os compromissos financeiros assumidos."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Documentação de convênios"
-            text="Providenciar os documentos necessários para autorizações de Convênios e Parcerias."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Respeito mútuo"
-            text="Tratar os demais pacientes e profissionais com civilidade e cortesia."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Zelo pelo patrimônio"
-            text="Preservar o patrimônio da instituição para garantir conforto a todos."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Proibição de fumar"
-            text="Não fumar dentro das dependências do Laboratório."
-            textColor="text-gray-300"
-          />
-          <ListItem
-            title="Responsabilidade dos responsáveis"
-            text="No caso de menores de 18 anos, pais ou responsáveis devem cumprir esses deveres."
-            textColor="text-gray-300"
-          />
-        </ul>
-      </div>
-    </div>
+    </PageShell>
   );
 };
 

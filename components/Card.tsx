@@ -13,12 +13,10 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div
-      className={`relative group flex flex-col rounded-md overflow-hidden my-12 transition duration-300 ${className} md:flex-row`}
+      className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-start py-12 ${className}`}
     >
-      <div className='absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none z-10' />
-
-      <div className='flex w-full p-4 md:w-3/5 z-20'>{leftContent}</div>
-      <div className='flex w-full p-4 md:w-2/5 z-20'>{rightContent}</div>
+      <div className='lg:col-span-7 space-y-10'>{leftContent}</div>
+      <div className='lg:col-span-5 space-y-4'>{rightContent}</div>
     </div>
   );
 };

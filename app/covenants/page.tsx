@@ -1,5 +1,5 @@
+import PageShell from '@/components/PageShell';
 import Image from 'next/image';
-import React from 'react';
 
 const cardData = [
   { id: 1, title: 'AMIL', imageSrc: '/amil.png' },
@@ -29,27 +29,34 @@ const cardData = [
 
 function Covenants() {
   return (
-    <section className="py-8">
-      <div className="max-w-screen-xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {cardData.map(card => (
-            <div key={card.id} className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
-              <div className="relative w-full h-48 mx-1">
-                <Image
-                  src={card.imageSrc}
-                  alt={card.title}
-                  objectFit="contain"
-                  className="rounded-t-lg"
-                  fill />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg text-center font-semibold">{card.title}</h3>
-              </div>
+    <PageShell
+      eyebrow='Convênios'
+      title='Cobertura ampla para pacientes e empresas.'
+      description='Cobertura ampla para pacientes e empresas, com logotipos organizados em uma grade clara e consistente.'
+      imageSrc='/company.jpeg'
+      imageAlt='Convênios atendidos pelo Labormed'
+    >
+      <section className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+        {cardData.map((card) => (
+          <article
+            key={card.id}
+            className='rounded-[1.75rem] border border-white/70 bg-white/80 p-3 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.55)] backdrop-blur sm:p-5'
+          >
+            <div className='relative flex h-40 items-center justify-center overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white p-3 sm:p-4'>
+              <Image
+                src={card.imageSrc}
+                alt={card.title}
+                fill
+                className='object-contain p-3 sm:p-4'
+              />
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            <h2 className='mt-5 text-center text-lg font-semibold text-slate-950'>
+              {card.title}
+            </h2>
+          </article>
+        ))}
+      </section>
+    </PageShell>
   );
 }
 

@@ -1,155 +1,179 @@
-// app/footer/page.tsx
-
-import { Clock, MapPin, Phone } from '@phosphor-icons/react/dist/ssr';
+import { RESULTS_URL, UNIT_LOCATIONS } from '@/constants';
+import {
+  ArrowUpRight,
+  CaretRight,
+  InstagramLogo,
+  YoutubeLogo,
+} from '@phosphor-icons/react/dist/ssr';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import UnitInfoCard from './UnitInfoCard';
+
+type QuickAccessLink = {
+  href: string;
+  label: string;
+  external?: boolean;
+  highlight?: boolean;
+};
+
+const quickAccessLinks: QuickAccessLink[] = [
+  { href: '/about', label: 'Sobre o Labormed' },
+  { href: '/units#batatais', label: 'Batatais' },
+  { href: '/units#altinopolis', label: 'Altinópolis' },
+  {
+    href: RESULTS_URL,
+    label: 'Resultados Online',
+    external: true,
+    highlight: true,
+  },
+];
 
 const Footer = () => {
-  return (
-    <footer className='w-full mt-16 ml-2 md:ml-0 flex flex-col items-center border-t border-gray-300'>
-      {/* Linha horizontal riscando o topo */}
-      <div
-        className='absolute inset-x-0 top-0'
-        style={{ height: '2px', backgroundColor: 'gray', zIndex: 1 }}
-      ></div>
+  const buildMapsUrl = (address: string) =>
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
-      <div className='relative pt-8 bg-gray-100' style={{ minHeight: '100px' }}>
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 px-4 md:px-8 lg:px-16'>
-          <div className='flex items-center gap-4 border-b md:border-r border-gray-300 md:border-b-0 pb-4 md:pb-0 md:pr-4'>
-            <div className='w-[100px] h-[100px] relative'>
+  return (
+    <footer className='mt-24 border-t border-slate-200 bg-slate-50 text-slate-900'>
+      <div className='mx-auto max-w-7xl px-3 py-12 sm:px-6 sm:py-16'>
+        <div className='grid grid-cols-1 gap-10 lg:grid-cols-12'>
+          <div className='space-y-8 lg:col-span-5'>
+            <div className='space-y-6'>
               <Image
-                src='/pinMain.svg'
-                alt='Imagem 1'
-                objectFit='contain'
-                className='rounded-lg'
-                fill
+                src='/horizontal.png'
+                alt='Logo Labormed'
+                width={240}
+                height={70}
+                className='h-auto w-48 object-contain'
               />
+              <p className='max-w-md text-base leading-relaxed text-slate-600'>
+                Liderança em análises clínicas há mais de 40 anos. Compromisso
+                com a precisão diagnóstica e o atendimento humanizado em toda a
+                nossa rede.
+              </p>
             </div>
-            <div className='p-2 align-middle justify-center'>
-              <h3 className='text-lg font-bold mb-2 pl-3'>
-                Unidade 1 - Batatais
-              </h3>
-              <div className='flex flex-column gap-2 p-2'>
-                <MapPin size={38} color='var(--color-main)' />
-                <p>
-                  Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São
-                  Paulo{' '}
-                </p>
-              </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Phone size={28} color='var(--color-main)' />
-                <p>(16) 3761-6066</p>
-              </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Clock size={28} color='var(--color-main)' />
-                <div>
-                  <p>Seg - Sex: 6h30 - 17h30</p>
-                  <p>Sábado e Domingo: Fechado</p>
-                </div>
+
+            <div className='flex flex-wrap gap-2'>
+              {[
+                'PNCQ Certificado',
+                'Atendimento Humanizado',
+                'Saúde Ocupacional',
+              ].map((stat) => (
+                <span
+                  key={stat}
+                  className='inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-500 shadow-sm'
+                >
+                  {stat}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className='lg:col-span-3'>
+            <h4 className='mb-6 text-sm font-bold uppercase tracking-widest text-slate-400'>
+              Navegação
+            </h4>
+            <ul className='space-y-4'>
+              {quickAccessLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                    className={`group flex items-center gap-2 text-base font-medium transition-colors ${
+                      link.highlight
+                        ? 'text-emerald-600 hover:text-emerald-700'
+                        : 'text-slate-600 hover:text-slate-950'
+                    }`}
+                  >
+                    {link.label}
+                    {link.external ? (
+                      <ArrowUpRight size={14} />
+                    ) : (
+                      <CaretRight
+                        size={14}
+                        className='-translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100'
+                      />
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className='mt-6 border-t border-slate-200 pt-5'>
+              <p className='text-xs font-bold uppercase tracking-widest text-slate-400'>
+                Redes sociais
+              </p>
+              <div className='mt-3 flex items-center gap-3'>
+                <Link
+                  href='https://www.instagram.com/labor_med/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition-colors hover:text-emerald-600'
+                >
+                  <InstagramLogo size={18} weight='bold' />
+                </Link>
+                <Link
+                  href='https://www.youtube.com/@Labor_med/videos'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition-colors hover:text-emerald-600'
+                >
+                  <YoutubeLogo size={18} weight='bold' />
+                </Link>
               </div>
             </div>
           </div>
-          <div className='flex items-center gap-4 border-b md:border-r border-gray-300 md:border-b-0 pb-4 md:pb-0 md:pr-4'>
-            <div className='w-[100px] h-[100px] relative'>
-              <Image
-                src='/pinGold.svg'
-                alt='Imagem 2'
-                objectFit='contain'
-                className='rounded-lg'
-                fill
-              />
-            </div>
-            <div className='p-2 align-middle justify-center'>
-              <h3 className='text-lg font-bold mb-2 pl-3'>
-                Unidade 2 - Batatais
-              </h3>
-              <div className='flex flex-column gap-2 p-2'>
-                <MapPin size={38} color='var(--color-alt)' />
-                <p>
-                  Travessa Intendente Vigilato, 295 - Centro - Batatais - São
-                  Paulo
+
+          <div className='lg:col-span-4'>
+            <div className='group relative overflow-hidden rounded-2xl bg-emerald-900 p-8 text-white shadow-xl shadow-emerald-900/10'>
+              <div className='relative z-10'>
+                <h4 className='mb-2 text-xs font-bold uppercase tracking-widest text-emerald-300'>
+                  Portal do Paciente
+                </h4>
+                <p className='mb-6 text-xl font-semibold'>
+                  Acesse seus resultados com segurança.
                 </p>
+                <Link
+                  href={RESULTS_URL}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-3 font-bold text-emerald-900 transition-transform hover:scale-[1.02] active:scale-[0.98]'
+                >
+                  Ver Resultados
+                </Link>
               </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Phone size={28} color='var(--color-alt)' />
-                <p>(16) 3761-8555</p>
-              </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Phone size={28} color='var(--color-alt)' />
-                <p>(16) 3761-3311</p>
-              </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Clock size={28} color='var(--color-alt)' />
-                <div>
-                  <p>Seg - Sex: 6h30 - 17h30</p>
-                  <p>Sábado: 7h - 11h</p>
-                  <p>Domingo: Fechado</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='flex items-center gap-4 pb-4 md:pb-0'>
-            <div className='w-[100px] h-[100px] relative'>
-              <Image
-                src='/pinMain.svg'
-                alt='Imagem 3'
-                objectFit='contain'
-                className='rounded-lg'
-                fill
-              />
-            </div>
-            <div className='p-2 align-middle justify-center'>
-              <h3 className='text-lg font-bold mb-2 pl-3'>
-                Unidade 3 - Altinópolis
-              </h3>
-              <div className='flex flex-column gap-2 p-2'>
-                <MapPin size={38} color='var(--color-main)' />
-                <p>
-                  Rua Coronel Joaquim Alberto, 377 - Centro - Altinópolis - São
-                  Paulo
-                </p>
-              </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Phone size={28} color='var(--color-main)' />
-                <p>(16) 3665-3422</p>
-              </div>
-              <div className='flex flex-column gap-2 p-2'>
-                <Clock size={28} color='var(--color-main)' />
-                <div>
-                  <p>Seg - Sex: 6h50 - 17h</p>
-                  <p>Sábado e Domingo: Fechado</p>
-                </div>
-              </div>
+              <div className='absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-emerald-800 transition-transform group-hover:scale-150' />
             </div>
           </div>
         </div>
 
-        <div className='w-full p-8 flex flex-col items-center border-t border-gray-300'>
-          <div className='flex flex-col items-center gap-4'>
-            <div className=' h-auto'>
-              <div className='flex flex-col md:flex-row items-center md:items-start gap-4'>
-                <Image
-                  src='/horizontal.png'
-                  alt='Imagem 4'
-                  width={384}
-                  height={216}
-                  objectFit='contain'
-                  className='rounded-lg'
-                />
-                <Image
-                  src='/pncq.webp'
-                  alt='Imagem 4'
-                  width={500}
-                  height={5}
-                  className='rounded-lg'
-                />
-              </div>
-            </div>
-            <div className='text-center'>
-              <p>
-                Copyright © 2024 | Labor Med | Todos os direitos reservados.
-              </p>
-            </div>
+        <hr className='my-10 border-slate-200 sm:my-12' />
+
+        <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
+          {UNIT_LOCATIONS.map((unit) => (
+            <UnitInfoCard
+              key={unit.id}
+              unit={unit}
+              mapHref={buildMapsUrl(unit.address)}
+              compact
+            />
+          ))}
+        </div>
+
+        <div className='mt-10 flex flex-col gap-4 border-t border-slate-200 pt-6 md:mt-12 md:flex-row md:items-center md:justify-between md:gap-6 md:pt-8'>
+          <p className='text-xs font-medium text-slate-500'>
+            © 2026 Labormed Laboratório Clínico. CNPJ: 56.889.454/0001-10
+          </p>
+          <div className='flex flex-nowrap gap-4 overflow-x-auto whitespace-nowrap md:gap-6'>
+            {['Ethics', 'RightsAndDuties', 'pickup'].map((path) => (
+              <Link
+                key={path}
+                href={`/${path}`}
+                className='text-[11px] font-bold uppercase tracking-widest text-slate-400 transition-colors hover:text-emerald-600'
+              >
+                {path === 'pickup' ? 'Coleta Domiciliar' : path}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
