@@ -32,7 +32,8 @@ const Footer = () => {
               <div className='flex flex-column gap-2 p-2'>
                 <MapPin size={38} color='var(--color-main)' />
                 <p>
-                  Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São Paulo{' '}
+                  Rua Coronel Joaquim Rosa, 457 - Centro - Batatais - São
+                  Paulo{' '}
                 </p>
               </div>
               <div className='flex flex-column gap-2 p-2'>
@@ -115,7 +116,7 @@ const Footer = () => {
               <div className='flex flex-column gap-2 p-2'>
                 <Clock size={28} color='var(--color-main)' />
                 <div>
-                  <p>Seg - Sex: 6h30 - 17h</p>
+                  <p>Seg - Sex: 6h50 - 17h</p>
                   <p>Sábado e Domingo: Fechado</p>
                 </div>
               </div>

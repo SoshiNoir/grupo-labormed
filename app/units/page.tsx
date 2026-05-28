@@ -148,7 +148,7 @@ const Units: React.FC = () => {
           <div className='flex flex-row gap-2 p-2'>
             <Clock size={28} color='var(--color-main)' />
             <div>
-              <p>Seg - Sex: 6h30 - 17h</p>
+              <p>Seg - Sex: 6h50 - 17h</p>
               <p>Sábado e Domingo: Fechado</p>
             </div>
           </div>
