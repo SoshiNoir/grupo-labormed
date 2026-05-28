@@ -112,7 +112,7 @@ export const UNIT_LOCATIONS = [
     pinSrc: '/pinGold.svg',
     address: 'Travessa Intendente Vigilato, 295 - Centro - Batatais - São Paulo',
     phones: ['(16) 3761-8555', '(16) 3761-3311'],
-    whatsappNumber: '551637618555',
+    whatsappNumber: '16992023156',
     hours: ['Seg - Sex: 6h30 - 17h30', 'Sábado: 7h - 11h', 'Domingo: Fechado'],
     mapSrc:
       'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3320.9272525537353!2d-47.58491778009317!3d-20.887571597239255!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9faea56fd24d1%3A0x28e0e2e22a0fc31c!2sR.%20Dr.%20Manoel%20Furtado%2C%20235%20-%20Centro%2C%20Batatais%20-%20SP%2C%2014300-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110289366!5m2!1spt-BR!2sus',
@@ -127,7 +127,7 @@ export const UNIT_LOCATIONS = [
     pinSrc: '/pinMain.svg',
     address: 'Rua Coronel Joaquim Alberto, 377 - Centro - Altinópolis - São Paulo',
     phones: ['(16) 3665-3422'],
-    whatsappNumber: '551636653422',
+    whatsappNumber: '16992023156',
     hours: ['Seg - Sex: 6h50 - 17h', 'Sábado e Domingo: Fechado'],
     mapSrc:
       'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2558.4166046496994!2d-47.37624281591836!3d-21.025992980221528!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b760ce779031d3%3A0x3c58634861723af1!2sR.%20Cel.%20Joaquim%20Alberto%2C%20354%20-%20Centro%2C%20Altin%C3%B3polis%20-%20SP%2C%2013920-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1726110915783!5m2!1spt-BR!2sus',

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const DEFAULT_PHONE_NUMBER = '551637618555';
+const DEFAULT_PHONE_NUMBER = '16992023156';
 
 const FloatingWhatsappBubble = () => {
   const whatsappUrl = `https://wa.me/${DEFAULT_PHONE_NUMBER}`;
