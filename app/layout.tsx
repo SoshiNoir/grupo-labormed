@@ -1,3 +1,4 @@
+import CampaignPopup from '@/components/CampaignPopup';
 import FloatingWhatsappBubble from '@/components/FloatingWhatsappBubble';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -35,6 +36,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingWhatsappBubble />
+        <CampaignPopup />
       </body>
     </html>
   );
