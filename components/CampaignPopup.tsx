@@ -4,13 +4,13 @@ import { X } from '@phosphor-icons/react';
 import { HERO_SLIDES } from '@/constants';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-
-const campaign = HERO_SLIDES[3];
 
 const CampaignPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  // Fallback safety layer just in case constants ever change
+  const campaign = HERO_SLIDES?.[3];
 
   useEffect(() => {
     setMounted(true);
@@ -39,9 +39,11 @@ const CampaignPopup = () => {
     };
   }, [isOpen]);
 
-  if (!mounted || !isOpen) return null;
+  // Prevent SSR crashes cleanly
+  if (!mounted || !isOpen || !campaign) return null;
 
-  return createPortal(
+  // Rendered directly without createPortal to avoid Next.js routing freezes
+  return (
     <div
       className='fixed inset-0 z-[10000] flex items-center justify-center bg-slate-950/70 p-3 backdrop-blur-sm sm:p-6'
       role='dialog'
@@ -89,8 +91,7 @@ const CampaignPopup = () => {
           />
         </a>
       </div>
-    </div>,
-    document.body,
+    </div>
   );
 };
 
